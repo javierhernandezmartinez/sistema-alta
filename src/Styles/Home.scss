@@ -1,0 +1,29 @@
+.panel-p{
+  width: 100%;
+  height: 100%;
+  padding:12px;
+}
+.title-p{
+  color: darkslategrey;
+  font-size: 30pt;
+  font-weight: bold;
+}
+.div-text{
+  height: 100%;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  .text-p{
+    color: black;
+    font-size: xx-large;
+    text-align:center;
+  }
+}
+
+.img-p{
+  margin-top: 2vh;
+  text-align: end;
+  img{
+    border-radius: 8px;
+  }
+}
