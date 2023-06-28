@@ -1,9 +1,9 @@
 import "../../Styles/Home.scss"
-import BarMenu from "../BarMenu/BarMenu";
+import BarMenu from "../../Components/BarMenu/BarMenu";
 import {Button} from "primereact/button";
 import img1 from "../../Assets/img1.png";
 import CarouselCursos from "../Home/CarouselCursos";
-import Footer from "../Footer";
+import Footer from "../../Components/Footer";
 import {InputText} from "primereact/inputtext";
 const Login = () => {
   return(

@@ -17,6 +17,16 @@ const BarMenu = () => {
             label: 'Login',
             icon: 'pi pi-fw pi-power-off',
             command: () => { window.open("/login", "_self"); },
+        },
+        {
+            label: 'Perfil',
+            icon: 'pi pi-fw pi-power-off',
+            command: () => { window.open("/perfil", "_self"); },
+        },
+        {
+            label: 'Administaciòn',
+            icon: 'pi pi-fw pi-power-off',
+            command: () => { window.open("/administration", "_self"); },
         }
     ];
     const start = <img alt="logo" src="https://primefaces.org/cdn/primereact/images/logo.png" height="40" className="mr-2"></img>;

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from 'primereact/button';
 import { Carousel } from 'primereact/carousel';
-import product from '../../Assets/cursos.json';
+import product from '../../Assets/json/cursos.json';
 
 const  CarouselCursos =()=> {
     console.log(product)

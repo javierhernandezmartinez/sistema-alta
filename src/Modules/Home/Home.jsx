@@ -2,11 +2,11 @@ import "../../Styles/Home.scss"
 import { Menubar } from 'primereact/menubar';
 import {InputText} from "primereact/inputtext";
 import img1 from "../../Assets/img1.png"
-import Footer from "../Footer";
+import Footer from "../../Components/Footer";
 import {Button} from "primereact/button";
 import {Carousel} from "primereact/carousel";
 import CarouselCursos from "./CarouselCursos";
-import BarMenu from "../BarMenu/BarMenu";
+import BarMenu from "../../Components/BarMenu/BarMenu";
 const Home = () => {
     const start = <img alt="logo" src="https://primefaces.org/cdn/primereact/images/logo.png" height="40" className="mr-2"></img>;
     const end = <InputText placeholder="Search" type="text" className="w-full" />;

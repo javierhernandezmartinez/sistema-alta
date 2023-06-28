@@ -1,9 +1,10 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import './App.css';
-import Home from "./Components/Home/Home"
-import Login from "./Components/Login/Login";
-import Register from "./Components/Register/Register";
-import Perfil from "./Components/Perfil/Perfil";
+import Home from "./Modules/Home/Home"
+import Login from "./Modules/Login/Login";
+import Register from "./Modules/Register/Register";
+import Perfil from "./Modules/Perfil/Perfil";
+import Administration from "./Modules/Administation/Administration";
 
 function App() {
   return (
@@ -14,7 +15,7 @@ function App() {
                 <Route path={"/login"} element={<Login/>}/>
                 <Route path={"/register"} element={<Register/>}/>
                 <Route path={"/perfil"} element={<Perfil/>}/>
-                <Route path={"/administration"} element={<Login/>}/>
+                <Route path={"/administration"} element={<Administration/>}/>
             </Routes>
         </BrowserRouter>
     </div>
