@@ -9,7 +9,7 @@ import Administration from "./Modules/Administation/Administration";
 function App() {
   return (
     <div className="App">
-        <BrowserRouter>
+        <HashRouter>
             <Routes>
                 <Route path={"/"} element={<Home/>}/>
                 <Route path={"/login"} element={<Login/>}/>
@@ -17,7 +17,7 @@ function App() {
                 <Route path={"/perfil"} element={<Perfil/>}/>
                 <Route path={"/administration"} element={<Administration/>}/>
             </Routes>
-        </BrowserRouter>
+        </HashRouter>
     </div>
   );
 }
