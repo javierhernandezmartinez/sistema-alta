@@ -11,26 +11,26 @@ const Home = () => {
     const start = <img alt="logo" src="https://primefaces.org/cdn/primereact/images/logo.png" height="40" className="mr-2"></img>;
     const end = <InputText placeholder="Search" type="text" className="w-full" />;
   return(
-      <div className={"panel-p seccion-1"}>
-          <div className={"row"}>
+      <div className={"panel-p"}>
+          <div className={"row seccion-1"}>
               <div className={"col-md-12"}>
-                  <p className={"title-p"}>
-                      AGENDA-T
-                  </p>
                   <BarMenu/>
               </div>
               <div className={"col-md-6"}>
                   <div className={"div-text"}>
                       <div>
-                          <p className={"text-p"}>
-                              Agenda-T
+                          <p className={"title-p"}>
+                              AGENDA-T
                           </p>
+                          {/*<p className={"text-p"}>
+                              Agenda-T
+                          </p>*/}
                           <p className={"text-p"}>
                               Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
                               been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
                               galley of type and scrambled it to make a type specimen book.
                           </p>
-                          <div>
+                          <div className={"div-button"}>
                               <Button label="Ver cursos" raised style={{marginRight: "10px"}}/>
                               <Button label="Logueate" raised />
                           </div>
@@ -46,7 +46,11 @@ const Home = () => {
           </div>
           <div className={"row seccion-2"}>
               <div className={"col-md-12"}>
-                <p>CURSOS</p>
+                  <div className={"row"}>
+                      <div className={"col-md-12"}>
+                        <p className={"title-seccion2"}>CURSOS</p>
+                      </div>
+                  </div>
                   <div>
                       <CarouselCursos/>
                   </div>

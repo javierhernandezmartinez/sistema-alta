@@ -4,7 +4,7 @@
   padding:12px;
 }
 .title-p{
-  color: darkslategrey;
+  color: rgba(204, 183, 236, 0.66);
   font-size: 30pt;
   font-weight: bold;
 }
@@ -14,7 +14,7 @@
   display: flex;
   align-items: center;
   .text-p{
-    color: black;
+    color: #b49fcb;
     font-size: xx-large;
     text-align:center;
   }
@@ -26,4 +26,66 @@
   img{
     border-radius: 8px;
   }
+}
+
+.div-button{
+  button{
+    background: #250254;
+    border: solid 1px rgba(126, 55, 236, 0.66);
+  }
+  button:hover{
+    background: rgba(126, 55, 236, 0.66) !important;
+    border: solid 1px rgba(126, 55, 236, 0.66) !important;
+  }
+  button:active{
+    background: rgba(182, 147, 234, 0.66) !important;
+    box-shadow: none !important;
+  }
+  button:focus{
+    box-shadow: none !important;
+  }
+}
+
+//MENU HEADER
+.div-head-menu{
+  background: rgb(50, 1, 114) !important;
+  .p-menubar{
+    background: #250254;
+    border: 1px solid transparent;
+    border-bottom: 1px solid  rgb(50, 1, 114);
+    color: white;
+  }
+  span{
+    color: #b49fcb !important;
+  }
+  .p-menuitem-link:not(.p-disabled):hover {
+    background:  rgba(126, 55, 236, 0.66) !important;
+  }
+}
+
+//CAROUSEL
+.panel-carousel-home{
+  background: rgb(50, 1, 114) !important;
+  .title-carusel{
+    color: rgba(126, 55, 236, 0.66);
+  }
+  .desc-carousel{
+    color: #b49fcb;
+  }
+}
+
+//SECCION CURSOS
+.seccion-1{
+  height: 100vh;
+  display: contents;
+}
+.seccion-2{
+  height: 100vh;
+  display: contents;
+
+}
+.title-seccion2{
+  color: rgba(204, 183, 236, 0.66);
+  font-size: 30pt;
+  font-weight: bold;
 }

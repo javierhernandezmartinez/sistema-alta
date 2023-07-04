@@ -35,8 +35,8 @@ const BarMenu = () => {
       <div className={"panel-p seccion-1"}>
           <div className={"row"}>
               <div className={"col-md-12"}>
-                  <div className={"card"}>
-                      <Menubar model={items} start={start} end={end} />
+                  <div className={"card div-head-menu"}>
+                      <Menubar model={items} start={start} />
                   </div>
               </div>
           </div>

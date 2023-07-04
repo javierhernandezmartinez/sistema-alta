@@ -3,26 +3,74 @@
   height: 100%;
   padding:12px;
 }
-.title-p{
+.title-login{
   color: white;
   font-size: 20pt;
-}
-.div-text{
-  height: 100%;
-  margin: auto;
-  display: flex;
-  align-items: center;
-  .text-p{
-    color: black;
-    font-size: xx-large;
-    text-align:center;
-  }
+  font-weight: 500;
 }
 
-.img-p{
-  margin-top: 2vh;
-  text-align: end;
-  img{
-    border-radius: 8px;
+.panel-login{
+  width: 50%;
+  height: auto;
+  background: rgb(19 0 51);
+  margin: auto;
+  display: grid;
+  align-self: center;
+  padding: 2%;
+  border-radius: 8px;
+  box-shadow: rgb(122 88 179) 0px 0px 300px 0px;
+  .p-inputgroup{
+    height: 40px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  .button-login{
+    height: 40px;
+    background: #250254;
+  }
+  .button-login:hover{
+    background: #19003a !important;
+  }
+
+  .text-1{
+    color: white;
+    margin-top: 5%;
+    span{
+      color: violet;
+    }
+    span:hover{
+      text-decoration: underline;
+      cursor: pointer;
+
+    }
+  }
+  .text-2{
+    color: white;
+  }
+  .text-2:hover{
+    cursor: pointer;
+    text-decoration: underline;
+  }
+
+}
+.img-login{
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+.icon-user-login{
+  width: 100px;
+  height: 100px;
+  color: white;
+  background: #19003a;
+  border-radius: 50%;
+  display: grid;
+  align-items: center;
+  margin: auto;
+  border: 1px solid white;
+
+  i{
+    font-size: 40pt !important;
   }
 }

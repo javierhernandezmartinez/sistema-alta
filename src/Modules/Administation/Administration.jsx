@@ -541,9 +541,6 @@ const Administration = () => {
       <div className={"panel-p seccion-1"}>
           <div className={"row"}>
               <div className={"col-md-12"}>
-                  <p className={"title-p"}>
-                      AGENDA-T
-                  </p>
                   <BarMenu/>
               </div>
               <div className={"col-md-3"}>
