@@ -1,10 +1,7 @@
 import "../../Styles/Register.scss"
 import BarMenu from "../../Components/BarMenu/BarMenu";
 import {Button} from "primereact/button";
-import img1 from "../../Assets/img1.png";
 import imgL1 from "../../Assets/img-L1.png";
-import CarouselCursos from "../Home/CarouselCursos";
-import Footer from "../../Components/Footer";
 import {InputText} from "primereact/inputtext";
 import {Password} from "primereact/password";
 const Register = () => {

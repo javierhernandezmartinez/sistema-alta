@@ -1,0 +1,88 @@
+//PANEL PRINCIPAL
+.panel-container{
+  width: 100%;
+  padding: 12px;
+}
+
+//MENU BAR
+
+//PANEL MENU
+.menu-panel{
+  width: 100%;
+  height: 100%;
+  background: #250254 !important;
+  padding: 1em;
+
+  .p-panelmenu-header > a {
+    padding: 1.25rem;
+    border: 1px solid transparent !important;
+    color: white !important;
+    background: #19003a !important;
+    font-weight: 500 !important;
+    border-radius: 6px;
+    transition: box-shadow 0.2s;
+    font-size: 10pt;
+  }
+  .p-panelmenu-header > a:hover{
+    background: #250254 !important;
+  }
+
+}
+
+//TABLE
+.table-header{
+  display: flex;
+  justify-content: space-between;
+}
+.button-plus{
+  border: 1px solid transparent !important;
+}
+.button-plus:hover{
+  border: 1px solid #A855F7 !important;
+}
+.p-datatable .p-datatable-header {
+  background: #19003a !important;
+  color: white !important;
+  border: 1px solid #dee2e6;
+  border-width: 1px 0 1px 0;
+  padding: 1rem 1rem;
+  font-weight: 700;
+}
+.p-datatable .p-datatable-thead > tr > th {
+  text-align: left;
+  padding: 1rem 1rem;
+  border: 1px solid #dee2e6;
+  border-width: 0 0 1px 0;
+  font-weight: 700;
+  color: white !important;
+  background: #19003a !important;
+  transition: box-shadow 0.2s;
+  font-size: 10pt;
+}
+.p-datatable .p-datatable-tbody > tr {
+  background: #19003a !important;
+  color: white !important;
+  transition: box-shadow 0.2s;
+}
+.p-datatable .p-datatable-tbody > tr > td {
+  text-align: left;
+  border: 1px solid transparent !important;
+  border-width: 0 0 1px 0;
+  padding: 0.7rem 0.7rem;
+}
+
+.p-paginator {
+  background: #19003a !important;
+  color: white !important;
+  border: solid #e9ecef;
+  border-width: 0;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+}
+
+.list-option-button{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+}

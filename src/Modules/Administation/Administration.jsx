@@ -1,18 +1,16 @@
-import "../../Styles/Home.scss"
-import { Menubar } from 'primereact/menubar';
 import {InputText} from "primereact/inputtext";
-import img1 from "../../Assets/img1.png"
 import Footer from "../../Components/Footer";
 import {Button} from "primereact/button";
 import BarMenu from "../../Components/BarMenu/BarMenu";
 import {PanelMenu} from "primereact/panelmenu";
 import {useState} from "react";
 import "../../Styles/Administration.scss"
+import "../../Styles/Components/Components.scss"
 import {DataTable} from "primereact/datatable";
 import {Column} from "primereact/column";
 import empleados from "../../Assets/json/empleados.json"
-import {Sidebar} from "primereact/sidebar";
 import {Dialog} from "primereact/dialog";
+import PanelContainer from "../../Components/PanelContainer";
 
 const formEmpleados = (title, modalView, setModalView) => {
     const form = <div className={"row"}>
@@ -71,15 +69,14 @@ const formEmpleados = (title, modalView, setModalView) => {
                                 </div>
                             </div>
                         </div>
+    const header = (
+        <div className="table-header">
+            <span className="table-title">{title}</span>
+            <Button icon="pi pi-plus" label="Nuevo" severity="help" outlined className="button-plus" onClick={()=>setModalView(true)}/>
+        </div>
+    );
   return(
       <div  className={"row"}>
-          <div className={"col-md-12"}>
-              <p>{title}</p>
-          </div>
-
-          <div className={"col-md-12"}>
-              <Button label={"Nuevo empleado"} onClick={()=>setModalView(true)}/>
-          </div>
           <div className={"col-md-12"}>
               <DataTable value={empleados}
                          tableStyle={{ minWidth: '50rem' }}
@@ -88,6 +85,7 @@ const formEmpleados = (title, modalView, setModalView) => {
                          rowsPerPageOptions={[5, 10, 25, 50]}
                          dataKey="id"
                          filterDisplay="row"
+                         header={header}
               >
                   <Column field="id" header="Id empleado" ></Column>
                   <Column field="name" header="name" ></Column>
@@ -99,8 +97,15 @@ const formEmpleados = (title, modalView, setModalView) => {
                   <Column field="id_departamento" header="Departamento"></Column>
                   <Column field="tipo" header="Tipo"></Column>
                   <Column field="activo" header="Activo"></Column>
-              </DataTable>
+                  <Column header="option" body={
+                      <div className={"list-option-button"}>
+                          <Button icon="pi pi-file-edit" severity="help" outlined className="button-plus"/>
+                          <Button icon="pi pi-trash" severity="help" outlined className="button-plus"/>
+                      </div>
 
+                  }>
+                  </Column>
+              </DataTable>
           </div>
           {
               modalForm(modalView, setModalView, form)
@@ -203,9 +208,6 @@ const formCursos = (title, modalView, setModalView) => {
     </div>
     return(
         <div  className={"row"}>
-            <div className={"col-md-12"}>
-                <p>{title}</p>
-            </div>
 
             <div className={"col-md-12"}>
                 <Button label={"Nuevo empleado"} onClick={()=>setModalView(true)}/>
@@ -255,9 +257,6 @@ const formGrupos = (title, modalView, setModalView) => {
     </div>
     return(
         <div  className={"row"}>
-            <div className={"col-md-12"}>
-                <p>{title}</p>
-            </div>
 
             <div className={"col-md-12"}>
                 <Button label={"Nuevo empleado"} onClick={()=>setModalView(true)}/>
@@ -307,9 +306,6 @@ const formAreas = (title, modalView, setModalView) => {
     </div>
     return(
         <div  className={"row"}>
-            <div className={"col-md-12"}>
-                <p>{title}</p>
-            </div>
 
             <div className={"col-md-12"}>
                 <Button label={"Nuevo empleado"} onClick={()=>setModalView(true)}/>
@@ -359,10 +355,6 @@ const formDepartamentos = (title, modalView, setModalView) => {
     </div>
     return(
         <div  className={"row"}>
-            <div className={"col-md-12"}>
-                <p>{title}</p>
-            </div>
-
             <div className={"col-md-12"}>
                 <Button label={"Nuevo empleado"} onClick={()=>setModalView(true)}/>
             </div>
@@ -442,10 +434,6 @@ const formProgramacion = (title, modalView, setModalView) => {
     return(
         <div  className={"row"}>
             <div className={"col-md-12"}>
-                <p>{title}</p>
-            </div>
-
-            <div className={"col-md-12"}>
                 <Button label={"Nuevo empleado"} onClick={()=>setModalView(true)}/>
             </div>
             <div className={"col-md-12"}>
@@ -499,6 +487,7 @@ const itemSelected = (title,modalView, setModalView) => {
           break;
   }
 }
+
 const modalForm = (modalView, setModalView, element = <></>) => {
   return(
       <Dialog header="Header" visible={modalView} style={{ width: '50vw' }} onHide={() => setModalView(false)}>
@@ -506,6 +495,32 @@ const modalForm = (modalView, setModalView, element = <></>) => {
               element
           }
       </Dialog>
+  )
+}
+
+const Element = (items, itemMenu, setItemMenu, modalView, setModalView) => {
+  return(
+      <div className={"row"}>
+          <div className={"col-md-12"}>
+              <BarMenu/>
+          </div>
+          <div className={"col-md-12"}>
+              <p className={"title-panel-admin"}>Administracion</p>
+          </div>
+          <div className={"col-md-3"}>
+              <PanelMenu model={items} className="w-full md:w-25rem menu-panel" onClick={(e)=>{
+                  console.log(e.target.innerText)
+                  setItemMenu(e.target.innerText)
+              }}/>
+          </div>
+          <div className={"col-md-9"}>
+
+              {
+                  itemSelected(itemMenu, modalView, setModalView)
+              }
+          </div>
+      </div>
+
   )
 }
 const Administration = () => {
@@ -538,29 +553,7 @@ const Administration = () => {
         }
     ]
   return(
-      <div className={"panel-p seccion-1"}>
-          <div className={"row"}>
-              <div className={"col-md-12"}>
-                  <BarMenu/>
-              </div>
-              <div className={"col-md-3"}>
-                  <div className="card flex justify-content-center">
-                      <PanelMenu model={items} className="w-full md:w-25rem" onClick={(e)=>{
-                          console.log(e.target.innerText)
-                          setItemMenu(e.target.innerText)
-                      }}/>
-                  </div>
-              </div>
-              <div className={"col-md-9"}>
-                  {
-                      itemSelected(itemMenu, modalView, setModalView)
-                  }
-              </div>
-          </div>
-          <Footer/>
-
-      </div>
-
+      <PanelContainer element={Element(items, itemMenu, setItemMenu, modalView, setModalView)}/>
   )
 }
 

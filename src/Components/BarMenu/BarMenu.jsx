@@ -1,4 +1,4 @@
-import "../../Styles/Home.scss"
+import "../../Styles/Header.scss";
 import { Menubar } from 'primereact/menubar';
 import {InputText} from "primereact/inputtext";
 const BarMenu = () => {
@@ -32,15 +32,12 @@ const BarMenu = () => {
     const start = <img alt="logo" src="https://primefaces.org/cdn/primereact/images/logo.png" height="40" className="mr-2"></img>;
     const end = <InputText placeholder="Search" type="text" className="w-full" />;
   return(
-      <div className={"panel-p seccion-1"}>
-          <div className={"row"}>
-              <div className={"col-md-12"}>
-                  <div className={"card div-head-menu"}>
-                      <Menubar model={items} start={start} />
-                  </div>
+      <div className={"row"}>
+          <div className={"col-md-12"}>
+              <div className={"card div-head-menu"}>
+                  <Menubar model={items} start={start} />
               </div>
           </div>
-
       </div>
 
   )
