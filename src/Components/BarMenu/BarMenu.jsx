@@ -1,7 +1,11 @@
 import "../../Styles/Header.scss";
 import { Menubar } from 'primereact/menubar';
 import {InputText} from "primereact/inputtext";
+import logo from "../../Assets/img-logo.png"
+import {Button} from "primereact/button";
+import {useState} from "react";
 const BarMenu = () => {
+    const [mode, setMode] = useState(true)
     const items = [
         {
             label: 'Home',
@@ -29,13 +33,13 @@ const BarMenu = () => {
             command: () => { window.open("#/administration", "_self"); },
         }
     ];
-    const start = <img alt="logo" src="https://primefaces.org/cdn/primereact/images/logo.png" height="40" className="mr-2"></img>;
-    const end = <InputText placeholder="Search" type="text" className="w-full" />;
+    const start = <img alt="logo" src={logo} height="40" className="mr-2"></img>;
+    const end = <Button className={`pi ${mode ? "pi-sun" : "pi-moon"} button-mode`} onClick={()=>{setMode(!mode)}} />;
   return(
       <div className={"row"}>
           <div className={"col-md-12"}>
               <div className={"card div-head-menu"}>
-                  <Menubar model={items} start={start} />
+                  <Menubar model={items} start={start} end={end}/>
               </div>
           </div>
       </div>

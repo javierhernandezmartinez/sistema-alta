@@ -99,10 +99,9 @@ const formEmpleados = (title, modalView, setModalView) => {
                   <Column field="activo" header="Activo"></Column>
                   <Column header="option" body={
                       <div className={"list-option-button"}>
-                          <Button icon="pi pi-file-edit" severity="help" outlined className="button-plus"/>
-                          <Button icon="pi pi-trash" severity="help" outlined className="button-plus"/>
+                          <Button icon="pi pi-file-edit" severity="help" outlined className="button-plus" tooltip="Editar"  tooltipOptions={{ position: 'top' }}/>
+                          <Button icon="pi pi-trash" severity="help" outlined className="button-plus" tooltip="Eliminar"  tooltipOptions={{ position: 'top' }}/>
                       </div>
-
                   }>
                   </Column>
               </DataTable>
@@ -500,26 +499,34 @@ const modalForm = (modalView, setModalView, element = <></>) => {
 
 const Element = (items, itemMenu, setItemMenu, modalView, setModalView) => {
   return(
-      <div className={"row"}>
-          <div className={"col-md-12"}>
-              <BarMenu/>
+      <>
+          <div className={"row"}>
+              <div className={"col-md-12"}>
+                  <BarMenu/>
+              </div>
           </div>
-          <div className={"col-md-12"}>
-              <p className={"title-panel-admin"}>Administracion</p>
+          <div className={"row"}>
+              <div className={"col-md-12"}>
+                  <p className={"title-panel-admin"}>Administracion</p>
+              </div>
           </div>
-          <div className={"col-md-3"}>
-              <PanelMenu model={items} className="w-full md:w-25rem menu-panel" onClick={(e)=>{
-                  console.log(e.target.innerText)
-                  setItemMenu(e.target.innerText)
-              }}/>
-          </div>
-          <div className={"col-md-9"}>
+          <div className={"row row-panel-admin"}>
+              <div className={"col-md-3"}>
+                  <PanelMenu model={items} className="w-full md:w-25rem menu-panel" onClick={(e)=>{
+                      console.log(e.target.innerText)
+                      setItemMenu(e.target.innerText)
+                  }}/>
+              </div>
+              <div className={"col-md-9"}>
 
-              {
-                  itemSelected(itemMenu, modalView, setModalView)
-              }
+                  {
+                      itemSelected(itemMenu, modalView, setModalView)
+                  }
+              </div>
           </div>
-      </div>
+
+      </>
+
 
   )
 }

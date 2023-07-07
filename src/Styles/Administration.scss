@@ -2,6 +2,8 @@
 .title-panel-admin{
   color: white;
   font-size: 20pt;
+  text-align: start;
+  margin-top: 2%;
 }
 
 .input-text{
@@ -13,4 +15,9 @@
 
 .title-seccion-admin{
   color: white;
+}
+.row-panel-admin{
+  width: 100%;
+  height: auto;
+  min-height: 83vh;
 }

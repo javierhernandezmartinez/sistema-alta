@@ -6,6 +6,24 @@
 
 //MENU BAR
 
+.button-mode{
+  width: 40px;
+  height: 40px;
+  border-radius: 50% !important;
+  background: transparent !important;
+  border: transparent !important;
+  padding: 0 !important;
+  text-shadow: 0 0 10px 1px white !important;
+  span{
+    display: none;
+  }
+}
+.button-mode:focus{
+  border: transparent !important;
+  box-shadow: none !important;
+}
+
+
 //PANEL MENU
 .menu-panel{
   width: 100%;
@@ -39,6 +57,10 @@
 }
 .button-plus:hover{
   border: 1px solid #A855F7 !important;
+}
+.button-plus:focus{
+  border: transparent !important;
+  box-shadow: none !important;
 }
 .p-datatable .p-datatable-header {
   background: #19003a !important;
@@ -85,4 +107,5 @@
   height: 100%;
   display: flex;
   justify-content: space-between;
+
 }
