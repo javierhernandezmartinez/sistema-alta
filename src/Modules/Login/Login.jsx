@@ -1,16 +1,18 @@
 import "../../Styles/Login.scss"
-import BarMenu from "../../Components/BarMenu/BarMenu";
+import BarMenu from "../../Components/BarMenu";
 import {Button} from "primereact/button";
 import img1 from "../../Assets/img1.png";
-import imgL1 from "../../Assets/img-L1.png";
-import CarouselCursos from "../Home/CarouselCursos";
+import imgL2 from "../../Assets/img_1.png";
+import logoBM from "../../Assets/logoBM.png"
+import logo from "../../Assets/img-logo.png"
 import Footer from "../../Components/Footer";
 import {InputText} from "primereact/inputtext";
 import {Password} from "primereact/password";
-const Login = () => {
+import Container from "../../Components/Container";
+
+const element = () => {
   return(
-      <div className={"panel-p"}>
-          <div className={"row"}>
+          <div id={"login-modul"} className={"row"}>
               <div className={"col-md-12"}>
                   <BarMenu/>
               </div>
@@ -18,14 +20,14 @@ const Login = () => {
                   <div className={"panel-login"}>
                       <p className={"title-login"}>Login</p>
                       <div className={"row"}>
-                          <div className={"col-md-6"}>
-                              <img className={"img-login"} src={imgL1}/>
+                          <div className={"col-md-5 panel-img"}>
+                              <img className={"img-login"} src={imgL2}/>
                           </div>
-                          <div className={"col-md-6"}>
+                          <div className={"col-md-7 panel-form"}>
                               <div className={"row"}>
                                   <div className={"col-md-12"}>
                                       <div className={"icon-user-login"}>
-                                          <i className="pi pi-user"></i>
+                                          <img src={logo}/>
                                       </div>
                                   </div>
                                   <div className={"col-md-12"}>
@@ -38,14 +40,14 @@ const Login = () => {
                                   </div>
                                   <div className={"col-md-12"}>
                                       <div className="p-inputgroup">
-                                <span className="p-inputgroup-addon">
-                                    <i className="pi pi-lock"></i>
-                                </span>
+                                            <span className="p-inputgroup-addon">
+                                                <i className="pi pi-lock"></i>
+                                            </span>
                                           <Password  feedback={false}  placeholder={"password"} toggleMask/>
                                       </div>
                                   </div>
                                   <div className={"col-md-12"}>
-                                      <Button label="Logueate" className={"button-login"} raised onClick={()=>{window.open("#/perfil","_self")}}/>
+                                      <Button label="Ingresar" className={"button-login"} onClick={()=>{window.open("#/perfil","_self")}}/>
                                   </div>
                                   <div className={"col-md-12"}>
                                       <p className={"text-1"}>Aun no tienes cuenta? <span onClick={()=> window.open("#/register","_self")}> Registrate!</span></p>
@@ -61,9 +63,11 @@ const Login = () => {
                   </div>
               </div>
           </div>
-
-
-      </div>
+  )
+}
+const Login = () => {
+  return(
+      <Container element = {element()}/>
   )
 }
 

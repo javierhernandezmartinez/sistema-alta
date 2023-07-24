@@ -31,7 +31,7 @@ const  CarouselCursos =()=> {
         setProducts(products)
 
         return (
-            <div className="border-1 surface-border border-round m-2 text-center py-5 px-3">
+            <div className="border-1 surface-border border-round m-2 text-center py-5 px-3 ">
                 <div className="mb-3 img-carousel">
                     <img src={require(`../../Assets/${product.image}`)} alt={product.name} className="w-6 shadow-2" />
                 </div>
@@ -39,7 +39,7 @@ const  CarouselCursos =()=> {
                     <h4 className="mb-1 title-carusel">{product.name}</h4>
                     <h6 className="mt-0 mb-3 desc-carousel">{product.description}</h6>
                     <div className="mt-5 flex flex-wrap gap-2 justify-content-center">
-                        <Button icon="pi pi-pencil" label="Inscribirse" raised />
+                        <Button icon="pi pi-pencil" label="Inscribirse" className={"b-carousel"} onClick={()=>window.open("#/login", "_self")}/>
                     </div>
                 </div>
             </div>
@@ -49,7 +49,7 @@ const  CarouselCursos =()=> {
     return (
         <div className="card panel-carousel-home">
             <Carousel value={products}
-                      numVisible={6}
+                      numVisible={4}
                       numScroll={3}
                       responsiveOptions={responsiveOptions}
                       className="custom-carousel"

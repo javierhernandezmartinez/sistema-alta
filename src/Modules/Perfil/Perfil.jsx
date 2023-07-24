@@ -1,11 +1,39 @@
 import "../../Styles/Home.scss"
-import BarMenu from "../../Components/BarMenu/BarMenu";
+import BarMenu from "../../Components/BarMenu";
 import {Button} from "primereact/button";
 import img1 from "../../Assets/img1.png";
 import CarouselCursos from "../Home/CarouselCursos";
 import Footer from "../../Components/Footer";
 import {InputText} from "primereact/inputtext";
 import {PanelMenu} from "primereact/panelmenu";
+import Container from "../../Components/Container";
+
+const element = (items) => {
+  return(
+      <div className={"panel-p seccion-1"}>
+
+          <div className={"row"}>
+              <div className={"col-md-12"}>
+                  <BarMenu/>
+              </div>
+              <div className={"col-md-3"}>
+                  Perfil
+                  <div className={"row"}>
+                      <div className={"col-md-12"}>
+                          <div className="card flex justify-content-center">
+                              <PanelMenu model={items} className="w-full md:w-25rem" />
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+          </div>
+
+          <Footer/>
+
+      </div>
+  )
+}
 const Perfil = () => {
     const items=[
         {
@@ -78,28 +106,7 @@ const Perfil = () => {
         }
         ]
   return(
-      <div className={"panel-p seccion-1"}>
-
-          <div className={"row"}>
-              <div className={"col-md-12"}>
-                  <BarMenu/>
-              </div>
-              <div className={"col-md-3"}>
-                Perfil
-                  <div className={"row"}>
-                      <div className={"col-md-12"}>
-                          <div className="card flex justify-content-center">
-                              <PanelMenu model={items} className="w-full md:w-25rem" />
-                          </div>
-                      </div>
-                  </div>
-              </div>
-
-          </div>
-
-          <Footer/>
-
-      </div>
+      <Container element = {element(items)}/>
   )
 }
 

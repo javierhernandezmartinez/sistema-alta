@@ -1,38 +1,49 @@
 import "../../Styles/Home.scss"
-import { Menubar } from 'primereact/menubar';
-import {InputText} from "primereact/inputtext";
+import "../../Styles/Components/Components.scss"
 import img1 from "../../Assets/img1.png"
-import Footer from "../../Components/Footer";
+import logoBM from "../../Assets/logoBM.png"
 import {Button} from "primereact/button";
-import {Carousel} from "primereact/carousel";
 import CarouselCursos from "./CarouselCursos";
-import BarMenu from "../../Components/BarMenu/BarMenu";
-const Home = () => {
-    const start = <img alt="logo" src="https://primefaces.org/cdn/primereact/images/logo.png" height="40" className="mr-2"></img>;
-    const end = <InputText placeholder="Search" type="text" className="w-full" />;
+import BarMenu from "../../Components/BarMenu";
+import Container from "../../Components/Container";
+
+const scrollTop = (e) => {
+    console.log("scroolt top")
+    document.getElementById("seccion-2").scrollIntoView({
+        behavior: 'smooth'
+    })
+}
+const element = () => {
   return(
-      <div className={"panel-p"}>
+      <>
           <div className={"row seccion-1"}>
               <div className={"col-md-12"}>
                   <BarMenu/>
               </div>
+              <div className={"col-md-12"}>
+
+              </div>
               <div className={"col-md-6"}>
+
                   <div className={"div-text"}>
                       <div>
-                          <p className={"title-p"}>
-                              AGENDA-T
+                          <p className={"title-p-1"}>
+                              Comienza el reto
                           </p>
-                          {/*<p className={"text-p"}>
-                              Agenda-T
-                          </p>*/}
+                          <p className={"title-p"}>
+                              Sigue aprendiendo en <span>BM Cursos</span>
+                          </p>
                           <p className={"text-p"}>
-                              Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-                              been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
-                              galley of type and scrambled it to make a type specimen book.
+                              En <span>Banxico</span> queremos que nuestros colaboradores se mantengan al dia con las nuevas tecnologias
+                              y herramientas que surgen constantemente en este mundo tecnologico, por eso te motivamos a que no
+                              pares de aprender.
+                              <br/>
+                              <br/>
+                              Inscribete a los cursos que tenemos para ti.
                           </p>
                           <div className={"div-button"}>
-                              <Button label="Ver cursos" raised style={{marginRight: "10px"}}/>
-                              <Button label="Logueate" raised />
+                              <Button label="Ver cursos" style={{marginRight: "10px"}} onClick={()=>scrollTop()}/>
+                              <Button label="Logueate"  onClick={()=>window.open("#/login", "_self")}/>
                           </div>
                       </div>
 
@@ -40,15 +51,23 @@ const Home = () => {
               </div>
               <div className={"col-md-6"}>
                   <div className={"img-p"}>
-                      <img src={img1}/>
+                      <img src={logoBM}/>
                   </div>
               </div>
           </div>
-          <div className={"row seccion-2"}>
+          <div id={"seccion-2"} className={"row seccion-2"}>
               <div className={"col-md-12"}>
                   <div className={"row"}>
                       <div className={"col-md-12"}>
-                        <p className={"title-seccion2"}>CURSOS</p>
+                          <p className={"title-seccion2"}>Cursos</p>
+                      </div>
+                  </div>
+                  <div className={"row"}>
+                      <div className={"col-md-12"}>
+                          <p className={"desc-sec2"}>
+                              Elige un tema y comienza una nueva linea de arendizaje, donde incrementaras
+                              tus conocimientos con ayuda de nuestros asesores.
+                          </p>
                       </div>
                   </div>
                   <div>
@@ -56,11 +75,12 @@ const Home = () => {
                   </div>
               </div>
           </div>
-
-          <Footer/>
-
-      </div>
-
+      </>
+  )
+}
+const Home = () => {
+  return(
+        <Container element={element()}/>
   )
 }
 

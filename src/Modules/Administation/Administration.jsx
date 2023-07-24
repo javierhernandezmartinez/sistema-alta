@@ -1,7 +1,7 @@
 import {InputText} from "primereact/inputtext";
 import Footer from "../../Components/Footer";
 import {Button} from "primereact/button";
-import BarMenu from "../../Components/BarMenu/BarMenu";
+import BarMenu from "../../Components/BarMenu";
 import {PanelMenu} from "primereact/panelmenu";
 import {useState} from "react";
 import "../../Styles/Administration.scss"
@@ -10,64 +10,65 @@ import {DataTable} from "primereact/datatable";
 import {Column} from "primereact/column";
 import empleados from "../../Assets/json/empleados.json"
 import {Dialog} from "primereact/dialog";
-import PanelContainer from "../../Components/PanelContainer";
+import Container from "../../Components/Container";
 
 const formEmpleados = (title, modalView, setModalView) => {
-    const form = <div className={"row"}>
-                            <div className={"col-md-3"}>
+    const form = <div className={"row row-form"}>
+                            <div className={"col-md-4"}>
                                 <div className="input-text">
                                     <label>Nombre</label>
                                     <InputText id="username" aria-describedby="username-help" />
                                 </div>
                             </div>
-                            <div className={"col-md-3"}>
+                            <div className={"col-md-4"}>
                                 <div className="input-text">
                                     <label>A. paterno</label>
                                     <InputText id="username" aria-describedby="username-help" />
                                 </div>
                             </div>
-                            <div className={"col-md-3"}>
+                            <div className={"col-md-4"}>
                                 <div className="input-text">
                                     <label>A. materno</label>
                                     <InputText id="username" aria-describedby="username-help" />
                                 </div>
                             </div>
-                            <div className={"col-md-3"}>
+                            <div className={"col-md-4"}>
                                 <div className="input-text">
                                     <label>Correo</label>
                                     <InputText id="username" aria-describedby="username-help" />
                                 </div>
                             </div>
-                            <div className={"col-md-3"}>
+                            <div className={"col-md-4"}>
                                 <div className="input-text">
                                     <label>Grupo</label>
                                     <InputText id="username" aria-describedby="username-help" />
                                 </div>
                             </div>
-                            <div className={"col-md-3"}>
+                            <div className={"col-md-4"}>
                                 <div className="input-text">
                                     <label>Area</label>
                                     <InputText id="username" aria-describedby="username-help" />
                                 </div>
                             </div>
-                            <div className={"col-md-3"}>
+                            <div className={"col-md-4"}>
                                 <div className="input-text">
                                     <label>Departamento</label>
                                     <InputText id="username" aria-describedby="username-help" />
                                 </div>
                             </div>
-                            <div className={"col-md-3"}>
+                            <div className={"col-md-4"}>
                                 <div className="input-text">
                                     <label>Tipo</label>
                                     <InputText id="username" aria-describedby="username-help" />
                                 </div>
                             </div>
-                            <div className={"col-md-3"}>
+                            <div className={"col-md-4"}>
                                 <div className="input-text">
                                     <label>Activo</label>
                                     <InputText id="username" aria-describedby="username-help" />
                                 </div>
                             </div>
+
                         </div>
     const header = (
         <div className="table-header">
@@ -84,7 +85,6 @@ const formEmpleados = (title, modalView, setModalView) => {
                          rows={5}
                          rowsPerPageOptions={[5, 10, 25, 50]}
                          dataKey="id"
-                         filterDisplay="row"
                          header={header}
               >
                   <Column field="id" header="Id empleado" ></Column>
@@ -386,7 +386,7 @@ const formDepartamentos = (title, modalView, setModalView) => {
     )
 }
 const formProgramacion = (title, modalView, setModalView) => {
-    const form = <div className={"row"}>
+    const form = <div className={"row row-form"}>
         <div className={"col-md-3"}>
             <div className="input-text">
                 <label>Empleado</label>
@@ -489,10 +489,18 @@ const itemSelected = (title,modalView, setModalView) => {
 
 const modalForm = (modalView, setModalView, element = <></>) => {
   return(
-      <Dialog header="Header" visible={modalView} style={{ width: '50vw' }} onHide={() => setModalView(false)}>
+      <Dialog header="Nuevo registro"
+              visible={modalView} style={{ width: '50vw' }}
+              onHide={() => setModalView(false)}
+              className={"ad-modal"}
+      >
           {
               element
           }
+          <div className="modal-footer">
+              <Button label={"Cancelar"}/>
+              <Button label={"Guardar"}/>
+          </div>
       </Dialog>
   )
 }
@@ -511,14 +519,13 @@ const Element = (items, itemMenu, setItemMenu, modalView, setModalView) => {
               </div>
           </div>
           <div className={"row row-panel-admin"}>
-              <div className={"col-md-3"}>
+              <div className={"col-md-3 col-lg-2"}>
                   <PanelMenu model={items} className="w-full md:w-25rem menu-panel" onClick={(e)=>{
                       console.log(e.target.innerText)
                       setItemMenu(e.target.innerText)
                   }}/>
               </div>
-              <div className={"col-md-9"}>
-
+              <div className={"col-md-9 col-lg-10"}>
                   {
                       itemSelected(itemMenu, modalView, setModalView)
                   }
@@ -560,7 +567,7 @@ const Administration = () => {
         }
     ]
   return(
-      <PanelContainer element={Element(items, itemMenu, setItemMenu, modalView, setModalView)}/>
+      <Container element = {Element(items, itemMenu, setItemMenu, modalView, setModalView)}/>
   )
 }
 

@@ -10,6 +10,7 @@
   label{
     width: 100%;
     height: max-content;
+    font-size: 10pt;
   }
 }
 
@@ -21,3 +22,40 @@
   height: auto;
   min-height: 83vh;
 }
+
+.ad-modal{
+  border: 1px solid white !important;
+  .p-dialog-header {
+    border-bottom: 0 none;
+    background: #00031e !important;
+    color: #0ae98a !important;
+    padding: 1.5rem;
+    border-top-right-radius: 6px;
+    border-top-left-radius: 6px;
+  }
+  .p-dialog-content {
+    background: #00031e !important;
+    color: whitesmoke !important;
+  }
+  .row-form{
+    .input-text{
+      width: 100%;
+      margin-bottom: 3%;
+      .p-inputtext{
+        width: 100%;
+        height: 35px;
+        font-size: 10pt;
+        border-radius: 5px;
+      }
+    }
+  }
+  .modal-footer{
+    margin-top: 2%;
+    button{
+      margin-left: 5px;
+      background: #00031e !important;
+      color: #0ae98a !important;
+    }
+  }
+}
+
