@@ -3,7 +3,10 @@
   color: white;
   font-size: 20pt;
   text-align: start;
-  margin-top: 2%;
+  margin-bottom: 0;
+  background: #007279 ;
+  padding: 1em;
+  padding-top: 0.5em;
 }
 
 .input-text{
@@ -20,7 +23,7 @@
 .row-panel-admin{
   width: 100%;
   height: auto;
-  min-height: 83vh;
+  min-height: 88vh;
 }
 
 .ad-modal{

@@ -1,3 +1,21 @@
+//INPUT TEXT
+.input-text{
+  width: 100%;
+  margin-bottom: 4px;
+  text-align: start;
+  .p-inputtext{
+    width: 100%;
+    height: 35px;
+    font-size: 10pt;
+    border-radius: 5px;
+  }
+  .p-password{
+    width: 100%;
+    height: 35px;
+    font-size: 10pt;
+    border-radius: 5px;
+  }
+}
 
 //PANEL PRINCIPAL
 .container-p{
@@ -81,7 +99,7 @@
 //PANEL MENU
 .menu-panel{
   width: 100%;
-  height: 100%;
+  height: 90%;
   background: #007279 !important;
   padding: 1em;
 
@@ -189,3 +207,4 @@
   font-family: Apple;
 
 }
+

@@ -6,6 +6,7 @@ import {Button} from "primereact/button";
 import CarouselCursos from "./CarouselCursos";
 import BarMenu from "../../Components/BarMenu";
 import Container from "../../Components/Container";
+import {Steps} from "primereact/steps";
 
 const scrollTop = (e) => {
     console.log("scroolt top")
@@ -14,6 +15,20 @@ const scrollTop = (e) => {
     })
 }
 const element = () => {
+    const items = [
+        {
+            label: 'Registrate'
+        },
+        {
+            label: 'Elige un tema'
+        },
+        {
+            label: 'Inscribite'
+        },
+        {
+            label: 'Preparate'
+        }
+    ];
   return(
       <>
           <div className={"row seccion-1"}>
@@ -59,15 +74,20 @@ const element = () => {
               <div className={"col-md-12"}>
                   <div className={"row"}>
                       <div className={"col-md-12"}>
-                          <p className={"title-seccion2"}>Cursos</p>
+                          <p className={"title-seccion2"}>BM Cursos</p>
                       </div>
                   </div>
                   <div className={"row"}>
                       <div className={"col-md-12"}>
                           <p className={"desc-sec2"}>
-                              Elige un tema y comienza una nueva linea de arendizaje, donde incrementaras
+                              Elige un tema y comienza una nueva linea de aprendizaje, donde incrementaras
                               tus conocimientos con ayuda de nuestros asesores.
                           </p>
+                      </div>
+                      <div className={"col-md-12"}>
+                          <div className={"bm-pasos"}>
+                              <Steps model={items}  readOnly={true}/>
+                          </div>
                       </div>
                   </div>
                   <div>

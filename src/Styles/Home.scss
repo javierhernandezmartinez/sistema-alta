@@ -204,7 +204,7 @@
     height: 100vh;
   }
   .seccion-2{
-    width: 70%;
+    width: 100%;
     height: 100vh;
     margin: auto;
     text-align: left;
@@ -214,6 +214,29 @@
       font-size: 14pt;
       margin: auto;
       text-align: left;
+    }
+
+    .bm-pasos{
+      width: 60%;
+      height: 100px;
+      color: #005459;
+      margin: 2% auto 1%;
+
+      li{
+        opacity: 1;
+      }
+      a{
+        margin: auto;
+        text-align: center;
+        background: transparent;
+        span:first-child{
+          background: whitesmoke;
+        }
+        span:last-child{
+          color: whitesmoke !important;
+          font-weight: 500;
+        }
+      }
     }
   }
   .title-seccion2{

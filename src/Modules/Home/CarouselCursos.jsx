@@ -1,37 +1,40 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from 'primereact/button';
-import { Carousel } from 'primereact/carousel';
-import product from '../../Assets/json/cursos.json';
+//import { Carousel } from 'primereact/carousel';
+import listCursos from '../../Assets/json/cursos.json';
 import "../../Styles/Home.scss"
+import Carousel from 'react-multi-carousel';
+import 'react-multi-carousel/lib/styles.css';
 
-const  CarouselCursos =()=> {
-    console.log(product)
+const  CarouselCursos =(props)=> {
     const [products, setProducts] = useState([]);
-    const responsiveOptions = [
-        {
-            breakpoint: '1199px',
-            numVisible: 1,
-            numScroll: 1
+    const responsive = {
+        superLargeDesktop: {
+            // the naming can be any, depends on you.
+            breakpoint: { max: 4000, min: 3000 },
+            items: 5
         },
-        {
-            breakpoint: '991px',
-            numVisible: 2,
-            numScroll: 1
+        desktop: {
+            breakpoint: { max: 3000, min: 1024 },
+            items: 3
         },
-        {
-            breakpoint: '767px',
-            numVisible: 1,
-            numScroll: 1
+        tablet: {
+            breakpoint: { max: 1024, min: 464 },
+            items: 2
+        },
+        mobile: {
+            breakpoint: { max: 464, min: 0 },
+            items: 1
         }
-    ];
+    };
     useEffect(() => {
-        setProducts(product)
+        setProducts(listCursos)
     }, []);
     const productTemplate = (product) => {
-        setProducts(products)
 
         return (
             <div className="border-1 surface-border border-round m-2 text-center py-5 px-3 ">
+                <p style={{color: "white"}}>{product.id}</p>
                 <div className="mb-3 img-carousel">
                     <img src={require(`../../Assets/${product.image}`)} alt={product.name} className="w-6 shadow-2" />
                 </div>
@@ -47,17 +50,29 @@ const  CarouselCursos =()=> {
     };
 
     return (
-        <div className="card panel-carousel-home">
-            <Carousel value={products}
-                      numVisible={4}
-                      numScroll={3}
-                      responsiveOptions={responsiveOptions}
-                      className="custom-carousel"
-                      circular
-                      autoplayInterval={3000}
-                      itemTemplate={productTemplate}
-            />
-        </div>
+        <Carousel responsive={responsive}
+                  swipeable={false}
+                  draggable={false}
+                  showDots={true}
+                  ssr={true} // means to render carousel on server-side.
+                  infinite={true}
+                  autoPlay={props.deviceType !== "mobile"}
+                  autoPlaySpeed={3000}
+                  keyBoardControl={true}
+                  containerClass="carousel-container"
+                  removeArrowOnDeviceType={["tablet", "mobile"]}
+                  deviceType={props.deviceType}
+                  dotListClass="custom-dot-list-style"
+                  itemClass="carousel-item-padding-40-px"
+
+        >
+            {
+                products.map(product=>(
+                    productTemplate(product)
+                ))
+            }
+
+        </Carousel>
     )
 }
 export default CarouselCursos
