@@ -1,0 +1,109 @@
+#register-modul{
+  .title-login{
+    color: whitesmoke;
+    font-size: 20pt;
+    font-weight: bold;
+    text-align: start;
+  }
+
+  .panel-login{
+    width: 60%;
+    height: auto;
+    min-width: 600px;
+    background: rgba(255, 255, 255, .1);
+    margin: auto;
+    display: grid;
+    align-self: center;
+    padding: 2%;
+    border-radius: 8px;
+
+    .panel-img{
+      background: #00031e;
+      border-radius: 8px 0 0 8px;
+      padding: 0;
+      .img-login{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 8px;
+        margin: auto;
+        //filter: drop-shadow(0px 0px 8px #0ae98a);
+      }
+    }
+    .panel-form{
+      background: #e8f0fe1c;
+      border-radius: 0 8px 8px 0;
+      padding: 0.5rem;
+
+    }
+
+    .p-inputgroup{
+      height: 40px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+
+      span{
+        background: #00031e;
+        color: #0ae98a;
+
+      }
+    }
+
+    .button-login{
+      height: 40px;
+      background: whitesmoke;
+      border: 1px solid #00031e;
+      color: #00031e;
+    }
+    .button-login:hover{
+      background: #00031e !important;
+      color: #0ae98a;
+      border: 1px solid #0ae98a;
+      transition-duration: 200ms;
+    }
+
+    .text-1{
+      color: whitesmoke;
+      margin-top: 5%;
+      span{
+        color: #0ae98a;
+        font-weight: 500;
+      }
+      span:hover{
+        text-decoration: underline;
+        cursor: pointer;
+
+      }
+    }
+    .text-2{
+      color: white;
+      text-align: end;
+    }
+    .text-2:hover{
+      cursor: pointer;
+      text-decoration: underline;
+      color: #0ae98a;
+    }
+
+  }
+
+  .icon-user-login{
+    width: 100%;
+    height: 100%;
+    color: white;
+    background: #00031e;
+    border-radius: 5px;
+    display: grid;
+    align-items: center;
+    margin: auto;
+    border: 1px solid white;
+
+    img{
+      width: 70% !important;
+      height: 70% !important;
+      font-size: 40pt !important;
+      object-fit: cover;
+      margin: auto;
+    }
+  }
+}

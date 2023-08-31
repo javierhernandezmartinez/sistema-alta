@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="6b4e0cb8-28ce-4fe3-8a42-525c4c2dc18f" name="Changes" comment="version2">
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_30_8_2023_20_40__Changes_.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_30_8_2023_20_40__Changes_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_30_8_2023_20_41__Changes_.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/asset-manifest.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/favicon.ico" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/logo192.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/logo512.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/manifest.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/robots.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/static/css/main.288fbbf8.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/static/css/main.288fbbf8.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/static/js/787.de833689.chunk.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/static/js/787.de833689.chunk.js.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/static/js/main.52c2854d.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/static/js/main.52c2854d.js.LICENSE.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/static/js/main.52c2854d.js.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/static/media/color.6441e63a57ccc5105bad.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/static/media/img-L1.da7459f65bcf097e6bfc.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/static/media/img-L2.e8667f7b120f28ecde0b.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/static/media/img-c5.c10e4ff91fa42fe0a3c4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/static/media/img.751417979f98b485d148.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/static/media/img1.029d35d483c1dc567ce9.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/static/media/img_1.751417979f98b485d148.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/static/media/logoBM.9fbc7d0e6d20a9205081.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/static/media/primeicons.10d3152104f2208ac82a.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/static/media/primeicons.78172950b335ccdb94e2.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/static/media/primeicons.d44157bdfa026dc877af.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/static/media/primeicons.e1441b135b3ca9ad643c.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/static/media/primeicons.ea5358601d0a3fd6670b.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/favicon.ico" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/logo192.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/logo512.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/manifest.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/robots.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/App.test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/App/Features/AdministrationSlice.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/App/Features/ThemeSlice.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/App/Features/rootModalFormSlice.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/App/Store/Store.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Assets/Images/img_no_img.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Assets/Images/perfil.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Assets/img-L1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Assets/img-L2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Assets/img-c1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Assets/img-c2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Assets/img-c3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Assets/img-c4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Assets/img-c5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Assets/img-logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Assets/img.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Assets/img1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Assets/img_1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Assets/json/cursos.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Assets/json/empleados.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Assets/logoBM.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/Administracion/Areas/FormArea.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/Administracion/Areas/PanelArea.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/Administracion/Cursos/FormCurso.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/Administracion/Cursos/PanelCurso.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/Administracion/Departamentos/FormDepartamento.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/Administracion/Departamentos/PanelDepartamento.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/Administracion/Empleado/FormEmpleado.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/Administracion/Empleado/PanelEmpleado.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/Administracion/Grupos/FormGrupo.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/Administracion/Grupos/PanelGrupo.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/Administracion/Perfil/PanelMiAgenda.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/Administracion/Perfil/PanelMisCursos.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/Administracion/Perfil/PanelMisDatos.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/Administracion/Programacion/FormProgramacion.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/Administracion/Programacion/PanelProgramacion.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/BarMenu.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/Button.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/Container.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/Footer.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/InputPassword.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/InputText.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/Modal.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/Table.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Modules/Administation/Administration.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Modules/Home/CarouselCursos.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Modules/Home/Home.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Modules/Login/Login.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Modules/Perfil/Perfil.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Modules/Register/Register.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Styles/Administration.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Styles/Components/Components.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Styles/Footer.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Styles/Home.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Styles/Login.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Styles/PanelAgenda.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Styles/PanelMisCursos.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Styles/Perfil.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Styles/Register.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logo.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/reportWebVitals.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/setupTests.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+        <option value="Sass File" />
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Merge.Settings">
+    <option name="BRANCH" value="origin/main" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="MIXED" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2Rckn1kSd0x0ztE9GWFmCday4hG" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/chich/Documents/PROYECTOS/sistema-alta",
+    "list.type.of.created.stylesheet": "Sass",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "ts.external.directory.path": "C:\\Users\\chich\\Documents\\PROYECTOS\\sistema-alta\\node_modules\\typescript\\lib",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\chich\Documents\PROYECTOS\sistema-alta\src\Styles" />
+      <recent name="C:\Users\chich\Documents\PROYECTOS\sistema-alta\src\Components" />
+      <recent name="C:\Users\chich\Documents\PROYECTOS\sistema-alta\src\Components\Administracion\Perfil" />
+      <recent name="C:\Users\chich\Documents\PROYECTOS\sistema-alta\src\Assets\Images" />
+      <recent name="C:\Users\chich\Documents\PROYECTOS\sistema-alta\src\Components\Administracion\Programacion" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\chich\Documents\PROYECTOS\sistema-alta" />
+      <recent name="C:\Users\chich\Documents\PROYECTOS\sistema-alta\src\Assets" />
+      <recent name="C:\Users\chich\Documents\PROYECTOS\sistema-alta\src\Components\Administracion\Programacion" />
+      <recent name="C:\Users\chich\Documents\PROYECTOS\sistema-alta\src\Components\Administracion\Grupos" />
+      <recent name="C:\Users\chich\Documents\PROYECTOS\sistema-alta\src\Components\Administracion\Departamentos" />
+    </key>
+  </component>
+  <component name="RunManager" selected="npm.start">
+    <configuration name="build" type="js.build_tools.npm" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="build" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="start" type="js.build_tools.npm" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="npm.start" />
+      <item itemvalue="npm.build" />
+    </list>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6b4e0cb8-28ce-4fe3-8a42-525c4c2dc18f" name="Changes" comment="" />
+      <created>1687556920750</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1687556920750</updated>
+      <workItem from="1687556923313" duration="1346000" />
+      <workItem from="1687752186549" duration="24989000" />
+      <workItem from="1687975382076" duration="42320000" />
+      <workItem from="1688742163221" duration="27000" />
+      <workItem from="1689909001578" duration="47263000" />
+      <workItem from="1690217383059" duration="21402000" />
+      <workItem from="1692154428198" duration="1275000" />
+      <workItem from="1692161847968" duration="73735000" />
+      <workItem from="1693206371602" duration="51302000" />
+      <workItem from="1693450066777" duration="1227000" />
+    </task>
+    <task id="LOCAL-00001" summary="module admin">
+      <option name="closed" value="true" />
+      <created>1687926333521</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1687926333521</updated>
+    </task>
+    <task id="LOCAL-00002" summary="homepage">
+      <option name="closed" value="true" />
+      <created>1687927537143</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1687927537143</updated>
+    </task>
+    <task id="LOCAL-00003" summary="buikd">
+      <option name="closed" value="true" />
+      <created>1687930856750</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1687930856750</updated>
+    </task>
+    <task id="LOCAL-00004" summary="change name build">
+      <option name="closed" value="true" />
+      <created>1687931061430</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1687931061430</updated>
+    </task>
+    <task id="LOCAL-00005" summary="hasrouter">
+      <option name="closed" value="true" />
+      <created>1687931459093</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1687931459093</updated>
+    </task>
+    <task id="LOCAL-00006" summary="hasrouter">
+      <option name="closed" value="true" />
+      <created>1687931496970</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1687931496970</updated>
+    </task>
+    <task id="LOCAL-00007" summary="build">
+      <option name="closed" value="true" />
+      <created>1687933155375</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1687933155375</updated>
+    </task>
+    <task id="LOCAL-00008" summary="build">
+      <option name="closed" value="true" />
+      <created>1687934142282</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1687934142282</updated>
+    </task>
+    <task id="LOCAL-00009" summary="styles">
+      <option name="closed" value="true" />
+      <created>1688514823515</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1688514823515</updated>
+    </task>
+    <task id="LOCAL-00010" summary="docs">
+      <option name="closed" value="true" />
+      <created>1688515232176</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1688515232176</updated>
+    </task>
+    <task id="LOCAL-00011" summary="avance admin">
+      <option name="closed" value="true" />
+      <created>1688522295299</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1688522295299</updated>
+    </task>
+    <task id="LOCAL-00012" summary="admin docs">
+      <option name="closed" value="true" />
+      <created>1688522351810</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1688522351810</updated>
+    </task>
+    <task id="LOCAL-00013" summary="admin">
+      <option name="closed" value="true" />
+      <created>1688742174568</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1688742174568</updated>
+    </task>
+    <task id="LOCAL-00014" summary="theme">
+      <option name="closed" value="true" />
+      <created>1690217477929</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1690217477929</updated>
+    </task>
+    <task id="LOCAL-00015" summary="theme build">
+      <option name="closed" value="true" />
+      <created>1690217803117</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1690217803117</updated>
+    </task>
+    <task id="LOCAL-00016" summary="avance">
+      <option name="closed" value="true" />
+      <created>1693449550853</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1693449550853</updated>
+    </task>
+    <task id="LOCAL-00017" summary="version2">
+      <option name="closed" value="true" />
+      <created>1693449832139</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1693449832139</updated>
+    </task>
+    <task id="LOCAL-00018" summary="version2">
+      <option name="closed" value="true" />
+      <created>1693450255865</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1693450255865</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="module admin" />
+    <MESSAGE value="homepage" />
+    <MESSAGE value="buikd" />
+    <MESSAGE value="change name build" />
+    <MESSAGE value="hasrouter" />
+    <MESSAGE value="build" />
+    <MESSAGE value="styles" />
+    <MESSAGE value="docs" />
+    <MESSAGE value="avance admin" />
+    <MESSAGE value="admin docs" />
+    <MESSAGE value="admin" />
+    <MESSAGE value="theme" />
+    <MESSAGE value="theme build" />
+    <MESSAGE value="avance" />
+    <MESSAGE value="version2" />
+    <option name="LAST_COMMIT_MESSAGE" value="version2" />
+  </component>
+</project>
