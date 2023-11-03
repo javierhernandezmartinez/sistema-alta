@@ -1,4 +1,3 @@
-import "../../Styles/Login.scss"
 import BarMenu from "../../Components/BarMenu";
 import {Button} from "primereact/button";
 import img1 from "../../Assets/img1.png";
@@ -10,6 +9,9 @@ import {InputText} from "primereact/inputtext";
 import {Password} from "primereact/password";
 import Container from "../../Components/Container";
 
+const buttonLogin=()=>{
+
+}
 const element = () => {
   return(
           <div id={"login-modul"} className={"row"}>

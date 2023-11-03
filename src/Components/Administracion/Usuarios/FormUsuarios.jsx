@@ -47,7 +47,9 @@ const addRegistro = (dispatch, array, props) => {
                 );
                 getListEmpleados(dispatch)
             }
-        )
+        ).catch(err=>{
+        console.log(err)
+    })
 }
 const updateRegistro = (dispatch, array, props) => {
     axios.post("http://localhost:3100/api/app/system/update/empleado", array)
@@ -62,6 +64,9 @@ const updateRegistro = (dispatch, array, props) => {
                 getListEmpleados(dispatch)
             }
         )
+        .catch(err=>{
+            console.log(err)
+        })
 }
 const onSaveModal = (dispatch, array, props) => {
     console.log("POST JSON::",array)
@@ -81,35 +86,19 @@ const searchOption = (array, valor) => {
   return option[0]
 }
 
-const FormEmpleado = (props) => {
+const FormUsuarios = (props) => {
     const dispatch = useDispatch()
     const [arrayList, setArrayList] = useState({...props.arrayList})
     const [selectedGrupo, setSelectedGrupo] = useState(null)
     const [selectedArea, setSelectedArea] = useState(null)
-    const [selectedDepa, setSelectedDepa] = useState(null)
-    const [selectedTipo, setSelectedTipo] = useState(null)
     const [selectedActivo, setSelectedActivo] = useState(false)
     console.log("props array", props.arrayList)
-    const listGrupo = [
-        { name: 'grupo 1', code: '1' },
-        { name: 'grupo 2', code: '2' },
-        { name: 'grupo 3', code: '3' },
-        { name: 'grupo 4', code: '4' },
-        { name: 'grupo 5', code: '5' }
-    ];
-    const listArea = [
-        { name: 'area 1', code: '1' },
-        { name: 'area 2', code: '2' },
-        { name: 'area 3', code: '3' },
-        { name: 'area 4', code: '4' },
-        { name: 'area 5', code: '5' }
-    ];
-    const listDepa = [
-        { name: 'depa 1', code: '1' },
-        { name: 'depa 2', code: '2' },
-        { name: 'depa 3', code: '3' },
-        { name: 'depa 4', code: '4' },
-        { name: 'depa 5', code: '5' }
+    const listEmpleado = [
+        { name: 'empleado 1', code: '1' },
+        { name: 'empleado 2', code: '2' },
+        { name: 'empleado 3', code: '3' },
+        { name: 'empleado 4', code: '4' },
+        { name: 'empleado 5', code: '5' }
     ];
     const lisTipos = [
         { name: 'tipo 1', code: '1' },
@@ -120,22 +109,23 @@ const FormEmpleado = (props) => {
     ];
 
     useEffect(()=>{
-        setSelectedGrupo(searchOption(listGrupo, props.arrayList.id_grupo))
-        setSelectedArea(searchOption(listArea, props.arrayList.id_area))
-        setSelectedDepa(searchOption(listDepa, props.arrayList.id_depa))
-        setSelectedTipo(searchOption(lisTipos, props.arrayList.tipo))
         setSelectedActivo(props.arrayList.activo === "1")
     },[])
   return(
       <div className={"row row-form"}>
-        <div className={"col-md-4"}>
-          <div className="input-text">
-            <label>Nombre</label>
-            <InputText id="username" aria-describedby="username-help" defaultValue={arrayList.nombre}
-                       onChange={(e)=>onChange(e.target.value,arrayList, setArrayList, "nombre")}
-            />
+          <div className={"col-md-4"}>
+              <div className="input-text">
+                  <label>Empleado</label>
+                  <Dropdown value={selectedGrupo}
+                            onChange={(e) => {
+                                setSelectedGrupo(e.value)
+                                onChange(e.value?.code,arrayList, setArrayList, "id_grupo")
+                            }}
+                            options={listEmpleado}
+                            optionLabel="name"
+                            placeholder="Selecciona una opcion"/>
+              </div>
           </div>
-        </div>
         <div className={"col-md-4"}>
           <div className="input-text">
             <label>A. paterno</label>
@@ -146,7 +136,7 @@ const FormEmpleado = (props) => {
         </div>
         <div className={"col-md-4"}>
           <div className="input-text">
-            <label>A. materno</label>
+            <label>Foto</label>
             <InputText id="username" aria-describedby="username-help" defaultValue={arrayList.a_materno}
                        onChange={(e)=>onChange(e.target.value,arrayList, setArrayList, "a_materno")}
             />
@@ -154,63 +144,33 @@ const FormEmpleado = (props) => {
         </div>
         <div className={"col-md-4"}>
           <div className="input-text">
-            <label>Correo</label>
+            <label>User</label>
             <InputText id="username" aria-describedby="username-help" defaultValue={arrayList.correo}
                        onChange={(e)=>onChange(e.target.value,arrayList, setArrayList, "correo")}
             />
           </div>
         </div>
-        <div className={"col-md-4"}>
-          <div className="input-text">
-            <label>Grupo</label>
-              <Dropdown value={selectedGrupo}
-                        onChange={(e) => {
-                            setSelectedGrupo(e.value)
-                            onChange(e.value?.code,arrayList, setArrayList, "id_grupo")
-                        }}
-                        options={listGrupo}
-                        optionLabel="name"
-                        placeholder="Selecciona una opcion"/>
+          <div className={"col-md-4"}>
+              <div className="input-text">
+                  <label>Password</label>
+                  <InputText id="username" aria-describedby="username-help" defaultValue={arrayList.correo}
+                             onChange={(e)=>onChange(e.target.value,arrayList, setArrayList, "correo")}
+                  />
+              </div>
           </div>
-        </div>
+
         <div className={"col-md-4"}>
           <div className="input-text">
-            <label>Area</label>
+            <label>Tipo</label>
               <Dropdown value={selectedArea}
                         onChange={(e) => {
                             setSelectedArea(e.value)
                             onChange(e.value?.code,arrayList, setArrayList, "id_area")
 
                         }}
-                        options={listArea}
+                        options={lisTipos}
                         optionLabel="name"
                         placeholder="Selecciona una opcion"/>
-          </div>
-        </div>
-        <div className={"col-md-4"}>
-          <div className="input-text">
-            <label>Departamento</label>
-              <Dropdown value={selectedDepa}
-                        onChange={(e) => {
-                            setSelectedDepa(e.value)
-                            onChange(e.value?.code,arrayList, setArrayList, "id_depa")
-                        }}
-                        options={listDepa}
-                        optionLabel="name"
-                        placeholder="Selecciona una opcion"/>
-          </div>
-        </div>
-        <div className={"col-md-4"}>
-          <div className="input-text">
-            <label>Tipo</label>
-            <Dropdown value={selectedTipo}
-                      onChange={(e) => {
-                          setSelectedTipo(e.value)
-                            onChange(e.value?.code,arrayList, setArrayList, "tipo")
-                        }}
-                      options={lisTipos}
-                      optionLabel="name"
-                      placeholder="Selecciona una opcion"/>
           </div>
         </div>
         <div className={"col-md-4"}>
@@ -234,4 +194,4 @@ const FormEmpleado = (props) => {
   )
 }
 
-export default FormEmpleado
+export default FormUsuarios

@@ -1,5 +1,3 @@
-import "../../Styles/Home.scss"
-import "../../Styles/Perfil.scss"
 import BarMenu from "../../Components/BarMenu";
 import Container from "../../Components/Container";
 import img_perfil from "../../Assets/Images/perfil.jpg"
@@ -9,6 +7,7 @@ import {useState} from "react";
 import PanelMisCursos from "../../Components/Administracion/Perfil/PanelMisCursos";
 import PanelProgramacion from "../../Components/Administracion/Programacion/PanelProgramacion";
 import PanelMiAgenda from "../../Components/Administracion/Perfil/PanelMiAgenda";
+import {useSelector} from "react-redux";
 
 const onChangeMenu = (item) => {
   switch (item) {
@@ -27,6 +26,7 @@ const onChangeMenu = (item) => {
 }
 
 const Perfil = () => {
+    const user = useSelector(state => state.user)
     const [optionMenu, setOptioMenu] = useState("Mis datos")
     const items=[
         {
@@ -59,16 +59,16 @@ const Perfil = () => {
                     <div className={"col-md-3 col-lg-2  row-left"}>
                         <div className={"row"}>
                             <div className={"col-md-12"}>
-                                <img src={img_perfil} className={"img-perfil"} />
+                                <img src={user?.photo} className={"img-perfil"} />
                             </div>
                             <div className={"col-md-12"}>
-                                <h5>Javier Hernandez Martinez</h5>
+                                <h5>{user.nombre}</h5>
                             </div>
                             <div className={"col-md-12"}>
-                                <h6>Developper Full-Stack</h6>
+                                <h6>{user.puesto}</h6>
                             </div>
                             <div className={"col-md-12"}>
-                                <h6>NE. 10039732</h6>
+                                <h6>NE {user.numEmpleado}</h6>
                             </div>
                             <div className={"col-md-12"}>
                                 {

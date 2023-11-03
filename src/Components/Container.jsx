@@ -1,4 +1,3 @@
-import "../Styles/Footer.scss"
 import {useSelector} from "react-redux";
 const Container = (props) => {
     const theme = useSelector(state => state.rootTheme)

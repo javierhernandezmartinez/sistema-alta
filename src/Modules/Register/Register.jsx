@@ -1,4 +1,3 @@
-import "../../Styles/Register.scss"
 import BarMenu from "../../Components/BarMenu";
 import {Button} from "primereact/button";
 import imgL1 from "../../Assets/img-L1.png";

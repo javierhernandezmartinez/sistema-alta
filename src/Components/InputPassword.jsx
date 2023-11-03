@@ -1,4 +1,3 @@
-import "../Styles/Components/Components.scss"
 import { Password } from 'primereact/password';
 const InputTypePassword = (props) => {
   return(

@@ -2,7 +2,7 @@ import { Button } from 'primereact/button';
 import {useDispatch, useSelector} from "react-redux";
 import axios from "axios";
 import Table from "../../Table";
-import FormEmpleado from "./FormEmpleado";
+import FormUsuarios from "./FormUsuarios";
 import Modal from "../../Modal";
 import {listDataTable} from "../../../App/Features/AdministrationSlice";
 import {useEffect, useRef, useState} from "react";
@@ -68,7 +68,7 @@ const deleteRegistro = (array, toast, dispatch) => {
     })
 }
 
-const PanelEmpleado = (props) => {
+const PanelUsuario = (props) => {
     let dispatch = useDispatch()
     let toast= useRef(null);
 
@@ -153,7 +153,7 @@ const PanelEmpleado = (props) => {
               <Table header ={header} columns ={columns} data ={listData}/>
           </div>
           <Modal
-              element = {<FormEmpleado toast={toast} arrayList={arrayList}/>}
+              element = {<FormUsuarios toast={toast} arrayList={arrayList}/>}
           />
           <Toast ref={toast} />
           <ConfirmPopup />
@@ -161,4 +161,4 @@ const PanelEmpleado = (props) => {
   )
 }
 
-export default PanelEmpleado
+export default PanelUsuario

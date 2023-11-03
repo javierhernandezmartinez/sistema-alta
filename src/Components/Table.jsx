@@ -1,4 +1,3 @@
-import "../Styles/Footer.scss"
 import {DataTable} from "primereact/datatable";
 import {Column} from "primereact/column";
 const Table = (props) => {

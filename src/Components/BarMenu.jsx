@@ -1,4 +1,3 @@
-import "../Styles/Components/Components.scss";
 import { Menubar } from 'primereact/menubar';
 import logo from "../Assets/img-logo.png"
 import {Button} from "primereact/button";
