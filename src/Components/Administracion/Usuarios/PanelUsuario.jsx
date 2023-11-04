@@ -9,74 +9,52 @@ import {useEffect, useRef, useState} from "react";
 import {openModalForm} from "../../../App/Features/rootModalFormSlice";
 import {Toast} from "primereact/toast";
 import {ConfirmPopup,  confirmPopup} from "primereact/confirmpopup";
+import Services from "../../../Services/Services";
 
 let defaultArray = {
-    id: '',
-    nombre: '',
-    a_paterno: '',
-    a_materno: '',
-    correo: '',
-    id_grupo: '',
-    id_area: '',
-    id_depa: '',
-    tipo: '',
-    activo: '0'
+    ID_USUARIO: null,
+    ID_EMPLEADO: null,
+    FOTO: null,
+    USER: null,
+    PASS: null,
+    TIPO: 'Normal',
+    STATUS: 1
 }
-const getListRegistros = (dispatch)=>{
-    axios.get("http://localhost:3100/api/app/system/get/empleados")
-        .then(res=> {
-            console.log(res)
-            let listData = res?.data?.row?.map(item=>{
-                return {
-                    ...defaultArray,
-                    id: item.IdEmpleado,
-                    nombre: item.Nombre,
-                    a_paterno: item.Paterno,
-                    a_materno: item.Materno,
-                    correo: item.Correo,
-                    id_grupo: item.IdGrupo,
-                    id_area: item.IdArea,
-                    id_depa: item.IdDepto,
-                    tipo: item.Tipo,
-                    activo: item.Activo
-                }
-            })
-            console.log(listData)
-            dispatch(listDataTable(listData ? listData : []))
-        })
-        .catch(err=>{
-            console.log(err)
-        })
+const getUsuarios = (dispatch)=>{
+    Services.getUsuarios().then(res=> {
+        console.log(res)
+        dispatch(listDataTable(res?.data?.row))
+    })
 }
 
-const deleteRegistro = (array, toast, dispatch) => {
-    console.log(array)
-    axios.post("http://localhost:3100/api/app/system/delete/empleado", array)
-        .then(res => {
-                console.log(res)
-                toast.current.show(
-                    {
-                        severity: res.data.message ? 'success' : "error",
-                        summary: 'Message',
-                        detail: res.data.message ? res.data.message : res.data.errorMessage
-                    }
-                );
-                getListRegistros(dispatch)
-            }
-        ).catch(err=>{
-        console.log(err)
-    })
+
+const deleteUsuario = (array, toast, dispatch) => {
+    Services.deleteUsuario(array).then(res => {
+            console.log(res)
+            toast.current.show(
+                {
+                    severity: res.data.message ? 'success' : "error",
+                    summary: 'Message',
+                    detail: res.data.message ? res.data.message : res.data.errorMessage
+                }
+            );
+            getUsuarios(dispatch)
+        }
+    )
 }
 
 const PanelUsuario = (props) => {
     let dispatch = useDispatch()
     let toast= useRef(null);
-
+    const [empleados, setEmpleados] = useState([])
+    const [selectedEmpleado, setSelectedEmpleado] = useState(null)
     const [arrayList, setArrayList] = useState(defaultArray)
 
     useEffect(()=>{
-       // initNegociosList(dispatch, api)
-        getListRegistros(dispatch)
+        getUsuarios(dispatch)
+        Services.getEmpleados().then(res=> {
+            setEmpleados(formatDropDown(res?.data?.row,'NOMBRE','ID_EMPLEADO'))
+        })
     },[])
 
     const listData = useSelector(state => state.rootAdmin.listDataTableReducer)
@@ -85,15 +63,28 @@ const PanelUsuario = (props) => {
                                 <span className="table-title">{props.title}</span>
                                 <Button icon="pi pi-plus" label="Nuevo" severity="help" outlined className="button-plus"
                                         onClick={()=> {
+                                            setSelectedEmpleado([])
                                             setArrayList(defaultArray)
                                             dispatch(openModalForm())
                                         }}
                                 />
                             </div>
-
+    const formatDropDown = (list, name, code) => {
+        list = list.map(item=>{
+            return {
+                name: `${item[code]} - ${item[name]}`,
+                code: item[code]
+            }
+        })
+        return list
+    }
+    const searchOption = (array, valor) => {
+        let option = array.filter(item => item.code === valor)
+        return option[0]
+    }
     const bodyColum=(rowData) => {
         const accept = () => {
-            deleteRegistro(rowData, toast, dispatch)
+            deleteUsuario(rowData, toast, dispatch)
         };
 
         const reject = () => {
@@ -106,8 +97,12 @@ const PanelUsuario = (props) => {
                         tooltipOptions={{position: 'top'}}
                         onClick={()=>{
                             console.log(rowData)
-                            setArrayList(rowData)
-                            dispatch(openModalForm())
+                            Services.getUsuario({ID_USUARIO : rowData.ID_USUARIO}).then(res=>{
+                                console.log(res)
+                                setSelectedEmpleado(searchOption(empleados, rowData.ID_EMPLEADO))
+                                setArrayList(res?.data?.row[0])
+                                dispatch(openModalForm())
+                            })
                         }}
                 />
                 <Button icon="pi pi-trash" severity="help" outlined className="button-plus" tooltip="Eliminar"
@@ -131,18 +126,15 @@ const PanelUsuario = (props) => {
 
     const columns =
         [
-            {field:"id",header:"Id empleado"},
-            {field: "nombre",header: "Nombre"},
-            {field: "a_paterno", header: "Apellido P."},
-            {field: "a_materno", header: "Apellido M."},
-            {field: "correo", header: "Correo"},
-            {field: "id_grupo", header: "Grupo"},
-            {field: "id_area", header: "Area"},
-            {field: "id_depa", header: "Departamento"},
-            {field: "tipo", header: "Tipo"},
-            {field: "activo", header: "Activo"},
-            {header: "Option", body: bodyColum
-            }
+            {field: "ID_USUARIO",header:"ID USUARIO"},
+            {field: "ID_EMPLEADO",header: "ID EMPLEADO"},
+            {field: "NOMBRE", header: "NOMBRE"},
+            {field: "AP_PATERNO", header: "AP. PATERNO"},
+            {field: "AP_MATERNO", header: "AP. MATERNO"},
+            {field: "USER", header: "USUARIO"},
+            {field: "TIPO", header: "TIPO"},
+            {field: "STATUS", header: "STATUS"},
+            {header: "Option", body: bodyColum}
         ]
 
 
@@ -153,7 +145,7 @@ const PanelUsuario = (props) => {
               <Table header ={header} columns ={columns} data ={listData}/>
           </div>
           <Modal
-              element = {<FormUsuarios toast={toast} arrayList={arrayList}/>}
+              element = {<FormUsuarios toast={toast} arrayList={arrayList} empleados={empleados} selectedEmpleado={selectedEmpleado}/>}
           />
           <Toast ref={toast} />
           <ConfirmPopup />

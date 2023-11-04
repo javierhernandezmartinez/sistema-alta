@@ -9,46 +9,33 @@ import {openModalForm} from "../../../App/Features/rootModalFormSlice";
 import {ConfirmPopup, confirmPopup} from "primereact/confirmpopup";
 import {Toast} from "primereact/toast";
 import FormDepartamento from "./FormDepartamento";
+import Services from "../../../Services/Services";
 
 let defaultArray = {
-    id: '',
-    nombre: '',
-    activo: '0'
+    ID_DEPARTAMENTO: null,
+    NOMBRE: null,
+    STATUS: 1
 }
 const getListRegistros = (dispatch)=>{
-    axios.get("http://localhost:3100/api/app/system/get/departamentos")
-        .then(res=> {
-            console.log(res)
-            let listData = res?.data?.row?.map(item=>{
-                return {
-                    ...defaultArray,
-                    id: item.IdDepto,
-                    nombre: item.NomDepto,
-                    activo: item.Activo
-                }
+    Services.getDepas().then(res=> {
+        console.log(res)
+        dispatch(listDataTable(res?.data?.row))
+    })
 
-            })
-            console.log(listData)
-            dispatch(listDataTable(listData ? listData : []))
-        })
 }
 const deleteRegistro = (array, toast, dispatch) => {
-    console.log(array)
-    axios.post("http://localhost:3100/api/app/system/delete/departamento", array)
-        .then(res => {
-                console.log(res)
-                toast.current.show(
-                    {
-                        severity: res.data.message ? 'success' : "error",
-                        summary: 'Message',
-                        detail: res.data.message ? res.data.message : res.data.errorMessage
-                    }
-                );
-                getListRegistros(dispatch)
-            }
-        ).catch(err=>{
-        console.log(err)
-    })
+    Services.deleteDepa(array).then(res => {
+            console.log(res)
+            toast.current.show(
+                {
+                    severity: res.data.message ? 'success' : "error",
+                    summary: 'Message',
+                    detail: res.data.message ? res.data.message : res.data.errorMessage
+                }
+            );
+            getListRegistros(dispatch)
+        }
+    )
 }
 const PanelDepartamento = (props) => {
     let dispatch = useDispatch()
@@ -112,9 +99,9 @@ const PanelDepartamento = (props) => {
 
     const columns =
         [
-            {field:"id",header:"Id grupo"},
-            {field: "nombre",header: "Nombre"},
-            {field: "activo", header: "Activo"},
+            {field:"ID_DEPARTAMENTO",header:"ID DEPARTAMENTO"},
+            {field: "NOMBRE",header: "NOMBRE"},
+            {field: "STATUS", header: "ESTATUS"},
             {header: "Option", body: bodyColum}
         ]
 
