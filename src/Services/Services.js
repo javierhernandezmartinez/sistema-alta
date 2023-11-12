@@ -86,6 +86,25 @@ Services.deleteCurso = (data) => {
     return Services.axios('post',"/delete/curso", data)
 }
 
+Services.getProgramaciones = () => {
+    return Services.axios('get',"/get/programaciones")
+}
+Services.addProgramacion = (data) => {
+    return Services.axios('post',"/add/programacion", data)
+}
+Services.updateProgramacion = (data) => {
+    return Services.axios('post',"/update/programacion", data)
+}
+Services.deleteProgramacion = (data) => {
+    return Services.axios('post',"/delete/programacion", data)
+}
+Services.getProgramacion = (data) => {
+    return Services.axios('post',"/get/programacion", data)
+}
+
+Services.getLogin = (data) => {
+    return Services.axios('post',"/login", data)
+}
 
 
 Services.axios =(type, extension, data = null)=>{

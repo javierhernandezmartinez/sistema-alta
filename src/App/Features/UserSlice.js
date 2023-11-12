@@ -1,25 +1,17 @@
 import { createSlice } from '@reduxjs/toolkit'
 import ImgNoImg from "../../Assets/Images/img_no_img.png"
 import perfil from "../../Assets/Images/perfil.jpg"
-const userLoguedo = true
-let userDefault = {
-    nombre: null,
-    ap_paterto: null,
-    ap_materno: null,
-    numEmpleado: null,
-    email: null,
-    photo: ImgNoImg,
-    puesto: null
-}
+const userLoguedo = false
+let userDefault = null
 if (userLoguedo){
     userDefault = {
-        nombre: "Javier",
-        ap_paterto: "Hernandez",
-        ap_materno: "Martinez",
-        numEmpleado: "139P0294",
-        emai: "javier_9509@hotmail.com",
-        photo: perfil,
-        puesto: "Front End Deb"
+        NOMBRE: "Javier",
+        AP_PATERNO: "Hernandez",
+        AP_MATERNO: "Martinez",
+        NUM_EMPLEADO: "139P0294",
+        EMAIL: "javier_9509@hotmail.com",
+        PHOTO: perfil,
+        PUESTO: "Front End Deb"
     }
 }
 export const userSlice = createSlice({

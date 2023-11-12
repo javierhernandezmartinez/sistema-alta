@@ -142,7 +142,7 @@ const FormEmpleado = (props) => {
           <div className="input-text">
             <label>Email</label>
             <InputText id="username" aria-describedby="username-help" defaultValue={arrayList.EMAIL}
-                       onChange={(e)=>onChange(e.target.value,arrayList, setArrayList, "EMAIL")}
+                       onChange={(e)=>onChange(e.target.value.toLowerCase(),arrayList, setArrayList, "EMAIL")}
             />
           </div>
         </div>

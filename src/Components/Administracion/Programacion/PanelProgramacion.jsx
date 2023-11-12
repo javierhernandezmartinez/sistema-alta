@@ -9,65 +9,65 @@ import {openModalForm} from "../../../App/Features/rootModalFormSlice";
 import {Toast} from "primereact/toast";
 import {ConfirmPopup,  confirmPopup} from "primereact/confirmpopup";
 import FormProgramacion from "./FormProgramacion";
+import Services from "../../../Services/Services";
 
 let defaultArray = {
-    id: '',
-    id_empleado: '',
-    id_curso: '',
-    fecha: null,
-    asistencia: '',
-    consec: '',
-    estatus: '',
-    notas: '',
+    ID_PROGRAMACION: null,
+    ID_EMPLEADO: null,
+    ID_CURSO: null,
+    LIM_PARTICIPANTES: null,
+    LIM_ESPERA: null,
+    EMPRESA: null,
+    LUGAR: null,
+    SALA: null,
+    LIGA: null,
+    STATUS: 1
 }
-const getListRegistros = (dispatch)=>{
-    axios.get("http://localhost:3100/api/app/system/get/programaciones")
-        .then(res=> {
-            console.log(res)
-            let listData = res?.data?.row?.map(item=>{
-                return {
-                    ...defaultArray,
-                    id: item.IdProg,
-                    id_empleado: item.IdEmpleado,
-                    id_curso: item.Curso,
-                    fecha: item.Fecha,
-                    asistencia: item.Asistencia,
-                    consec: item.Consec,
-                    estatus: item.Estatus,
-                    notas: item.Notas,
-                }
-            })
-            console.log(listData)
-            dispatch(listDataTable(listData ? listData : []))
-        })
+const getProgramaciones = (dispatch)=>{
+    Services.getProgramaciones().then(res=> {
+        console.log(res)
+        dispatch(listDataTable(res?.data?.row))
+    })
+        
 }
 
-const deleteRegistro = (array, toast, dispatch) => {
-    console.log(array)
-    axios.post("http://localhost:3100/api/app/system/delete/programacion", array)
-        .then(res => {
-                console.log(res)
-                toast.current.show(
-                    {
-                        severity: res.data.message ? 'success' : "error",
-                        summary: 'Message',
-                        detail: res.data.message ? res.data.message : res.data.errorMessage
-                    }
-                );
-                getListRegistros(dispatch)
-            }
-        )
+const deleteProgramcion = (array, toast, dispatch) => {
+    Services.deleteProgramacion(array).then(res => {
+            console.log(res)
+            toast.current.show(
+                {
+                    severity: res.data.message ? 'success' : "error",
+                    summary: 'Message',
+                    detail: res.data.message ? res.data.message : res.data.errorMessage
+                }
+            );
+            getProgramaciones(dispatch)
+        }
+    )
+
 }
 
 const PanelProgramacion = (props) => {
     let dispatch = useDispatch()
     let toast= useRef(null);
+    const [empleados, setEmpleados] = useState([])
+    const [selectedEmpleado, setSelectedEmpleado] = useState(null)
+    const [cursos, setCursos] = useState([])
+    const [selectedCurso, setSelectedCurso] = useState(null)
 
-    const [arrayList, setArrayList] = useState(defaultArray)
+    const [arrayList, setArrayList] = useState({...defaultArray})
 
+    const formatDropDown = (list, name, code) => {
+        return list.map(item=>{return {name: `${item[code]} - ${item[name]}`,code: item[code]}})
+    }
     useEffect(()=>{
-        // initNegociosList(dispatch, api)
-        getListRegistros(dispatch)
+        getProgramaciones(dispatch)
+        Services.getEmpleados().then(res=> {
+            setEmpleados(formatDropDown(res?.data?.row,'NOMBRE','ID_EMPLEADO'))
+        })
+        Services.getCursos().then(res=> {
+            setCursos(formatDropDown(res?.data?.row,'NOMBRE','ID_CURSO'))
+        })
     },[])
 
     const listData = useSelector(state => state.rootAdmin.listDataTableReducer)
@@ -76,15 +76,20 @@ const PanelProgramacion = (props) => {
         <span className="table-title">{props.title}</span>
         <Button icon="pi pi-plus" label="Nuevo" severity="help" outlined className="button-plus"
                 onClick={()=> {
-                    setArrayList(defaultArray)
+                    setArrayList({...defaultArray})
+                    setSelectedEmpleado(null)
+                    setSelectedCurso(null)
                     dispatch(openModalForm())
                 }}
         />
     </div>
-
+    const searchOption = (array, valor) => {
+        let option = array.filter(item => item.code === valor)
+        return option[0]
+    }
     const bodyColum=(rowData) => {
         const accept = () => {
-            deleteRegistro(rowData, toast, dispatch)
+            deleteProgramcion(rowData, toast, dispatch)
         };
 
         const reject = () => {
@@ -97,8 +102,13 @@ const PanelProgramacion = (props) => {
                         tooltipOptions={{position: 'top'}}
                         onClick={()=>{
                             console.log(rowData)
-                            setArrayList(rowData)
-                            dispatch(openModalForm())
+                            Services.getProgramacion({ID_PROGRAMACION : rowData.ID_PROGRAMACION}).then(res=>{
+                                console.log(res)
+                                setArrayList(res?.data?.row[0])
+                                setSelectedEmpleado(searchOption(empleados, res?.data?.row[0].ID_EMPLEADO))
+                                setSelectedCurso(searchOption(cursos, res?.data?.row[0].ID_CURSO ))
+                                dispatch(openModalForm())
+                            })
                         }}
                 />
                 <Button icon="pi pi-trash" severity="help" outlined className="button-plus" tooltip="Eliminar"
@@ -122,14 +132,16 @@ const PanelProgramacion = (props) => {
 
     const columns =
         [
-            {field:"id",header:"Id"},
-            {field: "id_empleado",header: "Empleado"},
-            {field: "id_curso", header: "Curso"},
-            {field: "fecha", header: "Fecha"},
-            {field: "asistencia", header: "Aistencia"},
-            {field: "consec", header: "Consec"},
-            {field: "estatus", header: "Estatus"},
-            {field: "notas", header: "Notas"},
+            {field:"ID_PROGRAMACION",header:"ID"},
+            {field: "CAPACITADOR",header: "CAPACITADOR"},
+            {field: "CURSO", header: "CURSO"},
+            {field: "LIM_PARTICIPANTES", header: "LIM. PARTICIPANTES"},
+            {field: "LIM_ESPERA", header: "LIM. ESPERA"},
+            {field: "EMPRESA", header: "EMPRESA"},
+            {field: "LUGAR", header: "LUGAR"},
+            {field: "SALA", header: "SALA"},
+            {field: "LIGA", header: "LIGA"},
+            {field: "STATUS", header: "STATUS"},
             {header: "Option", body: bodyColum
             }
         ]
@@ -142,7 +154,18 @@ const PanelProgramacion = (props) => {
                 <Table header ={header} columns ={columns} data ={listData}/>
             </div>
             <Modal
-                element = {<FormProgramacion toast={toast} arrayList={arrayList}/>}
+                element = {
+                <FormProgramacion
+                    toast={toast}
+                    arrayList={arrayList}
+                    empleados = {empleados}
+                    selectedEmpleado = {selectedEmpleado}
+                    setSelectedEmpleado = {setSelectedEmpleado}
+                    cursos = {cursos}
+                    selectedCurso = {selectedCurso}
+                    setSelectedCurso = {setSelectedCurso}
+                />
+            }
             />
             <Toast ref={toast} />
             <ConfirmPopup />
