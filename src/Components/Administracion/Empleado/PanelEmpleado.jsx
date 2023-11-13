@@ -9,63 +9,41 @@ import {useEffect, useRef, useState} from "react";
 import {openModalForm} from "../../../App/Features/rootModalFormSlice";
 import {Toast} from "primereact/toast";
 import {ConfirmPopup,  confirmPopup} from "primereact/confirmpopup";
+import Services from "../../../Services/Services";
 
 let defaultArray = {
-    id: '',
-    nombre: '',
-    a_paterno: '',
-    a_materno: '',
-    correo: '',
-    id_grupo: '',
-    id_area: '',
-    id_depa: '',
-    tipo: '',
-    activo: '0'
+    ID_EMPLEADO: null,
+    NOMBRE: null,
+    AP_PATERNO: null,
+    AP_MATERNO: null,
+    NUM_EMPLEADO: null,
+    EMAIL: null,
+    TEL: null,
+    ID_GRUPO: null,
+    ID_AREA: null,
+    ID_DEPARTAMENTO: null,
+    PUESTO: null,
+    STATUS: 1
 }
-const getListRegistros = (dispatch)=>{
-    axios.get("http://localhost:3100/api/app/system/get/empleados")
-        .then(res=> {
-            console.log(res)
-            let listData = res?.data?.row?.map(item=>{
-                return {
-                    ...defaultArray,
-                    id: item.IdEmpleado,
-                    nombre: item.Nombre,
-                    a_paterno: item.Paterno,
-                    a_materno: item.Materno,
-                    correo: item.Correo,
-                    id_grupo: item.IdGrupo,
-                    id_area: item.IdArea,
-                    id_depa: item.IdDepto,
-                    tipo: item.Tipo,
-                    activo: item.Activo
-                }
-            })
-            console.log(listData)
-            dispatch(listDataTable(listData ? listData : []))
-        })
-        .catch(err=>{
-            console.log(err)
-        })
+const getEmpleados = (dispatch)=>{
+    Services.getEmpleados().then(res=> {
+        console.log(res)
+        dispatch(listDataTable(res?.data?.row))
+    })
 }
 
 const deleteRegistro = (array, toast, dispatch) => {
-    console.log(array)
-    axios.post("http://localhost:3100/api/app/system/delete/empleado", array)
-        .then(res => {
-                console.log(res)
-                toast.current.show(
-                    {
-                        severity: res.data.message ? 'success' : "error",
-                        summary: 'Message',
-                        detail: res.data.message ? res.data.message : res.data.errorMessage
-                    }
-                );
-                getListRegistros(dispatch)
-            }
-        ).catch(err=>{
-        console.log(err)
-    })
+    Services.deleteEmpleado(array).then(res => {
+            toast.current.show(
+                {
+                    severity: res.data.message ? 'success' : "error",
+                    summary: 'Message',
+                    detail: res.data.message ? res.data.message : res.data.errorMessage
+                }
+            );
+            getEmpleados(dispatch)
+        }
+    )
 }
 
 const PanelEmpleado = (props) => {
@@ -76,7 +54,7 @@ const PanelEmpleado = (props) => {
 
     useEffect(()=>{
        // initNegociosList(dispatch, api)
-        getListRegistros(dispatch)
+        getEmpleados(dispatch)
     },[])
 
     const listData = useSelector(state => state.rootAdmin.listDataTableReducer)
@@ -131,16 +109,18 @@ const PanelEmpleado = (props) => {
 
     const columns =
         [
-            {field:"id",header:"Id empleado"},
-            {field: "nombre",header: "Nombre"},
-            {field: "a_paterno", header: "Apellido P."},
-            {field: "a_materno", header: "Apellido M."},
-            {field: "correo", header: "Correo"},
-            {field: "id_grupo", header: "Grupo"},
-            {field: "id_area", header: "Area"},
-            {field: "id_depa", header: "Departamento"},
-            {field: "tipo", header: "Tipo"},
-            {field: "activo", header: "Activo"},
+            {field:"ID_EMPLEADO",header:"ID EMPLEADO"},
+            {field: "NOMBRE",header: "NOMBRE"},
+            {field: "AP_PATERNO", header: "A. PATERNO"},
+            {field: "AP_MATERNO", header: "A. MATERNO"},
+            {field: "NUM_EMPLEADO", header: "NUM. EMPLEADO"},
+            {field: "EMAIL", header: "EMAIL"},
+            {field: "TEL", header: "TEL."},
+            {field: "ID_GRUPO", header: "GRUPO"},
+            {field: "ID_AREA", header: "AREA"},
+            {field: "ID_DEPARTAMENTO", header: "DEPARTAMENTO"},
+            {field: "PUESTO", header: "PUESTO"},
+            {field: "STATUS", header: "STATUS"},
             {header: "Option", body: bodyColum
             }
         ]

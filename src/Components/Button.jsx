@@ -1,8 +1,9 @@
-import "../Styles/Footer.scss"
 import { Button } from 'primereact/button';
-const Button = () => {
+const Button = props => {
   return(
-      <Button/>
+      <Button
+          onClick={props.onClick ? props.onClick : ()=>{}}
+      />
   )
 }
 

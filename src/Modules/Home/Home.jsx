@@ -1,5 +1,3 @@
-import "../../Styles/Home.scss"
-import "../../Styles/Components/Components.scss"
 import img1 from "../../Assets/img1.png"
 import logoBM from "../../Assets/logoBM.png"
 import {Button} from "primereact/button";

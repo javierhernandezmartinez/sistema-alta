@@ -2,7 +2,6 @@ import {Button} from 'primereact/button';
 import {useEffect, useState} from "react";
 import {useDispatch} from "react-redux";
 import CarouselCursos from "../../../Modules/Home/CarouselCursos";
-import "../../../Styles/PanelMisCursos.scss"
 import img_perfil from "../../../Assets/Images/perfil.jpg"
 import cursos from "../../../Assets/json/cursos.json"
 const cardCurso =(item)=>{

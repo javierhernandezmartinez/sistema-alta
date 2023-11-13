@@ -1,6 +1,5 @@
 import { Button } from 'primereact/button';
 import {useDispatch, useSelector} from "react-redux";
-import axios from "axios";
 import Table from "../../Table";
 import Modal from "../../Modal";
 import {listDataTable} from "../../../App/Features/AdministrationSlice";
@@ -9,74 +8,34 @@ import {openModalForm} from "../../../App/Features/rootModalFormSlice";
 import {Toast} from "primereact/toast";
 import {ConfirmPopup,  confirmPopup} from "primereact/confirmpopup";
 import FormCurso from "./FormCurso";
+import Services from "../../../Services/Services";
 
 let defaultArray = {
-    id:'',
-    nom_curso:'',
-    nom_capacita:'',
-    activo:'',
-    fecha_ini:'',
-    fecha_fin:'',
-    hora_ini:'',
-    hora_fin:'',
-    dia_sem:'',
-    limit_par:'',
-    limit_esp:'',
-    empresa:'',
-    lugar:'',
-    sala:'',
-    color:'',
-    liga:''
+    ID_CURSO:null,
+    NOMBRE:null,
+    COLOR:null,
+    STATUS:1
 }
-const getListRegistros = (dispatch)=>{
-    axios.get("http://localhost:3100/api/app/system/get/cursos")
-        .then(res=> {
-            console.log(res)
-            let listData = res?.data?.row?.map(item=>{
-                return {
-                    ...defaultArray,
-                    id:item.idCurso,
-                    nom_curso:item.NomCurso,
-                    nom_capacita:item.NomCapacita,
-                    activo:item.Activo,
-                    fecha_ini:item.FechaIni,
-                    fecha_fin:item.FechaFin,
-                    hora_ini:item.HoraIni,
-                    hora_fin:item.HoraFin,
-                    dia_sem:item.DiasSemana,
-                    limit_par:item.LimitePar,
-                    limit_esp:item.LimiteEsp,
-                    empresa:item.Empresa,
-                    lugar:item.Lugar,
-                    sala:item.Sala,
-                    color:item.Color,
-                    liga:item.Liga
-                }
-            })
-            console.log(listData)
-            dispatch(listDataTable(listData ? listData : []))
-        }).catch(err=>{
-        console.log(err)
+const getCursos = (dispatch)=>{
+    Services.getCursos().then(res=> {
+        console.log(res)
+        dispatch(listDataTable(res?.data?.row))
     })
 }
 
-const deleteRegistro = (array, toast, dispatch) => {
-    console.log(array)
-    axios.post("http://localhost:3100/api/app/system/delete/curso", array)
-        .then(res => {
-                console.log(res)
-                toast.current.show(
-                    {
-                        severity: res.data.message ? 'success' : "error",
-                        summary: 'Message',
-                        detail: res.data.message ? res.data.message : res.data.errorMessage
-                    }
-                );
-                getListRegistros(dispatch)
-            }
-        ).catch(err=>{
-        console.log(err)
-    })
+const deleteCurso = (array, toast, dispatch) => {
+    Services.deleteCurso(array).then(res => {
+            console.log(res)
+            toast.current.show(
+                {
+                    severity: res.data.message ? 'success' : "error",
+                    summary: 'Message',
+                    detail: res.data.message ? res.data.message : res.data.errorMessage
+                }
+            );
+            getCursos(dispatch)
+        }
+    )
 }
 
 const PanelCurso = (props) => {
@@ -87,7 +46,7 @@ const PanelCurso = (props) => {
 
     useEffect(()=>{
         // initNegociosList(dispatch, api)
-        getListRegistros(dispatch)
+        getCursos(dispatch)
     },[])
 
     const listData = useSelector(state => state.rootAdmin.listDataTableReducer)
@@ -104,7 +63,7 @@ const PanelCurso = (props) => {
 
     const bodyColum=(rowData) => {
         const accept = () => {
-            deleteRegistro(rowData, toast, dispatch)
+            deleteCurso(rowData, toast, dispatch)
         };
 
         const reject = () => {
@@ -139,25 +98,19 @@ const PanelCurso = (props) => {
             </div>
         )
     }
+    const bodyColor=(rowData)=>{
+     return <label style={{color: `#${rowData.COLOR}`}}>{rowData.COLOR}</label>
+    }
+    const bodyStatus=(rowData)=>{
+        return <label style={{color: `${rowData.STATUS === 1 ? 'green' : 'red'}`}}>{rowData.STATUS}</label>
+    }
 
     const columns =
         [
-            {field:"id",header:"Id Curso"},
-            {field: "nom_curso",header: "Nom. Curso"},
-            {field: "nom_capacita", header: "Nom. Capacitador"},
-            {field: "fecha_ini", header: "F. Inicio"},
-            {field: "fecha_fin", header: "F. Fin"},
-            {field: "hora_ini", header: "H. Inicio"},
-            {field: "hora_fin", header: "H. Fin"},
-            {field: "dia_sem", header: "Dias Semana"},
-            {field: "limit_par", header: "Limit. Participarte"},
-            {field: "limit_esp", header: "Limit. Espera"},
-            {field: "empresa", header: "Empresa"},
-            {field: "lugar", header: "Lugar"},
-            {field: "sala", header: "Sala"},
-            {field: "color", header: "Color"},
-            {field: "liga", header: "Liga"},
-            {field: "activo", header: "Activo"},
+            {field:"ID_CURSO",header:"ID CURSO"},
+            {field: "NOMBRE",header: "NOMBRE"},
+            {field: "COLOR", header: "COLOR", body: bodyColor},
+            {field: "STATUS", header: "ESTATUS", body: bodyStatus},
             {header: "Option", body: bodyColum
             }
         ]

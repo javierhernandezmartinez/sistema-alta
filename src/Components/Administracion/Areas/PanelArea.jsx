@@ -5,52 +5,38 @@ import Table from "../../Table";
 import Modal from "../../Modal";
 import {listDataTable} from "../../../App/Features/AdministrationSlice";
 import {useEffect, useRef, useState} from "react";
-import {openModalForm} from "../../../App/Features/rootModalFormSlice";
+import {closeModalForm, openModalForm} from "../../../App/Features/rootModalFormSlice";
 import {ConfirmPopup, confirmPopup} from "primereact/confirmpopup";
 import {Toast} from "primereact/toast";
 import FormArea from "./FormArea";
+import Services from "../../../Services/Services";
 
 let defaultArray = {
-    id: '',
-    nombre: '',
-    activo: '0'
+    ID_AREA: null,
+    NOMBRE: null,
+    STATUS: 1
 }
-const getListRegistros = (dispatch)=>{
-    axios.get("http://localhost:3100/api/app/system/get/areas")
-        .then(res=> {
-            console.log(res)
-            let listData = res?.data?.row?.map(item=>{
-                return {
-                    ...defaultArray,
-                    id: item.IdArea,
-                    nombre: item.NomArea,
-                    activo: item.Activo
-                }
 
-            })
-            console.log(listData)
-            dispatch(listDataTable(listData ? listData : []))
-        }).catch(err=>{
-        console.log(err)
+const getListRegistros = (dispatch)=>{
+        Services.getAreas().then(res=>{
+        console.log(res)
+        dispatch(listDataTable(res?.data?.row))
     })
 }
-const deleteRegistro = (array, toast, dispatch) => {
+const deleteArea = (array, toast, dispatch) => {
     console.log(array)
-    axios.post("http://localhost:3100/api/app/system/delete/area", array)
-        .then(res => {
-                console.log(res)
-                toast.current.show(
-                    {
-                        severity: res.data.message ? 'success' : "error",
-                        summary: 'Message',
-                        detail: res.data.message ? res.data.message : res.data.errorMessage
-                    }
-                );
-                getListRegistros(dispatch)
-            }
-        ).catch(err=>{
-        console.log(err)
-    })
+    Services.deleteArea(array).then(res => {
+            console.log(res)
+            toast.current.show(
+                {
+                    severity: res.data.message ? 'success' : "error",
+                    summary: 'Message',
+                    detail: res.data.message ? res.data.message : res.data.errorMessage
+                }
+            );
+            getListRegistros(dispatch)
+        }
+    )
 }
 const PanelArea = (props) => {
     let dispatch = useDispatch()
@@ -76,7 +62,7 @@ const PanelArea = (props) => {
     </div>
     const bodyColum=(rowData) => {
         const accept = () => {
-            deleteRegistro(rowData, toast, dispatch)
+            deleteArea(rowData, toast, dispatch)
         };
 
         const reject = () => {
@@ -114,9 +100,9 @@ const PanelArea = (props) => {
 
     const columns =
         [
-            {field:"id",header:"Id Area"},
-            {field: "nombre",header: "Nombre"},
-            {field: "activo", header: "Activo"},
+            {field:"ID_AREA",header:"ID AREA"},
+            {field: "NOMBRE",header: "NOMBRE"},
+            {field: "STATUS", header: "ESTATUS"},
             {header: "Option", body: bodyColum}
         ]
 

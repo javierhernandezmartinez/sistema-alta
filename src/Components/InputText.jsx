@@ -1,4 +1,3 @@
-import "../Styles/Components/Components.scss"
 import {InputText} from "primereact/inputtext";
 const InputTypeText = (props) => {
   return(

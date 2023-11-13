@@ -1,56 +1,38 @@
 import { Button } from 'primereact/button';
 import {useDispatch, useSelector} from "react-redux";
-import axios from "axios";
 import Table from "../../Table";
 import Modal from "../../Modal";
 import {listDataTable} from "../../../App/Features/AdministrationSlice";
 import {useEffect, useRef, useState} from "react";
-import {openModalForm} from "../../../App/Features/rootModalFormSlice";
+import {closeModalForm, openModalForm} from "../../../App/Features/rootModalFormSlice";
 import FormGrupo from "./FormGrupo";
 import {ConfirmPopup, confirmPopup} from "primereact/confirmpopup";
 import {Toast} from "primereact/toast";
+import Services from "../../../Services/Services";
 
 let defaultArray = {
-    id: '',
-    nombre: '',
-    activo: ''
+    ID_GRUPO: null,
+    NOMBRE: null,
+    STATUS: 1
 }
-const getListRegistros = (dispatch)=>{
-    axios.get("http://localhost:3100/api/app/system/get/grupos")
-        .then(res=> {
+const getGrupos = (dispatch)=>{
+    Services.getGrupos().then(res=> {
+        dispatch(listDataTable(res?.data?.row))
+    })
+}
+const deleteGrupo = (array, toast, dispatch) => {
+    Services.deleteGrupo(array).then(res => {
             console.log(res)
-            let listData = res?.data?.row?.map(item=>{
-                return {
-                    ...defaultArray,
-                    id: item.IdGrupo,
-                    nombre: item.NomGrupo,
-                    activo: item.Activo
+            toast.current.show(
+                {
+                    severity: res.data.message ? 'success' : "error",
+                    summary: 'Message',
+                    detail: res.data.message ? res.data.message : res.data.errorMessage
                 }
-
-            })
-            console.log(listData)
-            dispatch(listDataTable(listData ? listData : []))
-        }).catch(err=>{
-        console.log(err)
-    })
-}
-const deleteRegistro = (array, toast, dispatch) => {
-    console.log(array)
-    axios.post("http://localhost:3100/api/app/system/delete/grupo", array)
-        .then(res => {
-                console.log(res)
-                toast.current.show(
-                    {
-                        severity: res.data.message ? 'success' : "error",
-                        summary: 'Message',
-                        detail: res.data.message ? res.data.message : res.data.errorMessage
-                    }
-                );
-                getListRegistros(dispatch)
-            }
-        ).catch(err=>{
-        console.log(err)
-    })
+            );
+            getGrupos(dispatch)
+        }
+    )
 }
 const PanelGrupo = (props) => {
     let dispatch = useDispatch()
@@ -60,7 +42,7 @@ const PanelGrupo = (props) => {
 
     useEffect(()=>{
         // initNegociosList(dispatch, api)
-        getListRegistros(dispatch)
+        getGrupos(dispatch)
     },[])
 
     const listData = useSelector(state => state.rootAdmin.listDataTableReducer)
@@ -76,7 +58,7 @@ const PanelGrupo = (props) => {
     </div>
     const bodyColum=(rowData) => {
         const accept = () => {
-            deleteRegistro(rowData, toast, dispatch)
+            deleteGrupo(rowData, toast, dispatch)
         };
 
         const reject = () => {
@@ -114,10 +96,10 @@ const PanelGrupo = (props) => {
 
     const columns =
         [
-            {field:"id",header:"Id grupo"},
-            {field: "nombre",header: "Nombre"},
-            {field: "activo", header: "Activo"},
-            {header: "Option", body: bodyColum}
+            {field:"ID_GRUPO",header:"ID GRUPO"},
+            {field: "NOMBRE",header: "NOMBRE"},
+            {field: "STATUS", header: "ESTATUS"},
+            {header: "ACCIONES", body: bodyColum}
         ]
 
   return(

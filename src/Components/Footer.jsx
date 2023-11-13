@@ -1,4 +1,3 @@
-import "../Styles/Footer.scss"
 import { Menubar } from 'primereact/menubar';
 import {InputText} from "primereact/inputtext";
 import img1 from "../Assets/img1.png"

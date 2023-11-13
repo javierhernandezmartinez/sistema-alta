@@ -25,3 +25,6 @@ yarn-error.log*
 package-lock.json
 certs/cert.crt
 ./src/Assets/certs/cert.crt
+
+# directorys
+.idea

@@ -1,5 +1,3 @@
-import "../../Styles/Home.scss"
-import "../../Styles/Perfil.scss"
 import BarMenu from "../../Components/BarMenu";
 import Container from "../../Components/Container";
 import img_perfil from "../../Assets/Images/perfil.jpg"
@@ -9,24 +7,27 @@ import {useState} from "react";
 import PanelMisCursos from "../../Components/Administracion/Perfil/PanelMisCursos";
 import PanelProgramacion from "../../Components/Administracion/Programacion/PanelProgramacion";
 import PanelMiAgenda from "../../Components/Administracion/Perfil/PanelMiAgenda";
+import {useSelector} from "react-redux";
+
 
 const onChangeMenu = (item) => {
-  switch (item) {
-      case "Mis datos":
-          return <PanelMisDatos title={item}/>
-          break
-      case "Mis cursos":
-          return <PanelMisCursos title={item}/>
-          break
-      case "Mi agenda":
-          return <PanelMiAgenda/>
-          break
-      default:
-          return <PanelMisDatos title={item}/>
-  }
+    switch (item) {
+        case "Mis datos":
+            return <PanelMisDatos title={item}/>
+            break
+        case "Mis cursos":
+            return <PanelMisCursos title={item}/>
+            break
+        case "Mi agenda":
+            return <PanelMiAgenda/>
+            break
+        default:
+            return <PanelMisDatos title={item}/>
+    }
 }
-
 const Perfil = () => {
+    const user = useSelector(state => state.user)
+    console.log("INFO: User ", !!user)
     const [optionMenu, setOptioMenu] = useState("Mis datos")
     const items=[
         {
@@ -59,26 +60,26 @@ const Perfil = () => {
                     <div className={"col-md-3 col-lg-2  row-left"}>
                         <div className={"row"}>
                             <div className={"col-md-12"}>
-                                <img src={img_perfil} className={"img-perfil"} />
+                                <img src={user?.photo} className={"img-perfil"}  alt={""}/>
                             </div>
                             <div className={"col-md-12"}>
-                                <h5>Javier Hernandez Martinez</h5>
+                                <h5>{user?.nombre}</h5>
                             </div>
                             <div className={"col-md-12"}>
-                                <h6>Developper Full-Stack</h6>
+                                <h6>{user?.puesto}</h6>
                             </div>
                             <div className={"col-md-12"}>
-                                <h6>NE. 10039732</h6>
+                                <h6>NE {user?.numEmpleado}</h6>
                             </div>
                             <div className={"col-md-12"}>
                                 {
                                     items.map(row=>(
                                         <div className="perfil-panel-menu" onClick={(e)=>{
-                                            console.log(e.target.innerText)
-                                            setOptioMenu(e.target.innerText)
+                                            console.log(e.target?.innerText)
+                                            setOptioMenu(e.target?.innerText)
                                         }}>
-                                            <div className={"menu-icon"}>{row.icon}</div>
-                                            <div className={"menu-title"}>{row.label}</div>
+                                            <div className={"menu-icon"}>{row?.icon}</div>
+                                            <div className={"menu-title"}>{row?.label}</div>
                                         </div>
                                     ))
                                 }

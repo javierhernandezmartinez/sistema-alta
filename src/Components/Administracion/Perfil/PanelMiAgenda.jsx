@@ -1,5 +1,4 @@
 import React from 'react';
-import "../../../Styles/PanelAgenda.scss"
 import moment from 'moment';
 import { ReactAgenda , ReactAgendaCtrl , guid ,  Modal } from 'react-agenda';
 //require('moment/locale/fr.js'); // this is important for traduction purpose

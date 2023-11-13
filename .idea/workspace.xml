@@ -4,87 +4,45 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6b4e0cb8-28ce-4fe3-8a42-525c4c2dc18f" name="Changes" comment="cambiosssss" />
+    <list default="true" id="ba113a02-797b-42a3-8e26-81d7a6209197" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_30_8_2023_20_40__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_30_8_2023_20_40__Changes_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_30_8_2023_20_41__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="CSS File" />
-        <option value="Sass File" />
-        <option value="JavaScript File" />
-      </list>
-    </option>
-  </component>
-  <component name="Git.Merge.Settings">
-    <option name="BRANCH" value="origin/main" />
-  </component>
   <component name="Git.Settings">
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$" value="main" />
-      </map>
-    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="RESET_MODE" value="MIXED" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 0
-}</component>
-  <component name="ProjectId" id="2Rckn1kSd0x0ztE9GWFmCday4hG" />
+  <component name="ProjectId" id="2XQbPxkyJXUxvNjKtFrCKwsAet4" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Rebasing main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/chich/Documents/PROYECTOS/AGENDA/sistema-alta&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;Sass&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\chich\\Documents\\PROYECTOS\\sistema-alta\\node_modules\\typescript\\lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "E:/Users/10039732/Documents/PROYECTOS/alta-back",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\chich\Documents\PROYECTOS\sistema-alta\src\Styles" />
-      <recent name="C:\Users\chich\Documents\PROYECTOS\sistema-alta\src\Components" />
-      <recent name="C:\Users\chich\Documents\PROYECTOS\sistema-alta\src\Components\Administracion\Perfil" />
-      <recent name="C:\Users\chich\Documents\PROYECTOS\sistema-alta\src\Assets\Images" />
-      <recent name="C:\Users\chich\Documents\PROYECTOS\sistema-alta\src\Components\Administracion\Programacion" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\chich\Documents\PROYECTOS\sistema-alta" />
-      <recent name="C:\Users\chich\Documents\PROYECTOS\sistema-alta\src\Assets" />
-      <recent name="C:\Users\chich\Documents\PROYECTOS\sistema-alta\src\Components\Administracion\Programacion" />
-      <recent name="C:\Users\chich\Documents\PROYECTOS\sistema-alta\src\Components\Administracion\Grupos" />
-      <recent name="C:\Users\chich\Documents\PROYECTOS\sistema-alta\src\Components\Administracion\Departamentos" />
-    </key>
-  </component>
-  <component name="RunManager" selected="npm.start">
-    <configuration name="build" type="js.build_tools.npm" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/package.json" />
-      <command value="run" />
-      <scripts>
-        <script value="build" />
-      </scripts>
-      <node-interpreter value="project" />
-      <envs />
-      <method v="2" />
-    </configuration>
+}]]></component>
+  <component name="RunManager">
     <configuration name="start" type="js.build_tools.npm" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
@@ -95,210 +53,20 @@
       <envs />
       <method v="2" />
     </configuration>
-    <list>
-      <item itemvalue="npm.start" />
-      <item itemvalue="npm.build" />
-    </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="6b4e0cb8-28ce-4fe3-8a42-525c4c2dc18f" name="Changes" comment="" />
-      <created>1687556920750</created>
+      <changelist id="ba113a02-797b-42a3-8e26-81d7a6209197" name="Changes" comment="" />
+      <created>1698564237965</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1687556920750</updated>
-      <workItem from="1687556923313" duration="1346000" />
-      <workItem from="1687752186549" duration="24989000" />
-      <workItem from="1687975382076" duration="42320000" />
-      <workItem from="1688742163221" duration="27000" />
-      <workItem from="1689909001578" duration="47263000" />
-      <workItem from="1690217383059" duration="21402000" />
-      <workItem from="1692154428198" duration="1275000" />
-      <workItem from="1692161847968" duration="73735000" />
-      <workItem from="1693206371602" duration="51302000" />
-      <workItem from="1693450066777" duration="1227000" />
-      <workItem from="1697441075539" duration="12000" />
-      <workItem from="1698987518926" duration="1208000" />
-      <workItem from="1699855728527" duration="3000" />
+      <updated>1698564237965</updated>
+      <workItem from="1698564239682" duration="1837000" />
     </task>
-    <task id="LOCAL-00001" summary="module admin">
-      <option name="closed" value="true" />
-      <created>1687926333521</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1687926333521</updated>
-    </task>
-    <task id="LOCAL-00002" summary="homepage">
-      <option name="closed" value="true" />
-      <created>1687927537143</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1687927537143</updated>
-    </task>
-    <task id="LOCAL-00003" summary="buikd">
-      <option name="closed" value="true" />
-      <created>1687930856750</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1687930856750</updated>
-    </task>
-    <task id="LOCAL-00004" summary="change name build">
-      <option name="closed" value="true" />
-      <created>1687931061430</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1687931061430</updated>
-    </task>
-    <task id="LOCAL-00005" summary="hasrouter">
-      <option name="closed" value="true" />
-      <created>1687931459093</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1687931459093</updated>
-    </task>
-    <task id="LOCAL-00006" summary="hasrouter">
-      <option name="closed" value="true" />
-      <created>1687931496970</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1687931496970</updated>
-    </task>
-    <task id="LOCAL-00007" summary="build">
-      <option name="closed" value="true" />
-      <created>1687933155375</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1687933155375</updated>
-    </task>
-    <task id="LOCAL-00008" summary="build">
-      <option name="closed" value="true" />
-      <created>1687934142282</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1687934142282</updated>
-    </task>
-    <task id="LOCAL-00009" summary="styles">
-      <option name="closed" value="true" />
-      <created>1688514823515</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1688514823515</updated>
-    </task>
-    <task id="LOCAL-00010" summary="docs">
-      <option name="closed" value="true" />
-      <created>1688515232176</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1688515232176</updated>
-    </task>
-    <task id="LOCAL-00011" summary="avance admin">
-      <option name="closed" value="true" />
-      <created>1688522295299</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1688522295299</updated>
-    </task>
-    <task id="LOCAL-00012" summary="admin docs">
-      <option name="closed" value="true" />
-      <created>1688522351810</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1688522351810</updated>
-    </task>
-    <task id="LOCAL-00013" summary="admin">
-      <option name="closed" value="true" />
-      <created>1688742174568</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1688742174568</updated>
-    </task>
-    <task id="LOCAL-00014" summary="theme">
-      <option name="closed" value="true" />
-      <created>1690217477929</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1690217477929</updated>
-    </task>
-    <task id="LOCAL-00015" summary="theme build">
-      <option name="closed" value="true" />
-      <created>1690217803117</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1690217803117</updated>
-    </task>
-    <task id="LOCAL-00016" summary="avance">
-      <option name="closed" value="true" />
-      <created>1693449550853</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1693449550853</updated>
-    </task>
-    <task id="LOCAL-00017" summary="version2">
-      <option name="closed" value="true" />
-      <created>1693449832139</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1693449832139</updated>
-    </task>
-    <task id="LOCAL-00018" summary="version2">
-      <option name="closed" value="true" />
-      <created>1693450255865</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1693450255865</updated>
-    </task>
-    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="module admin" />
-    <MESSAGE value="homepage" />
-    <MESSAGE value="buikd" />
-    <MESSAGE value="change name build" />
-    <MESSAGE value="hasrouter" />
-    <MESSAGE value="build" />
-    <MESSAGE value="styles" />
-    <MESSAGE value="docs" />
-    <MESSAGE value="avance admin" />
-    <MESSAGE value="admin docs" />
-    <MESSAGE value="admin" />
-    <MESSAGE value="theme" />
-    <MESSAGE value="theme build" />
-    <MESSAGE value="avance" />
-    <MESSAGE value="version2" />
-    <option name="LAST_COMMIT_MESSAGE" value="version2" />
   </component>
 </project>

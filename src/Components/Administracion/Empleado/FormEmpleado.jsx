@@ -7,68 +7,53 @@ import {useDispatch} from "react-redux";
 import {closeModalForm} from "../../../App/Features/rootModalFormSlice";
 import axios from "axios";
 import {listDataTable} from "../../../App/Features/AdministrationSlice";
+import Services from "../../../Services/Services";
 
 const onChange = (e,arrayList, setArrayList, campo) => {
     arrayList[campo] = e
     setArrayList(arrayList)
+    console.log(arrayList)
 }
-const getListEmpleados = (dispatch)=>{
-    axios.get("http://localhost:3100/api/app/system/get/empleados")
-        .then(res=> {
-            let listData = res?.data?.row?.map(item=>{
-                return {
-                    id: item.IdEmpleado,
-                    nombre: item.Nombre,
-                    a_paterno: item.Paterno,
-                    a_materno: item.Materno,
-                    correo: item.Correo,
-                    id_grupo: item.IdGrupo,
-                    id_area: item.IdArea,
-                    id_depa: item.IdDepto,
-                    tipo: item.Tipo,
-                    activo: item.Activo
-                }
-
-            })
-            dispatch(listDataTable(listData))
-            dispatch(closeModalForm())
-        })
+const getEmpleados = (dispatch)=>{
+    Services.getEmpleados().then(res=> {
+        dispatch(listDataTable(res?.data?.row))
+        dispatch(closeModalForm())
+    })
+        
 }
 
-const addRegistro = (dispatch, array, props) => {
-    axios.post("http://localhost:3100/api/app/system/add/empleado", array)
-        .then(res => {
-                console.log(res)
-                props.toast.current.show(
-                    {
-                        severity: res.data.message ? 'success' : "error",
-                        summary: 'Message',
-                        detail: res.data.message ? res.data.message : res.data.errorMessage }
-                );
-                getListEmpleados(dispatch)
-            }
-        )
+const addEmpleado = (dispatch, array, props) => {
+    Services.addEmpleado(array).then(res => {
+            console.log(res)
+            props.toast.current.show(
+                {
+                    severity: res.data.message ? 'success' : "error",
+                    summary: 'Message',
+                    detail: res.data.message ? res.data.message : res.data.errorMessage }
+            );
+            getEmpleados(dispatch)
+        }
+    )
 }
-const updateRegistro = (dispatch, array, props) => {
-    axios.post("http://localhost:3100/api/app/system/update/empleado", array)
-        .then(res => {
-                console.log(res)
-                props.toast.current.show(
-                    {
-                        severity: res.data.message ? 'success' : "error",
-                        summary: 'Message',
-                        detail: res.data.message ? res.data.message : res.data.errorMessage }
-                );
-                getListEmpleados(dispatch)
-            }
-        )
+const updateEmpleado = (dispatch, array, props) => {
+    Services.updateEmpleado(array).then(res => {
+            console.log(res)
+            props.toast.current.show(
+                {
+                    severity: res.data.message ? 'success' : "error",
+                    summary: 'Message',
+                    detail: res.data.message ? res.data.message : res.data.errorMessage }
+            );
+            getEmpleados(dispatch)
+        }
+    )
 }
 const onSaveModal = (dispatch, array, props) => {
     console.log("POST JSON::",array)
-    if (array.id){
-        updateRegistro(dispatch, array, props)
+    if (array.ID_EMPLEADO){
+        updateEmpleado(dispatch, array, props)
     }else {
-        addRegistro(dispatch, array, props)
+        addEmpleado(dispatch, array, props)
     }
 }
 const onCloseModal = (dispatch) => {
@@ -89,86 +74,95 @@ const FormEmpleado = (props) => {
     const [selectedDepa, setSelectedDepa] = useState(null)
     const [selectedTipo, setSelectedTipo] = useState(null)
     const [selectedActivo, setSelectedActivo] = useState(false)
+    const [areas, setAreas] = useState([])
+    const [grupos, setGrupos] = useState([])
+    const [departamentos, setDepartamentos] = useState([])
     console.log("props array", props.arrayList)
-    const listGrupo = [
-        { name: 'grupo 1', code: '1' },
-        { name: 'grupo 2', code: '2' },
-        { name: 'grupo 3', code: '3' },
-        { name: 'grupo 4', code: '4' },
-        { name: 'grupo 5', code: '5' }
-    ];
-    const listArea = [
-        { name: 'area 1', code: '1' },
-        { name: 'area 2', code: '2' },
-        { name: 'area 3', code: '3' },
-        { name: 'area 4', code: '4' },
-        { name: 'area 5', code: '5' }
-    ];
-    const listDepa = [
-        { name: 'depa 1', code: '1' },
-        { name: 'depa 2', code: '2' },
-        { name: 'depa 3', code: '3' },
-        { name: 'depa 4', code: '4' },
-        { name: 'depa 5', code: '5' }
-    ];
-    const lisTipos = [
-        { name: 'tipo 1', code: '1' },
-        { name: 'tipo 2', code: '2' },
-        { name: 'tipo 3', code: '3' },
-        { name: 'tipo 4', code: '4' },
-        { name: 'tipo 5', code: '5' }
-    ];
+
+    const formatDropDown = (list, name, code) => {
+      list = list.map(item=>{
+          return {
+              name: item[name],
+              code: item[code]
+          }
+      })
+        return list
+    }
 
     useEffect(()=>{
-        setSelectedGrupo(searchOption(listGrupo, props.arrayList.id_grupo))
-        setSelectedArea(searchOption(listArea, props.arrayList.id_area))
-        setSelectedDepa(searchOption(listDepa, props.arrayList.id_depa))
-        setSelectedTipo(searchOption(lisTipos, props.arrayList.tipo))
-        setSelectedActivo(props.arrayList.activo === "1")
+        setSelectedGrupo(searchOption(grupos, props.arrayList.ID_GRUPO))
+        setSelectedArea(searchOption(areas, props.arrayList.ID_AREA))
+        setSelectedDepa(searchOption(departamentos, props.arrayList.ID_DEPARTAMENTO))
+        setSelectedActivo(props.arrayList.STATUS === 1)
+        Services.getAreas().then(res=>{
+            setAreas(formatDropDown(res?.data?.row,'NOMBRE','ID_AREA'))
+        })
+        Services.getGrupos().then(res=>{
+            setGrupos(formatDropDown(res?.data?.row,'NOMBRE','ID_GRUPO'))
+        })
+        Services.getDepas().then(res=>{
+            setDepartamentos(formatDropDown(res?.data?.row,'NOMBRE','ID_DEPARTAMENTO'))
+        })
     },[])
   return(
       <div className={"row row-form"}>
         <div className={"col-md-4"}>
           <div className="input-text">
             <label>Nombre</label>
-            <InputText id="username" aria-describedby="username-help" defaultValue={arrayList.nombre}
-                       onChange={(e)=>onChange(e.target.value,arrayList, setArrayList, "nombre")}
+            <InputText id="username" aria-describedby="username-help" defaultValue={arrayList.NOMBRE}
+                       onChange={(e)=>onChange(e.target.value,arrayList, setArrayList, "NOMBRE")}
             />
           </div>
         </div>
         <div className={"col-md-4"}>
           <div className="input-text">
             <label>A. paterno</label>
-            <InputText id="username" aria-describedby="username-help" defaultValue={arrayList.a_paterno}
-                       onChange={(e)=>onChange(e.target.value,arrayList, setArrayList, "a_paterno")}
+            <InputText id="username" aria-describedby="username-help" defaultValue={arrayList.AP_PATERNO}
+                       onChange={(e)=>onChange(e.target.value,arrayList, setArrayList, "AP_PATERNO")}
             />
           </div>
         </div>
         <div className={"col-md-4"}>
           <div className="input-text">
             <label>A. materno</label>
-            <InputText id="username" aria-describedby="username-help" defaultValue={arrayList.a_materno}
-                       onChange={(e)=>onChange(e.target.value,arrayList, setArrayList, "a_materno")}
+            <InputText id="username" aria-describedby="username-help" defaultValue={arrayList.AP_MATERNO}
+                       onChange={(e)=>onChange(e.target.value,arrayList, setArrayList, "AP_MATERNO")}
             />
           </div>
         </div>
+          <div className={"col-md-4"}>
+              <div className="input-text">
+                  <label>Num. Empleado</label>
+                  <InputText id="username" aria-describedby="username-help" defaultValue={arrayList.NUM_EMPLEADO}
+                             onChange={(e)=>onChange(e.target.value,arrayList, setArrayList, "NUM_EMPLEADO")}
+                  />
+              </div>
+          </div>
         <div className={"col-md-4"}>
           <div className="input-text">
-            <label>Correo</label>
-            <InputText id="username" aria-describedby="username-help" defaultValue={arrayList.correo}
-                       onChange={(e)=>onChange(e.target.value,arrayList, setArrayList, "correo")}
+            <label>Email</label>
+            <InputText id="username" aria-describedby="username-help" defaultValue={arrayList.EMAIL}
+                       onChange={(e)=>onChange(e.target.value.toLowerCase(),arrayList, setArrayList, "EMAIL")}
             />
           </div>
         </div>
+          <div className={"col-md-4"}>
+              <div className="input-text">
+                  <label>Telefono</label>
+                  <InputText id="username" aria-describedby="username-help" defaultValue={arrayList.TEL}
+                             onChange={(e)=>onChange(e.target.value,arrayList, setArrayList, "TEL")}
+                  />
+              </div>
+          </div>
         <div className={"col-md-4"}>
           <div className="input-text">
             <label>Grupo</label>
               <Dropdown value={selectedGrupo}
                         onChange={(e) => {
                             setSelectedGrupo(e.value)
-                            onChange(e.value?.code,arrayList, setArrayList, "id_grupo")
+                            onChange(e.value?.code,arrayList, setArrayList, "ID_GRUPO")
                         }}
-                        options={listGrupo}
+                        options={grupos}
                         optionLabel="name"
                         placeholder="Selecciona una opcion"/>
           </div>
@@ -179,10 +173,10 @@ const FormEmpleado = (props) => {
               <Dropdown value={selectedArea}
                         onChange={(e) => {
                             setSelectedArea(e.value)
-                            onChange(e.value?.code,arrayList, setArrayList, "id_area")
+                            onChange(e.value?.code,arrayList, setArrayList, "ID_AREA")
 
                         }}
-                        options={listArea}
+                        options={areas}
                         optionLabel="name"
                         placeholder="Selecciona una opcion"/>
           </div>
@@ -193,32 +187,27 @@ const FormEmpleado = (props) => {
               <Dropdown value={selectedDepa}
                         onChange={(e) => {
                             setSelectedDepa(e.value)
-                            onChange(e.value?.code,arrayList, setArrayList, "id_depa")
+                            onChange(e.value?.code,arrayList, setArrayList, "ID_DEPARTAMENTO")
                         }}
-                        options={listDepa}
+                        options={departamentos}
                         optionLabel="name"
                         placeholder="Selecciona una opcion"/>
           </div>
         </div>
-        <div className={"col-md-4"}>
-          <div className="input-text">
-            <label>Tipo</label>
-            <Dropdown value={selectedTipo}
-                      onChange={(e) => {
-                          setSelectedTipo(e.value)
-                            onChange(e.value?.code,arrayList, setArrayList, "tipo")
-                        }}
-                      options={lisTipos}
-                      optionLabel="name"
-                      placeholder="Selecciona una opcion"/>
+          <div className={"col-md-4"}>
+              <div className="input-text">
+                  <label>Puesto</label>
+                  <InputText id="username" aria-describedby="username-help" defaultValue={arrayList.PUESTO}
+                             onChange={(e)=>onChange(e.target.value,arrayList, setArrayList, "PUESTO")}
+                  />
+              </div>
           </div>
-        </div>
         <div className={"col-md-4"}>
           <div className="input-text">
-            <label>Activo</label>
+            <label>ESTATUS</label>
             <InputSwitch checked={selectedActivo} onChange={(e) => {
                 setSelectedActivo(e.value)
-                onChange(e.value ? "1" : "0" ,arrayList, setArrayList, "activo")
+                onChange(e.value ? 1 : 0 ,arrayList, setArrayList, "STATUS")
             }}/>
           </div>
         </div>
