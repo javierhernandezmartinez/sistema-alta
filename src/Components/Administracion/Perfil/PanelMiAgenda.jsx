@@ -1,95 +1,132 @@
-import React from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 import moment from 'moment';
-import { ReactAgenda , ReactAgendaCtrl , guid ,  Modal } from 'react-agenda';
-//require('moment/locale/fr.js'); // this is important for traduction purpose
-moment().format();
-window.moment = require('moment' );
-var colors= {
-    'color-1':"rgba(102, 195, 131 , 1)" ,
-    "color-2":"rgba(242, 177, 52, 1)" ,
-    "color-3":"rgba(235, 85, 59, 1)"
+import {Calendar, DateLocalizer, momentLocalizer, Views,} from 'react-big-calendar'
+import {useSelector} from "react-redux";
+import Services from "../../../Services/Services";
+import PropTypes from "prop-types";
+import Session from "../../../Services/Session";
+
+//moment.tz.setDefault('America/Mexico_City')
+const mLocalizer = momentLocalizer(moment)
+const cultures = ['en', 'en-GB', 'es', 'fr', 'ar-AE']
+const lang = {
+    en: null,
+    'en-GB': null,
+    es: {
+        week: 'Semana',
+        work_week: 'Semana de trabajo',
+        day: 'Día',
+        month: 'Mes',
+        previous: 'Atrás',
+        next: 'Después',
+        today: 'Hoy',
+        agenda: 'El Diario',
+
+        showMore: (total) => `+${total} más`,
+    }
 }
-
-var now = new Date();
-
-var items = [
-    {
-        _id            :guid(),
-        name          : 'Meeting , dev staff!',
-        startDateTime : new Date(now.getFullYear(), now.getMonth(), now.getDate(), 10, 0),
-        endDateTime   : new Date(now.getFullYear(), now.getMonth(), now.getDate(), 12, 0),
-        classes       : 'color-1'
-    },
-    {
-        _id            :guid(),
-        name          : 'Working lunch , Holly',
-        startDateTime : new Date(now.getFullYear(), now.getMonth(), now.getDate()+1, 11, 0),
-        endDateTime   : new Date(now.getFullYear(), now.getMonth(), now.getDate()+1, 13, 0),
-        classes       : 'color-2 color-3'
-    }, {
-        _id            :guid(),
-        name          : 'Meeting , dev staff!',
-        startDateTime : new Date(now.getFullYear(), now.getMonth(), now.getDate(), 14, 0),
-        endDateTime   : new Date(now.getFullYear(), now.getMonth(), now.getDate(), 15, 0),
-        classes       : 'color-1'
-    },
-    {
-        _id            :guid(),
-        name          : 'Working lunch , Holly',
-        startDateTime : new Date(now.getFullYear(), now.getMonth(), now.getDate()+1, 16, 0),
-        endDateTime   : new Date(now.getFullYear(), now.getMonth(), now.getDate()+1, 17, 0),
-        classes       : 'color-2 color-3'
-    },
-
-];
-
-export default class PanelMiAgenda extends React.Component {
-    constructor(props){
-        super(props);
-        this.state = {
-            items:items,
-            selected:[],
-            cellHeight:30,
-            showModal:false,
-            locale:"fr",
-            rowsPerHour:2,
-            numberOfDays:4,
-            startDate: new Date()
-        }
-        this.handleCellSelection = this.handleCellSelection.bind(this)
-        this.handleItemEdit = this.handleItemEdit.bind(this)
-        this.handleRangeSelection = this.handleRangeSelection.bind(this)
+const formatDate = (date, time) => {
+    let y = date.split('T')[0].split('-')[0]
+    let m = date.split('T')[0].split('-')[1]
+    let d = date.split('T')[0].split('-')[2]
+    let hh = time.split(':')[0]
+    let mm = time.split(':')[1]
+    let ss = time.split(':')[2]
+    return new Date(y, m, d, hh, mm, ss)
+}
+export default function PanelMiAgenda ({
+                          localizer = mLocalizer,
+                          showDemoLink = true,
+                          ...props
+                      }){
+    const user = Session.getUser()
+    console.log("INFO: User ", !!user)
+    const [eventos, setMisEventos] = useState([])
+    const [culture, setCulture] = useState('es')
+    const [rightToLeft, setRightToLeft] = useState(false)
+    const getMisEventos=()=>{
+        Services.getMisCursos({ID_USUARIO:user?.ID_USUARIO})
+            .then(res=>{
+                console.log("mis eventos::", res)
+                let data = []
+                new Date(2023, 9, 30, 0, 0, 0)
+                if(res?.status === 200){
+                    if(res?.data?.row?.length > 0){
+                        data = res?.data?.row?.map(item=>{
+                            return {
+                                ...item,
+                                start: formatDate(item.F_INICIO, item.H_INICIO),
+                                end: formatDate(item.F_FIN, item.H_FIN),
+                                allDay: false,
+                                //start: new Date(2023, 11, 14, 17, 30, 0),
+                                //end: new Date(2023, 11, 14, 20, 30, 0),
+                            }
+                        })
+                    }
+                }
+                console.log(data)
+                setMisEventos(data)
+            })
     }
-
-    handleCellSelection(item){
-        console.log('handleCellSelection',item)
-    }
-    handleItemEdit(item){
-        console.log('handleItemEdit', item)
-    }
-    handleRangeSelection(item){
-        console.log('handleRangeSelection', item)
-    }
-    render() {
-        return (
-            <div>
-                <ReactAgenda
-                    minDate={now}
-                    maxDate={new Date(now.getFullYear(), now.getMonth()+3)}
-                    disablePrevButton={false}
-                    startDate={this.state.startDate}
-                    cellHeight={this.state.cellHeight}
-                    locale={this.state.locale}
-                    items={this.state.items}
-                    numberOfDays={this.state.numberOfDays}
-                    rowsPerHour={this.state.rowsPerHour}
-                    itemColors={colors}
-                    autoScale={false}
-                    fixedHeader={true}
-                    onItemEdit={this.handleItemEdit.bind(this)}
-                    onCellSelect={this.handleCellSelection.bind(this)}
-                    onRangeSelection={this.handleRangeSelection.bind(this)}/>
+    let containerEvent=(event)=>{
+        console.log("-->",event)
+        return(
+            <div className={'containerEvent'} style={{background: `#${event?.COLOR}`}}>
+                        <span>
+                              <em>{event.NOMBRE}</em>
+                              {/*<p>{event.DESCRIPCION}</p>*/}
+                            </span>
             </div>
-        );
+        )
     }
+    const { components, defaultDate, views } = useMemo(
+        () => ({
+            components: {
+                eventWrapper:({event})=>containerEvent(event),
+            },
+            views: Object.keys(Views).map((k) => Views[k]),
+        }),
+        []
+    )
+    const {  messages } = useMemo(
+        () => ({
+            messages: lang[culture],
+        }),
+        [culture]
+    )
+
+    useEffect(()=>{
+        getMisEventos()
+    },[])
+    return (
+        <div className={"row row-form"}>
+            <div className={"col-md-12"}>
+                <p className={"title-seccion"}>{props?.title}</p>
+            </div>
+            <div className={"col-md-12"}>
+                <div className={"calendar"} style={{ height: 500 }}>
+                    <Calendar
+                        components={components}
+                        culture={culture}
+                        events={eventos}
+                        localizer={localizer}
+                        showMultiDayTimes
+                        views={views}
+                        defaultView={Views.MONTH}
+                        selectable
+                        timeslots={8}
+                        step={60}
+                        messages={messages}
+                        dayLayoutAlgorithm="no-overlap"
+                        rtl={rightToLeft}
+                        popup
+                    />
+                </div>
+            </div>
+        </div>
+    );
+
+}
+PanelMiAgenda.propTypes = {
+    localizer: PropTypes.instanceOf(DateLocalizer)
 }

@@ -4,40 +4,42 @@ import {Button} from "primereact/button";
 import {useDispatch, useSelector} from "react-redux";
 import {toogleTheme} from "../App/Features/ThemeSlice";
 import {useState} from "react";
-import {setUser} from "../App/Features/UserSlice";
+import {PiGearBold, PiSignInBold, PiSignOutBold, PiUserBold} from "react-icons/pi";
+import Session from "../Services/Session";
+
 
 const BarMenu = () => {
-    const user = useSelector(state => state.user)
+    const user = Session.getUser()
     const theme = useSelector(state => state.rootTheme)
     const dispatch = useDispatch()
     const [optionSelect, setOptionSelect] = useState("Home")
     const items = [
         {
             label: 'Iniciar sesion',
-            icon: 'pi pi-fw pi-power-off',
+            icon: <PiSignInBold />,
             command: (e) => { window.open("#/login", "_self"); setOptionSelect(e.item.label)},
             visible: !user
         },
         {
             label: 'Cerrar sesion',
-            icon: 'pi pi-fw pi-power-off',
+            icon: <PiSignOutBold />,
             command: (e) => {
-                dispatch(setUser(null))
-                window.open("#/home", "_self"); setOptionSelect(e.item.label)
+                Session.removeUser()
+                setOptionSelect(e.item.label)
             },
             visible: !!user
         },
         {
             label: 'Perfil',
-            icon: 'pi pi-fw pi-power-off',
+            icon: <PiUserBold />,
             command: (e) => { window.open("#/perfil", "_self"); setOptionSelect(e.item.label)},
             visible: !!user
         },
         {
             label: 'Administaciòn',
-            icon: 'pi pi-fw pi-power-off',
+            icon: <PiGearBold />,
             command: (e) => { window.open("#/administration", "_self"); setOptionSelect(e.item.label)},
-            visible: !!user
+            visible: (!!user && user.TIPO === 'Admin')
         }
     ];
     const start = <img alt="logo" src={logo} height="40" className="mr-2 logo-menu"

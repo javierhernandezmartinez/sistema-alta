@@ -1,5 +1,4 @@
 import axios, {post} from "axios";
-import data from "bootstrap/js/src/dom/data";
 
 const Services={}
 const api = 'http://localhost:3100/api/app/system'
@@ -21,7 +20,6 @@ Services.getGrupos = ()=>{
     return Services.axios('get',"/get/grupos")
 }
 Services.addGrupo = (data) => {
-    console.log(data)
     return Services.axios('post',"/add/grupo", data)
 }
 Services.updateGrupo = (data) => {
@@ -105,6 +103,26 @@ Services.getProgramacion = (data) => {
 Services.getLogin = (data) => {
     return Services.axios('post',"/login", data)
 }
+Services.searchEmpleado = (data) => {
+    return Services.axios('post',"/search/id/empleado", data)
+}
+Services.searchUsuario = (data) => {
+    return Services.axios('post',"/search/id/usuario", data)
+}
+
+Services.getIncripciones = () => {
+    return Services.axios('get',"/get/inscripciones")
+}
+Services.addInscripcion = (data) => {
+    console.log(data)
+    return Services.axios('post',"/add/inscripcion", data)
+}
+
+Services.getMisCursos = (data) => {
+    return Services.axios('post',"/perfil/mis_cursos", data)
+}
+
+
 
 
 Services.axios =(type, extension, data = null)=>{

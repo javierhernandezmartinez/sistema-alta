@@ -1,6 +1,5 @@
 import { Button } from 'primereact/button';
 import {useDispatch, useSelector} from "react-redux";
-import axios from "axios";
 import Table from "../../Table";
 import Modal from "../../Modal";
 import {listDataTable} from "../../../App/Features/AdministrationSlice";
@@ -10,6 +9,8 @@ import {Toast} from "primereact/toast";
 import {ConfirmPopup,  confirmPopup} from "primereact/confirmpopup";
 import FormProgramacion from "./FormProgramacion";
 import Services from "../../../Services/Services";
+import moment from 'moment';
+
 
 let defaultArray = {
     ID_PROGRAMACION: null,
@@ -21,12 +22,27 @@ let defaultArray = {
     LUGAR: null,
     SALA: null,
     LIGA: null,
+    F_INICIO: null,
+    F_FIN: null,
+    ALL_DAY: false,
     STATUS: 1
 }
 const getProgramaciones = (dispatch)=>{
     Services.getProgramaciones().then(res=> {
         console.log(res)
-        dispatch(listDataTable(res?.data?.row))
+        let data = []
+        if(res.status === 200){
+            if(res?.data?.row?.length > 0){
+                data = res?.data?.row.map(item=>{
+                    return {
+                        ...item,
+                        F_INICIO: moment(item.F_INICIO).format("YYYY-MM-DD"),
+                        F_FIN: moment(item.F_FIN).format("YYYY-MM-DD")
+                    }
+                })
+            }
+        }
+        dispatch(listDataTable(data))
     })
         
 }
@@ -135,6 +151,10 @@ const PanelProgramacion = (props) => {
             {field:"ID_PROGRAMACION",header:"ID"},
             {field: "CAPACITADOR",header: "CAPACITADOR"},
             {field: "CURSO", header: "CURSO"},
+            {field: "F_INICIO", header: "F. INICIO"},
+            {field: "F_FIN", header: "F. FIN"},
+            {field: "H_INICIO", header: "H. INICIO"},
+            {field: "H_FIN", header: "H. FIN"},
             {field: "LIM_PARTICIPANTES", header: "LIM. PARTICIPANTES"},
             {field: "LIM_ESPERA", header: "LIM. ESPERA"},
             {field: "EMPRESA", header: "EMPRESA"},

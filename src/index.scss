@@ -7,6 +7,11 @@
 @import "./Styles/PanelMisCursos.scss";
 @import "./Styles/Perfil.scss";
 @import "./Styles/Register.scss";
+@import 'react-big-calendar/lib/sass/styles';
+@import 'react-big-calendar/lib/addons/dragAndDrop/styles'; // if using DnD
+@import 'react-big-calendar/lib/css/react-big-calendar.css';
+@import "./Styles/Calendar";
+
 :root{
   --light: white;
   --dark: rgb(17 22 64);

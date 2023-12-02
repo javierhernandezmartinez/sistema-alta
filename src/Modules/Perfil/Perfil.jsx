@@ -8,6 +8,7 @@ import PanelMisCursos from "../../Components/Administracion/Perfil/PanelMisCurso
 import PanelProgramacion from "../../Components/Administracion/Programacion/PanelProgramacion";
 import PanelMiAgenda from "../../Components/Administracion/Perfil/PanelMiAgenda";
 import {useSelector} from "react-redux";
+import Session from "../../Services/Session";
 
 
 const onChangeMenu = (item) => {
@@ -19,15 +20,15 @@ const onChangeMenu = (item) => {
             return <PanelMisCursos title={item}/>
             break
         case "Mi agenda":
-            return <PanelMiAgenda/>
+            return <PanelMiAgenda title={item}/>
             break
         default:
             return <PanelMisDatos title={item}/>
     }
 }
 const Perfil = () => {
-    const user = useSelector(state => state.user)
-    console.log("INFO: User ", !!user)
+    const user = Session.getUser()
+    console.log("INFO: User ", user)
     const [optionMenu, setOptioMenu] = useState("Mis datos")
     const items=[
         {
@@ -60,16 +61,16 @@ const Perfil = () => {
                     <div className={"col-md-3 col-lg-2  row-left"}>
                         <div className={"row"}>
                             <div className={"col-md-12"}>
-                                <img src={user?.photo} className={"img-perfil"}  alt={""}/>
+                                <img src={user?.FOTO} className={"img-perfil"}  alt={""}/>
                             </div>
                             <div className={"col-md-12"}>
-                                <h5>{user?.nombre}</h5>
+                                <h5>{user?.NOMBRE}</h5>
                             </div>
                             <div className={"col-md-12"}>
-                                <h6>{user?.puesto}</h6>
+                                <h6>{user?.PUESTO}</h6>
                             </div>
                             <div className={"col-md-12"}>
-                                <h6>NE {user?.numEmpleado}</h6>
+                                <h6>NE {user?.NUM_EMPLEADO}</h6>
                             </div>
                             <div className={"col-md-12"}>
                                 {
