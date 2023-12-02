@@ -1,7 +1,7 @@
 import axios, {post} from "axios";
 
 const Services={}
-const api = 'http://localhost:3100/api/app/system'
+const api = process.env.URL_API + '/api/app/system'
 
 Services.getAreas = ()=>{
     return Services.axios('get',"/get/areas")
