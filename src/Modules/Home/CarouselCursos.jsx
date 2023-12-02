@@ -5,6 +5,7 @@ import listCursos from '../../Assets/json/cursos.json';
 import "../../Styles/Home.scss"
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
+import Services from "../../Services/Services";
 
 const  CarouselCursos =(props)=> {
     const [products, setProducts] = useState([]);
@@ -27,20 +28,31 @@ const  CarouselCursos =(props)=> {
             items: 1
         }
     };
+    const getMisCursos=()=>{
+        Services.getMisCursos({ID_USUARIO:18})
+            .then(res=>{
+                console.log("mis cursos::", res)
+                if(res?.status === 200){
+                    if(res?.data?.row?.length > 0){
+                        setProducts(res?.data?.row)
+                    }
+                }
+            })
+    }
     useEffect(() => {
-        setProducts(listCursos)
+        getMisCursos()
     }, []);
     const productTemplate = (product) => {
 
         return (
             <div className="border-1 surface-border border-round m-2 text-center py-5 px-3 ">
-                <p style={{color: "white"}}>{product.id}</p>
+                <p style={{color: "white"}}>{product?.ID_PROGRAMACION}</p>
                 <div className="mb-3 img-carousel">
-                    <img src={require(`../../Assets/${product.image}`)} alt={product.name} className="w-6 shadow-2" />
+                    <img src={product?.image}/>
                 </div>
                 <div>
-                    <h4 className="mb-1 title-carusel">{product.name}</h4>
-                    <h6 className="mt-0 mb-3 desc-carousel">{product.description}</h6>
+                    <h4 className="mb-1 title-carusel">{product?.NOMBRE}</h4>
+                    <h6 className="mt-0 mb-3 desc-carousel">{product?.DESCRIPCION}</h6>
                     <div className="mt-5 flex flex-wrap gap-2 justify-content-center">
                         <Button icon="pi pi-pencil" label="Inscribirse" className={"b-carousel"} onClick={()=>window.open("#/login", "_self")}/>
                     </div>
@@ -56,12 +68,12 @@ const  CarouselCursos =(props)=> {
                   showDots={true}
                   ssr={true} // means to render carousel on server-side.
                   infinite={true}
-                  autoPlay={props.deviceType !== "mobile"}
+                  autoPlay={props?.deviceType !== "mobile"}
                   autoPlaySpeed={3000}
                   keyBoardControl={true}
                   containerClass="carousel-container"
                   removeArrowOnDeviceType={["tablet", "mobile"]}
-                  deviceType={props.deviceType}
+                  deviceType={props?.deviceType}
                   dotListClass="custom-dot-list-style"
                   itemClass="carousel-item-padding-40-px"
 

@@ -9,7 +9,9 @@ import {listDataTable} from "../../../App/Features/AdministrationSlice";
 import {InputNumber} from "primereact/inputnumber";
 import {Calendar} from "primereact/calendar";
 import Services from "../../../Services/Services";
-
+import moment from 'moment';
+moment().format("YYYY-MM-DD");
+moment.locale()
 const FormProgramacion = (props) => {
     const dispatch = useDispatch()
     const [arrayList, setArrayList] = useState({...props.arrayList})
@@ -21,7 +23,19 @@ const FormProgramacion = (props) => {
     }
     const getProgramaciones = ()=>{
         Services.getProgramaciones().then(res=> {
-            dispatch(listDataTable(res?.data?.row))
+            let data = []
+            if(res.status === 200){
+                if(res?.data?.row?.length > 0){
+                    data = res?.data?.row.map(item=>{
+                        return {
+                            ...item,
+                            F_INICIO: moment(item.F_INICIO).format("YYYY-MM-DD"),
+                            F_FIN: moment(item.F_FIN).format("YYYY-MM-DD")
+                        }
+                    })
+                }
+            }
+            dispatch(listDataTable(data))
             dispatch(closeModalForm())
         })
 
@@ -70,7 +84,7 @@ const FormProgramacion = (props) => {
         <div className={"row row-form"}>
             <div className={"col-md-4"}>
                 <div className="input-text">
-                    <label>Empleado</label>
+                    <label>Impartidor</label>
                     <Dropdown value={props.selectedEmpleado}
                               onChange={(e) => {
                                   props.setSelectedEmpleado(e.value)
@@ -141,6 +155,55 @@ const FormProgramacion = (props) => {
                     <label>Liga</label>
                     <InputText id="username" aria-describedby="username-help" defaultValue={arrayList.LIGA}
                                onChange={(e)=>onChange(e.target.value, "LIGA")}
+                    />
+                </div>
+            </div>
+            <div className={"col-md-4"}>
+                <div className="input-text">
+                    <label>Fecha inicio</label>
+                    <Calendar value={arrayList.F_INICIO}
+                              onChange={(e) => {
+                                  onChange(moment(new Date(e.value)).format("YYYY-MM-DD"), "F_INICIO")
+                              }}
+                              dateFormat={"yy-mm-dd"}
+                    />
+                </div>
+            </div>
+            <div className={"col-md-4"}>
+                <div className="input-text">
+                    <label>Fecha fin</label>
+                    <Calendar value={arrayList.F_FIN}
+                              onChange={(e) => {
+                                  console.log(moment(new Date(e.value)).format())
+                                  onChange(moment(new Date(e.value)).format("YYYY-MM-DD"), "F_FIN")
+                              }}
+                              dateFormat={"yy-mm-dd"}
+                    />
+                </div>
+            </div>
+            <div className={"col-md-4"}>
+                <div className="input-text">
+                    <label>Hora inicio</label>
+                    <Calendar value={arrayList.H_INICIO}
+                              onChange={(e) => {
+                                  onChange(new Date(e.value).toLocaleTimeString(), "H_INICIO")
+                              }}
+                              showTime
+                              hourFormat="24"
+                              timeOnly={true}
+                    />
+                </div>
+            </div>
+            <div className={"col-md-4"}>
+                <div className="input-text">
+                    <label>Hora fin</label>
+                    <Calendar value={arrayList.H_FIN}
+                              onChange={(e) => {
+                                  onChange(new Date(e.value).toLocaleTimeString(), "H_FIN")
+                              }}
+                              showTime
+                              hourFormat="24"
+                              timeOnly={true}
                     />
                 </div>
             </div>

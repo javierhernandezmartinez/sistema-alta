@@ -1,5 +1,6 @@
 import { Button } from 'primereact/button';
 import {useDispatch, useSelector} from "react-redux";
+import axios from "axios";
 import Table from "../../Table";
 import Modal from "../../Modal";
 import {listDataTable} from "../../../App/Features/AdministrationSlice";
@@ -7,25 +8,28 @@ import {useEffect, useRef, useState} from "react";
 import {openModalForm} from "../../../App/Features/rootModalFormSlice";
 import {Toast} from "primereact/toast";
 import {ConfirmPopup,  confirmPopup} from "primereact/confirmpopup";
-import FormCurso from "./FormCurso";
 import Services from "../../../Services/Services";
+import {IoArrowRedo} from "react-icons/io5";
 
 let defaultArray = {
-    ID_CURSO: null,
-    NOMBRE: null,
-    DESCRIPCION: null,
-    COLOR: null,
-    STATUS:1
+    ID_USUARIO: null,
+    ID_EMPLEADO: null,
+    FOTO: null,
+    USER: null,
+    PASS: null,
+    TIPO: 'Normal',
+    STATUS: 1
 }
-const getCursos = (dispatch)=>{
-    Services.getCursos().then(res=> {
-        console.log(res)
+const getUsuarios = (dispatch)=>{
+    Services.getIncripciones().then(res=> {
+        console.log("incripciones: ",res)
         dispatch(listDataTable(res?.data?.row))
     })
 }
 
-const deleteCurso = (array, toast, dispatch) => {
-    Services.deleteCurso(array).then(res => {
+
+const deleteUsuario = (array, toast, dispatch) => {
+    Services.deleteUsuario(array).then(res => {
             console.log(res)
             toast.current.show(
                 {
@@ -34,37 +38,46 @@ const deleteCurso = (array, toast, dispatch) => {
                     detail: res.data.message ? res.data.message : res.data.errorMessage
                 }
             );
-            getCursos(dispatch)
+            getUsuarios(dispatch)
         }
     )
 }
 
-const PanelCurso = (props) => {
+const PanelInscripciones = (props) => {
     let dispatch = useDispatch()
     let toast= useRef(null);
-
-    const [arrayList, setArrayList] = useState({...defaultArray})
+    const [empleados, setEmpleados] = useState([])
+    const [selectedEmpleado, setSelectedEmpleado] = useState(null)
+    const [arrayList, setArrayList] = useState(defaultArray)
 
     useEffect(()=>{
-        // initNegociosList(dispatch, api)
-        getCursos(dispatch)
+        getUsuarios(dispatch)
+        Services.getEmpleados().then(res=> {
+            setEmpleados(formatDropDown(res?.data?.row,'NOMBRE','ID_EMPLEADO'))
+        })
     },[])
 
     const listData = useSelector(state => state.rootAdmin.listDataTableReducer)
 
     const header = <div className="table-header">
-        <span className="table-title">{props.title}</span>
-        <Button icon="pi pi-plus" label="Nuevo" severity="help" outlined className="button-plus"
-                onClick={()=> {
-                    setArrayList({...defaultArray})
-                    dispatch(openModalForm())
-                }}
-        />
-    </div>
-
+                                <span className="table-title">{props.title}</span>
+                            </div>
+    const formatDropDown = (list, name, code) => {
+        list = list.map(item=>{
+            return {
+                name: `${item[code]} - ${item[name]}`,
+                code: item[code]
+            }
+        })
+        return list
+    }
+    const searchOption = (array, valor) => {
+        let option = array.filter(item => item.code === valor)
+        return option[0]
+    }
     const bodyColum=(rowData) => {
         const accept = () => {
-            deleteCurso(rowData, toast, dispatch)
+            deleteUsuario(rowData, toast, dispatch)
         };
 
         const reject = () => {
@@ -73,14 +86,6 @@ const PanelCurso = (props) => {
 
         return(
             <div className={"list-option-button"}>
-                <Button icon="pi pi-file-edit" severity="help" outlined className="button-plus" tooltip="Editar"
-                        tooltipOptions={{position: 'top'}}
-                        onClick={()=>{
-                            console.log(rowData)
-                            setArrayList(rowData)
-                            dispatch(openModalForm())
-                        }}
-                />
                 <Button icon="pi pi-trash" severity="help" outlined className="button-plus" tooltip="Eliminar"
                         tooltipOptions={{position: 'top'}}
                         onClick={(event)=>{
@@ -99,38 +104,29 @@ const PanelCurso = (props) => {
             </div>
         )
     }
-    const bodyColor=(rowData)=>{
-     return <label style={{color: `#${rowData.COLOR}`}}>{rowData.COLOR}</label>
-    }
-    const bodyStatus=(rowData)=>{
-        return <label style={{color: `${rowData.STATUS === 1 ? 'green' : 'red'}`}}>{rowData.STATUS}</label>
-    }
 
     const columns =
         [
-            {field:"ID_CURSO",header:"ID CURSO"},
-            {field: "NOMBRE",header: "NOMBRE"},
-            {field: "DESCRIPCION",header: "DESCRIPCION"},
-            {field: "COLOR", header: "COLOR", body: bodyColor},
-            {field: "STATUS", header: "ESTATUS", body: bodyStatus},
-            {header: "Option", body: bodyColum
-            }
+            {field: "ID_INSCRIPCION",header:"ID"},
+            {field: "ID_PROGRAMACION",header: "PROGRAMACION"},
+            {field: "CURSO",header: "CURSO"},
+            {field: "NUM_EMPLEADO", header: "NUM. EMPLEADO"},
+            {field: "USUARIO", header: "USUARIO"},
+            {field: "ID_PROGRAMACION", header: "CAPACITADOR"},
+            {header: "Option", body: bodyColum}
         ]
 
 
 
-    return(
-        <div  className={"row"}>
-            <div className={"col-md-12"}>
-                <Table header ={header} columns ={columns} data ={listData}/>
-            </div>
-            <Modal
-                element = {<FormCurso toast={toast} arrayList={arrayList}/>}
-            />
-            <Toast ref={toast} />
-            <ConfirmPopup />
-        </div>
-    )
+  return(
+      <div  className={"row"}>
+          <div className={"col-md-12"}>
+              <Table header ={header} columns ={columns} data ={listData}/>
+          </div>
+          <Toast ref={toast} />
+          <ConfirmPopup />
+      </div>
+  )
 }
 
-export default PanelCurso
+export default PanelInscripciones

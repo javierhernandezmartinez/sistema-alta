@@ -11,7 +11,7 @@ import {ColorPicker} from "primereact/colorpicker";
 const onChange = (e,arrayList, setArrayList, campo) => {
     console.log(arrayList)
     arrayList[campo] = e
-    setArrayList(arrayList)
+    setArrayList({...arrayList})
 }
 const getCursos = (dispatch)=>{
     Services.getCursos().then(res=> {
@@ -79,8 +79,25 @@ const FormCurso = (props) => {
                     />
                 </div>
             </div>
+            <div className={"col-md-4"}>
+                <div className="input-text">
+                    <label>Descripción</label>
+                    <InputText id="username" aria-describedby="username-help" defaultValue={arrayList.DESCRIPCION}
+                               onChange={(e)=>onChange(e.target.value,arrayList, setArrayList, "DESCRIPCION")}
+                    />
+                </div>
+            </div>
+            <div className={"col-md-4"}>
+                <div className="input-text">
+                    <label>Color</label>
+                    <InputText id="username" aria-describedby="username-help" defaultValue={arrayList.COLOR} disabled={true}
+                               onChange={(e)=>onChange(e.target.value,arrayList, setArrayList, "COLOR")}
+                    />
+                </div>
+            </div>
             <div className={"col-md-8"}>
                 <div className="input-text">
+                    <label>Paleta de colores</label>
                     <ColorPicker value={arrayList.COLOR} inline
                                  onChange={(e)=>onChange(e.value,arrayList, setArrayList, "COLOR")}
                     />

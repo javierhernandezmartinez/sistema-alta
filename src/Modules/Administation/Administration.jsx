@@ -9,6 +9,8 @@ import PanelArea from "../../Components/Administracion/Areas/PanelArea";
 import PanelDepartamento from "../../Components/Administracion/Departamentos/PanelDepartamento";
 import PanelProgramacion from "../../Components/Administracion/Programacion/PanelProgramacion";
 import PanelUsuario from "../../Components/Administracion/Usuarios/PanelUsuario";
+import PanelEspera from "../../Components/Administracion/SalaEspera/PanelEspera";
+import PanelInscripciones from "../../Components/Administracion/Inscripciones/PanelInscripciones";
 
 const Administration = () => {
     const items=[
@@ -46,6 +48,16 @@ const Administration = () => {
             label:'Usuario',
             icon:'pi pi-fw pi-file',
             form:<PanelUsuario title={'Usuario'}/>
+        },
+        {
+            label:'Espera',
+            icon:'pi pi-fw pi-file',
+            form:<PanelEspera title={'Sala de espera'}/>
+        },
+        {
+            label:'Inscripciones',
+            icon:'pi pi-fw pi-file',
+            form:<PanelInscripciones title={'Inscripciones'}/>
         },
     ]
     const [itemMenu, setItemMenu] = useState(items[0])

@@ -1,23 +1,18 @@
 import BarMenu from "../../Components/BarMenu";
 import {Button} from "primereact/button";
-import img1 from "../../Assets/img1.png";
 import imgL2 from "../../Assets/img_1.png";
-import logoBM from "../../Assets/logoBM.png"
 import logo from "../../Assets/img-logo.png"
-import Footer from "../../Components/Footer";
 import {InputText} from "primereact/inputtext";
 import {Password} from "primereact/password";
 import Container from "../../Components/Container";
 import Services from "../../Services/Services";
 import {useEffect, useState} from "react";
 import {useDispatch} from "react-redux";
-import {setUser} from "../../App/Features/UserSlice";
-
-
+import Session from "../../Services/Session";
 
 const Login = () => {
     const [user, setUserL] = useState(null)
-    const [message, setMessage] = useState(null)
+    const [message, setMessage] = useState('')
     const dispatch = new useDispatch()
     const onChange = (e,campo) => {
         user[campo] = e
@@ -28,8 +23,8 @@ const Login = () => {
         Services.getLogin(user).then(res=>{
             if(res?.status === 200){
                 if(res?.data?.row?.length > 0){
-                    dispatch(setUser(res?.data?.row[0]))
-                    window.open("#/perfil","_self")
+                    Session.setUser(res?.data?.row[0])
+
                 }else {
                     console.log("Usuario o contraseña incorrecta")
                     setMessage("Usuario o contraseña incorrecta")
@@ -88,16 +83,13 @@ const Login = () => {
                                         <Button label="Ingresar" className={"button-login"} onClick={()=>{buttonLogin()}}/>
                                     </div>
                                     <div className={"col-md-12"}>
-                                        {message ?
-                                            <p className={"text-1"}>{message}</p>
-                                            : null
-                                        }
+                                        <p className={"text-1"} style={{height: '23px',marginBottom: '0'}}>{message? message : '' }</p>
                                     </div>
                                     <div className={"col-md-12"}>
-                                        <p className={"text-1"}>Aun no tienes cuenta? <span onClick={()=> window.open("#/register","_self")}> Registrate!</span></p>
+                                        <p className={"text-1"} style={{textAlign:"end"}}>Aun no tienes cuenta? <span onClick={()=> window.open("#/register","_self")}> Registrate!</span></p>
                                     </div>
                                     <div className={"col-md-12"}>
-                                        <p className={"text-2"}>Olvide mi contraseña!</p>
+                                        <p className={"text-2"} style={{textAlign:"end"}}>Olvide mi contraseña!</p>
                                     </div>
                                 </div>
                             </div>
