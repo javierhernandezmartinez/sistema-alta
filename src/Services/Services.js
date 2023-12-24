@@ -1,7 +1,7 @@
 import axios, {post} from "axios";
 
 const Services={}
-const api = process.env.URL_API + '/api/app/system'
+const api = process.env.REACT_APP_ENDPOINT + '/api/app/system'
 
 Services.getAreas = ()=>{
     return Services.axios('get',"/get/areas")
