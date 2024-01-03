@@ -9,6 +9,7 @@ import PanelProgramacion from "../../Components/Administracion/Programacion/Pane
 import PanelMiAgenda from "../../Components/Administracion/Perfil/PanelMiAgenda";
 import {useSelector} from "react-redux";
 import Session from "../../Services/Session";
+import {FcCalendar, FcGraduationCap, FcPlanner, FcPortraitMode} from "react-icons/fc";
 
 
 const onChangeMenu = (item) => {
@@ -33,15 +34,15 @@ const Perfil = () => {
     const items=[
         {
             label:'Mis datos',
-            icon:<FaUserEdit/>
+            icon:<FcPortraitMode />
         },
         {
             label:'Mis cursos',
-            icon:<FaUserEdit/>
+            icon:<FcGraduationCap />
         },
         {
             label:'Mi agenda',
-            icon:<FaUserEdit/>
+            icon:<FcPlanner />
         }
         ]
     const element = () => {
@@ -52,38 +53,43 @@ const Perfil = () => {
                         <BarMenu/>
                     </div>
                 </div>
-                <div className={"row"}>
+               {/* <div className={"row"}>
                     <div className={"col-md-3 col-lg-2 row-left"}>
                         <h3 className={"title-perfil"}>Perfil</h3>
                     </div>
-                </div>
+                </div>*/}
                 <div className={"row"} style={{height:"80vh"}}>
                     <div className={"col-md-3 col-lg-2  row-left"}>
                         <div className={"row"}>
-                            <div className={"col-md-12"}>
+                            <div className={"col-sm-3 col-md-12"}>
                                 <img src={user?.FOTO} className={"img-perfil"}  alt={""}/>
                             </div>
-                            <div className={"col-md-12"}>
-                                <h5>{user?.NOMBRE}</h5>
+                            <div className={"col-sm-3 col-md-12"}>
+                                <h5 className={"nom-perfil"}>{user?.NOMBRE}</h5>
                             </div>
                             <div className={"col-md-12"}>
-                                <h6>{user?.PUESTO}</h6>
+                                <h6 className={"nom-perfil"}>{user?.PUESTO}</h6>
                             </div>
                             <div className={"col-md-12"}>
-                                <h6>NE {user?.NUM_EMPLEADO}</h6>
+                                <h6 className={"nom-perfil"}>NE {user?.USER}</h6>
                             </div>
                             <div className={"col-md-12"}>
-                                {
-                                    items.map(row=>(
-                                        <div className="perfil-panel-menu" onClick={(e)=>{
-                                            console.log(e.target?.innerText)
-                                            setOptioMenu(e.target?.innerText)
-                                        }}>
-                                            <div className={"menu-icon"}>{row?.icon}</div>
-                                            <div className={"menu-title"}>{row?.label}</div>
-                                        </div>
-                                    ))
-                                }
+                                <div className={"row"}>
+                                    {
+                                        items.map(row=>(
+                                            <div className={"col-4 col-sm-4 col-md-12"}>
+                                                <div className="perfil-panel-menu" onClick={(e)=>{
+                                                    console.log(row)
+                                                    setOptioMenu(row?.label)
+                                                }}>
+                                                    <div className={"menu-icon"}>{row?.icon}</div>
+                                                    <div className={"menu-title"}>{row?.label}</div>
+                                                </div>
+                                            </div>
+                                        ))
+                                    }
+                                </div>
+
                             </div>
                         </div>
                     </div>

@@ -40,17 +40,20 @@ const BarMenu = () => {
             icon: <PiGearBold />,
             command: (e) => { window.open("#/administration", "_self"); setOptionSelect(e.item.label)},
             visible: (!!user && user.TIPO === 'Admin')
-        }
+        },
+        /*{
+            label: '',
+            icon: <Button className={`pi ${theme ? "pi-sun" : "pi-moon"} button-mode`}
+                          onClick={()=>{dispatch(toogleTheme(!theme))}}/>,
+        }*/
     ];
     const start = <img alt="logo" src={logo} height="40" className="mr-2 logo-menu"
                        onClick={()=>{window.open("#/home", "_self"); setOptionSelect("Home")}}/>;
-    const end = <Button className={`pi ${theme ? "pi-sun" : "pi-moon"} button-mode`}
-                        onClick={()=>{dispatch(toogleTheme(!theme))}}/>;
   return(
       <div className={"row"}>
           <div className={"col-md-12"}>
               <div className={"card div-head-menu"}>
-                  <Menubar model={items} start={start} end={end}/>
+                  <Menubar model={items} start={start}/>
               </div>
           </div>
       </div>

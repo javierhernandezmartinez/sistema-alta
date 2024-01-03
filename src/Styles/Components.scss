@@ -37,6 +37,7 @@
   .p-menubar{
     background-color: transparent !important;
     border: 1px solid transparent;
+    justify-content: space-between;
   }
   span{
     color: whitesmoke !important;
@@ -72,6 +73,10 @@
   .p-menubar-root-list {
     width: 100%;
     justify-content: end;
+  }
+  .p-menubar.p-menubar-mobile-active .p-menubar-root-list{
+    background: rgb(26 29 52);
+    border-radius: 5px;
   }
 }
 
@@ -204,17 +209,13 @@
 
 //THEME WHITE
 .theme-light{
-  height: auto;
   background: whitesmoke;
   color: #007279;
 }
 
 //THEME DARK
 .theme-dark{
-  height: auto;
   background: #00031e;
   color: whitesmoke;
-  font-family: Apple;
-
 }
 
