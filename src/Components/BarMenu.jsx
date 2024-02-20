@@ -15,13 +15,13 @@ const BarMenu = () => {
     const [optionSelect, setOptionSelect] = useState("Home")
     const items = [
         {
-            label: 'Iniciar sesion',
+            label: 'Iniciar sesión',
             icon: <PiSignInBold />,
             command: (e) => { window.open("#/login", "_self"); setOptionSelect(e.item.label)},
             visible: !user
         },
         {
-            label: 'Cerrar sesion',
+            label: 'Cerrar sesión',
             icon: <PiSignOutBold />,
             command: (e) => {
                 Session.removeUser()
@@ -36,7 +36,7 @@ const BarMenu = () => {
             visible: !!user
         },
         {
-            label: 'Administaciòn',
+            label: 'Administración',
             icon: <PiGearBold />,
             command: (e) => { window.open("#/administration", "_self"); setOptionSelect(e.item.label)},
             visible: (!!user && user.TIPO === 'Admin')
@@ -50,7 +50,7 @@ const BarMenu = () => {
       <div className={"row"}>
           <div className={"col-md-12"}>
               <div className={"card div-head-menu"}>
-                  <Menubar model={items} start={start} end={end}/>
+                  <Menubar model={items} start={start} />
               </div>
           </div>
       </div>

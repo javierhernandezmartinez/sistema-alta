@@ -21,10 +21,13 @@ let defaultArray = {
     TIPO: 'Normal',
     STATUS: 1
 }
-const getUsuarios = (dispatch)=>{
-    Services.getUsuarios().then(res=> {
-        console.log(res)
-        dispatch(listDataTable(res?.data?.row))
+const getSalaEspera = (dispatch)=>{
+    dispatch(listDataTable([]))
+    Services.getSalaEspera().then(res=> {
+        console.log("Sala espera ", res)
+        if(res.status === 200 && res?.data?.row?.length > 0){
+            dispatch(listDataTable(res?.data?.row))
+        }
     })
 }
 
@@ -32,6 +35,7 @@ const getUsuarios = (dispatch)=>{
 const deleteUsuario = (array, toast, dispatch) => {
     Services.deleteUsuario(array).then(res => {
             console.log(res)
+        if(res.status === 200) {
             toast.current.show(
                 {
                     severity: res.data.message ? 'success' : "error",
@@ -39,7 +43,9 @@ const deleteUsuario = (array, toast, dispatch) => {
                     detail: res.data.message ? res.data.message : res.data.errorMessage
                 }
             );
-            getUsuarios(dispatch)
+            getSalaEspera(dispatch)
+        }
+
         }
     )
 }
@@ -52,9 +58,11 @@ const PanelEspera = (props) => {
     const [arrayList, setArrayList] = useState(defaultArray)
 
     useEffect(()=>{
-        getUsuarios(dispatch)
+        getSalaEspera(dispatch)
         Services.getEmpleados().then(res=> {
-            setEmpleados(formatDropDown(res?.data?.row,'NOMBRE','ID_EMPLEADO'))
+            if(res.status === 200 && res?.data?.row?.length > 0){
+                setEmpleados(formatDropDown(res?.data?.row,'NOMBRE','ID_EMPLEADO'))
+            }
         })
     },[])
 
@@ -92,10 +100,12 @@ const PanelEspera = (props) => {
                         onClick={()=>{
                             console.log(rowData)
                             Services.getUsuario({ID_USUARIO : rowData.ID_USUARIO}).then(res=>{
-                                console.log(res)
-                                setSelectedEmpleado(searchOption(empleados, rowData.ID_EMPLEADO))
-                                setArrayList(res?.data?.row[0])
-                                dispatch(openModalForm())
+                                if(res.status === 200 && res?.data?.row?.length > 0) {
+                                    console.log(res)
+                                    setSelectedEmpleado(searchOption(empleados, rowData.ID_EMPLEADO))
+                                    setArrayList(res?.data?.row[0])
+                                    dispatch(openModalForm())
+                                }
                             })
                         }}
                 />
@@ -120,12 +130,11 @@ const PanelEspera = (props) => {
 
     const columns =
         [
-            {field: "ID_ESPERA",header:"ID"},
-            {field: "ID_EMPLEADO",header: "ID EMPLEADO"},
-            {field: "NUM_EMPLEADO",header: "NUM. EMPLEADO"},
-            {field: "NOMBRE", header: "NOMBRE"},
-            {field: "ID_PROGRAMACION", header: "ID_PROGRAMACION"},
-            {field: "NOM_CURSO", header: "CURSO"},
+            {field: "ID",header:"ID"},
+            {field: "NUM_EMPLEADO", header: "NUM. EMPLEADO USUARIO"},
+            {field: "USUARIO", header: "USUARIO"},
+            {field: "PROGRAMACION",header: "PROGRAMACION"},
+            {field: "CURSO",header: "CURSO"},
             {field: "CAPACITADOR", header: "CAPACITADOR"},
             {header: "Option", body: bodyColum}
         ]
@@ -135,10 +144,21 @@ const PanelEspera = (props) => {
   return(
       <div  className={"row"}>
           <div className={"col-md-12"}>
-              <Table header ={header} columns ={columns} data ={listData}/>
+              <Table
+                  header ={header}
+                  columns ={columns}
+                  data ={listData}
+              />
           </div>
           <Modal
-              element = {<FormEspera toast={toast} arrayList={arrayList} empleados={empleados} selectedEmpleado={selectedEmpleado}/>}
+              element = {
+                  <FormEspera
+                      toast={toast}
+                      arrayList={arrayList}
+                      empleados={empleados}
+                      selectedEmpleado={selectedEmpleado}
+                  />
+                }
           />
           <Toast ref={toast} />
           <ConfirmPopup />

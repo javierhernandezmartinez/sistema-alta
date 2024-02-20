@@ -17,16 +17,20 @@ let defaultArray = {
     STATUS: 1
 }
 
-const getListRegistros = (dispatch)=>{
+const getAreas = (dispatch)=>{
+    dispatch(listDataTable([]))
         Services.getAreas().then(res=>{
         console.log(res)
-        dispatch(listDataTable(res?.data?.row))
+            if(res.status === 200 && res?.data?.row?.length > 0){
+                dispatch(listDataTable(res?.data?.row))
+            }
     })
 }
 const deleteArea = (array, toast, dispatch) => {
     console.log(array)
     Services.deleteArea(array).then(res => {
             console.log(res)
+        if(res.status === 200) {
             toast.current.show(
                 {
                     severity: res.data.message ? 'success' : "error",
@@ -34,7 +38,9 @@ const deleteArea = (array, toast, dispatch) => {
                     detail: res.data.message ? res.data.message : res.data.errorMessage
                 }
             );
-            getListRegistros(dispatch)
+            getAreas(dispatch)
+        }
+
         }
     )
 }
@@ -46,7 +52,7 @@ const PanelArea = (props) => {
 
     useEffect(()=>{
         // initNegociosList(dispatch, api)
-        getListRegistros(dispatch)
+        getAreas(dispatch)
     },[])
 
     const listData = useSelector(state => state.rootAdmin.listDataTableReducer)

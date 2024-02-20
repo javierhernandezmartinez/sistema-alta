@@ -23,7 +23,9 @@ let defaultArray = {
 const getUsuarios = (dispatch)=>{
     Services.getUsuarios().then(res=> {
         console.log(res)
-        dispatch(listDataTable(res?.data?.row))
+        if(res.status === 200 && res?.data?.row?.length > 0){
+            dispatch(listDataTable(res?.data?.row))
+        }
     })
 }
 
@@ -31,6 +33,7 @@ const getUsuarios = (dispatch)=>{
 const deleteUsuario = (array, toast, dispatch) => {
     Services.deleteUsuario(array).then(res => {
             console.log(res)
+        if(res.status === 200) {
             toast.current.show(
                 {
                     severity: res.data.message ? 'success' : "error",
@@ -39,6 +42,8 @@ const deleteUsuario = (array, toast, dispatch) => {
                 }
             );
             getUsuarios(dispatch)
+        }
+
         }
     )
 }
@@ -53,7 +58,9 @@ const PanelUsuario = (props) => {
     useEffect(()=>{
         getUsuarios(dispatch)
         Services.getEmpleados().then(res=> {
-            setEmpleados(formatDropDown(res?.data?.row,'NOMBRE','ID_EMPLEADO'))
+            if(res.status === 200 && res?.data?.row?.length > 0){
+                setEmpleados(formatDropDown(res?.data?.row,'NOMBRE','ID_EMPLEADO'))
+            }
         })
     },[])
 
@@ -72,6 +79,7 @@ const PanelUsuario = (props) => {
     const formatDropDown = (list, name, code) => {
         list = list.map(item=>{
             return {
+                NUM_EMPLEADO:item.NUM_EMPLEADO,
                 name: `${item[code]} - ${item[name]}`,
                 code: item[code]
             }
@@ -99,9 +107,11 @@ const PanelUsuario = (props) => {
                             console.log(rowData)
                             Services.getUsuario({ID_USUARIO : rowData.ID_USUARIO}).then(res=>{
                                 console.log(res)
-                                setSelectedEmpleado(searchOption(empleados, rowData.ID_EMPLEADO))
-                                setArrayList(res?.data?.row[0])
-                                dispatch(openModalForm())
+                                if(res.status === 200 && res?.data?.row?.length > 0) {
+                                    setSelectedEmpleado(searchOption(empleados, rowData.ID_EMPLEADO))
+                                    setArrayList(res?.data?.row[0])
+                                    dispatch(openModalForm())
+                                }
                             })
                         }}
                 />
@@ -145,7 +155,13 @@ const PanelUsuario = (props) => {
               <Table header ={header} columns ={columns} data ={listData}/>
           </div>
           <Modal
-              element = {<FormUsuarios toast={toast} arrayList={arrayList} empleados={empleados} selectedEmpleado={selectedEmpleado}/>}
+              element = {
+              <FormUsuarios toast={toast}
+                            arrayList={arrayList}
+                            empleados={empleados}
+                            selectedEmpleado={selectedEmpleado}
+                            setSelectedEmpleado={setSelectedEmpleado}
+              />}
           />
           <Toast ref={toast} />
           <ConfirmPopup />

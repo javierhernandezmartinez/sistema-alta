@@ -16,13 +16,17 @@ let defaultArray = {
     STATUS: 1
 }
 const getGrupos = (dispatch)=>{
+    dispatch(listDataTable([]))
     Services.getGrupos().then(res=> {
-        dispatch(listDataTable(res?.data?.row))
+        if(res.status === 200 && res?.data?.row?.length > 0){
+            dispatch(listDataTable(res?.data?.row))
+        }
     })
 }
 const deleteGrupo = (array, toast, dispatch) => {
     Services.deleteGrupo(array).then(res => {
             console.log(res)
+        if(res.status === 200) {
             toast.current.show(
                 {
                     severity: res.data.message ? 'success' : "error",
@@ -31,6 +35,8 @@ const deleteGrupo = (array, toast, dispatch) => {
                 }
             );
             getGrupos(dispatch)
+        }
+
         }
     )
 }

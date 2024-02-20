@@ -1,20 +1,61 @@
 //INPUT TEXT
-.input-text{
+.input-box{
   width: 100%;
   margin-bottom: 4px;
   text-align: start;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  .input-title{
+    font-size: 10pt;
+    font-weight: 500;
+  }
   .p-inputtext{
     width: 100%;
-    height: 35px;
-    font-size: 10pt;
+    height: 40px;
     border-radius: 5px;
+    font-size: 10pt;
   }
-  .p-password{
+  /*.p-password{
     width: 100%;
-    height: 35px;
-    font-size: 10pt;
     border-radius: 5px;
+  }*/
+  .p-inputgroup .p-inputgroup-addon {
+    background: #007279;
+    color: whitesmoke;
   }
+  .p-input-icon-right>i{
+    right: 0.75rem;
+    color: #6c757d;
+    height: 100%;
+    top: 7px;
+    display: flex;
+    align-items: center;
+  }
+  .p-inputswitch.p-inputswitch-checked .p-inputswitch-slider{
+    background: #007279;
+  }
+  .p-inputswitch.p-inputswitch-checked:not(.p-disabled):hover .p-inputswitch-slider{
+    background: #007279;
+  }
+}
+
+//INPUT BUTTON
+.input-button{
+  width: 100%;
+  background: #007279 !important;
+  color: whitesmoke !important;
+  border: 1px solid #007279 !important;
+  height: 40px;
+  margin-bottom: 1rem !important;
+}
+.input-button:hover{
+  background: transparent !important;
+  color: #007279 !important;
+}
+.input-button:focus{
+    box-shadow: none !important;
+}
+.input-button:active{
+  opacity: .8;
 }
 
 //PANEL PRINCIPAL
@@ -37,6 +78,7 @@
   .p-menubar{
     background-color: transparent !important;
     border: 1px solid transparent;
+    justify-content: space-between;
   }
   span{
     color: whitesmoke !important;
@@ -74,6 +116,18 @@
     justify-content: end;
   }
 }
+@media screen and (max-width: 960px){
+  .p-menubar .p-menubar-root-list {
+    position: absolute;
+    display: none;
+    padding: 0.25rem 0;
+    background: #007279 !important;
+    border: 0 none;
+    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+    width: 100%;
+  }
+}
+
 
 .button-mode{
   width: 40px;
@@ -110,14 +164,14 @@
 .menu-panel{
   width: 100%;
   height: 90%;
-  background: #007279 !important;
+  background: #007a7f38 !important;
   padding: 1em;
 
   .p-panelmenu-header > a {
     padding: 1.25rem;
     border: 1px solid transparent !important;
     color: white !important;
-    background: #007A7F !important;
+    background: rgba(0, 122, 127, 0.2196078431) !important;
     font-weight: 500 !important;
     border-radius: 6px;
     transition: box-shadow 0.2s;
@@ -211,10 +265,20 @@
 
 //THEME DARK
 .theme-dark{
-  height: auto;
   background: #00031e;
   color: whitesmoke;
   font-family: Apple;
 
 }
 
+//CARD PANEL
+.card-panel{
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, .1) !important;
+  .p-card-title{
+    text-align: justify;
+    color: whitesmoke;
+
+  }
+}
