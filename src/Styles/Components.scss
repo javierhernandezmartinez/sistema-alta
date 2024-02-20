@@ -115,6 +115,10 @@
     width: 100%;
     justify-content: end;
   }
+  .p-menubar.p-menubar-mobile-active .p-menubar-root-list{
+    background: rgb(26 29 52);
+    border-radius: 5px;
+  }
 }
 @media screen and (max-width: 960px){
   .p-menubar .p-menubar-root-list {
@@ -258,7 +262,6 @@
 
 //THEME WHITE
 .theme-light{
-  height: auto;
   background: whitesmoke;
   color: #007279;
 }
@@ -267,8 +270,6 @@
 .theme-dark{
   background: #00031e;
   color: whitesmoke;
-  font-family: Apple;
-
 }
 
 //CARD PANEL
