@@ -8,6 +8,7 @@ import logo from "../../Assets/img-logo.png";
 import {useEffect, useRef, useState} from "react";
 import Services from "../../Services/Services";
 import {Toast} from "primereact/toast";
+import CardPanel from "../../Components/CardPanel";
 
 const Register = () => {
     const [user, setUserL] = useState(null)
@@ -39,12 +40,10 @@ const Register = () => {
                     Services.searchUsuario(newUser).then(res=>{
                         console.log(res)
                         if(res?.data?.row?.length > 0){
-                            console.log("El usuario ya existe")
                             setMessage("El usuario ya existe")
                         }else {
                             Services.addUsuario(newUser).then(res=>{
                                 if(res?.status === 200){
-                                    console.log("Usuario agregado")
                                     toast.current.show(
                                         { severity: 'success',
                                             summary: 'Message',
@@ -58,7 +57,6 @@ const Register = () => {
                     )
 
                 }else {
-                    console.log("Empleado no encontrado")
                     setMessage("Empleado no encontrado")
                 }
             }else {
@@ -67,56 +65,56 @@ const Register = () => {
         })
     }
     const element = () => {
+        let form = <div className={"panel-login"}>
+            <div className={"row"}>
+                <div className={"col-sm-5 col-md-5 panel-img"}>
+                    <img className={"img-login"} src={imgL2}/>
+                </div>
+                <div className={"col-sm-7 col-md-7 panel-form"}>
+                    <div className={"row"} style={{justifyContent: "center"}}>
+                        <div className={"col-md-12"}>
+                            <div className={"icon-user-login"}>
+                                <img src={logo}/>
+                            </div>
+                        </div>
+                        <div className={"col-md-12"}>
+                            <div className="p-inputgroup">
+                                            <span className="p-inputgroup-addon">
+                                                <i className="pi pi-user"></i>
+                                            </span>
+                                <InputText placeholder="No. empleado" onChange={(e)=>{onChange(e.target.value, 'USER')}}/>
+                            </div>
+                        </div>
+                        <div className={"col-md-12"}>
+                            <div className="p-inputgroup">
+                                <span className="p-inputgroup-addon">
+                                    <i className="pi pi-lock"></i>
+                                </span>
+                                <Password  feedback={true}  placeholder={"password"} toggleMask onChange={(e)=>{onChange(e.target.value, 'PASS')}}/>
+                            </div>
+                        </div>
+                        <div className={"col-md-12"}>
+                            <Button label="Registrar" className={"button-login"} raised onClick={()=>{buttonRegister()}}/>
+                        </div>
+                        <div className={"col-md-12"}>
+                            <p className={"text-1"} style={{height: '23px',marginBottom: '0'}}>{message? message : '' }</p>
+                        </div>
+                        <div className={"col-md-12"}>
+                            <p className={"text-1"}>Ya tienes cuenta? <span onClick={()=> window.open("#/login","_self")}> Logueate!</span></p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
         return (
             <div id={"register-modul"}  className={"row"}>
                 <div className={"col-md-12"}>
                     <BarMenu/>
                 </div>
-                <div className={"col-md-12"} style={{display:"flex", height:"89vh"}}>
-                    <div className={"panel-login"}>
-                        <p className={"title-login"}>Registrate</p>
-                        <div className={"row"}>
-                            <div className={"col-md-5 panel-img"}>
-                                <img className={"img-login"} src={imgL2}/>
-                            </div>
-                            <div className={"col-md-7 panel-form"}>
-                                <div className={"row"}>
-                                    <div className={"col-md-12"}>
-                                        <div className={"icon-user-login"}>
-                                            <img src={logo}/>
-                                        </div>
-                                    </div>
-                                    <div className={"col-md-12"}>
-                                        <div className="p-inputgroup">
-                                            <span className="p-inputgroup-addon">
-                                                <i className="pi pi-user"></i>
-                                            </span>
-                                            <InputText placeholder="No. empleado" onChange={(e)=>{onChange(e.target.value, 'USER')}}/>
-                                        </div>
-                                    </div>
-                                    <div className={"col-md-12"}>
-                                        <div className="p-inputgroup">
-                                <span className="p-inputgroup-addon">
-                                    <i className="pi pi-lock"></i>
-                                </span>
-                                            <Password  feedback={true}  placeholder={"password"} toggleMask onChange={(e)=>{onChange(e.target.value, 'PASS')}}/>
-                                        </div>
-                                    </div>
-                                    <div className={"col-md-12"}>
-                                        <Button label="Registrar" className={"button-login"} raised onClick={()=>{buttonRegister()}}/>
-                                    </div>
-                                    <div className={"col-md-12"}>
-                                        <p className={"text-1"} style={{height: '23px',marginBottom: '0'}}>{message? message : '' }</p>
-                                    </div>
-                                    <div className={"col-md-12"}>
-                                        <p className={"text-1"}>Ya tienes cuenta? <span onClick={()=> window.open("#/login","_self")}> Logueate!</span></p>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-
-                    </div>
+                <div className={"col-11 col-sm-10 col-md-8"} style={{display:"flex", margin: "auto"}}>
+                    <CardPanel title={"Registrate"} element ={form}/>
                 </div>
                 <Toast ref={toast} />
             </div>

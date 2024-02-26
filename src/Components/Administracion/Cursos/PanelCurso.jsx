@@ -14,19 +14,24 @@ let defaultArray = {
     ID_CURSO: null,
     NOMBRE: null,
     DESCRIPCION: null,
-    COLOR: null,
-    STATUS:1
+    COLOR: "ffffff",
+    STATUS:1,
+    BANNER: null
 }
 const getCursos = (dispatch)=>{
+    dispatch(listDataTable([]))
     Services.getCursos().then(res=> {
         console.log(res)
-        dispatch(listDataTable(res?.data?.row))
+        if(res.status === 200 && res?.data?.row?.length > 0){
+            dispatch(listDataTable(res?.data?.row))
+        }
     })
 }
 
 const deleteCurso = (array, toast, dispatch) => {
     Services.deleteCurso(array).then(res => {
             console.log(res)
+        if(res.status === 200) {
             toast.current.show(
                 {
                     severity: res.data.message ? 'success' : "error",
@@ -36,21 +41,20 @@ const deleteCurso = (array, toast, dispatch) => {
             );
             getCursos(dispatch)
         }
+        }
     )
 }
 
 const PanelCurso = (props) => {
     let dispatch = useDispatch()
     let toast= useRef(null);
-
+    const listData = useSelector(state => state.rootAdmin.listDataTableReducer)
     const [arrayList, setArrayList] = useState({...defaultArray})
+    console.log(listData)
 
     useEffect(()=>{
-        // initNegociosList(dispatch, api)
         getCursos(dispatch)
     },[])
-
-    const listData = useSelector(state => state.rootAdmin.listDataTableReducer)
 
     const header = <div className="table-header">
         <span className="table-title">{props.title}</span>
@@ -116,9 +120,6 @@ const PanelCurso = (props) => {
             {header: "Option", body: bodyColum
             }
         ]
-
-
-
     return(
         <div  className={"row"}>
             <div className={"col-md-12"}>

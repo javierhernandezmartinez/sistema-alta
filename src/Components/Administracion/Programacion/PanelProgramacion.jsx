@@ -24,32 +24,34 @@ let defaultArray = {
     LIGA: null,
     F_INICIO: null,
     F_FIN: null,
+    H_INICIO: null,
+    H_FIN: null,
     ALL_DAY: false,
     STATUS: 1
 }
 const getProgramaciones = (dispatch)=>{
+    dispatch(listDataTable([]))
     Services.getProgramaciones().then(res=> {
         console.log(res)
         let data = []
-        if(res.status === 200){
-            if(res?.data?.row?.length > 0){
-                data = res?.data?.row.map(item=>{
-                    return {
-                        ...item,
-                        F_INICIO: moment(item.F_INICIO).format("YYYY-MM-DD"),
-                        F_FIN: moment(item.F_FIN).format("YYYY-MM-DD")
-                    }
-                })
-            }
+        if(res.status === 200 && res?.data?.row?.length > 0){
+            data = res?.data?.row.map(item=>{
+                return {
+                    ...item,
+                    F_INICIO: moment(item.F_INICIO).format("YYYY-MM-DD"),
+                    F_FIN: moment(item.F_FIN).format("YYYY-MM-DD")
+                }
+            })
         }
         dispatch(listDataTable(data))
     })
-        
 }
+
 
 const deleteProgramcion = (array, toast, dispatch) => {
     Services.deleteProgramacion(array).then(res => {
             console.log(res)
+        if(res.status === 200) {
             toast.current.show(
                 {
                     severity: res.data.message ? 'success' : "error",
@@ -59,8 +61,8 @@ const deleteProgramcion = (array, toast, dispatch) => {
             );
             getProgramaciones(dispatch)
         }
+        }
     )
-
 }
 
 const PanelProgramacion = (props) => {
@@ -76,13 +78,18 @@ const PanelProgramacion = (props) => {
     const formatDropDown = (list, name, code) => {
         return list.map(item=>{return {name: `${item[code]} - ${item[name]}`,code: item[code]}})
     }
+
     useEffect(()=>{
         getProgramaciones(dispatch)
         Services.getEmpleados().then(res=> {
-            setEmpleados(formatDropDown(res?.data?.row,'NOMBRE','ID_EMPLEADO'))
+            if(res.status === 200 && res?.data?.row?.length > 0){
+                setEmpleados(formatDropDown(res?.data?.row,'NOMBRE','ID_EMPLEADO'))
+            }
         })
         Services.getCursos().then(res=> {
-            setCursos(formatDropDown(res?.data?.row,'NOMBRE','ID_CURSO'))
+            if(res.status === 200 && res?.data?.row?.length > 0){
+                setCursos(formatDropDown(res?.data?.row,'NOMBRE','ID_CURSO'))
+            }
         })
     },[])
 
@@ -111,6 +118,26 @@ const PanelProgramacion = (props) => {
         const reject = () => {
             toast.current.show({ severity: 'warn', summary: 'Denegado', detail: 'Proceso denegado', life: 3000 });
         };
+        const getProgramacion = (rowData)=>{
+            Services.getProgramacion({ID_PROGRAMACION : rowData.ID_PROGRAMACION}).then(res=>{
+                console.log(res)
+                if(res.status === 200) {
+                    let data = res?.data?.row[0]
+                    data={
+                        ...data,
+                        F_INICIO: moment(data.F_INICIO).format("YYYY-MM-DD"),
+                        F_FIN: moment(data.F_FIN).format("YYYY-MM-DD")
+                    }
+                    console.log(data)
+                    setArrayList(data)
+                    setSelectedEmpleado(searchOption(empleados, res?.data?.row[0].ID_EMPLEADO))
+                    setSelectedCurso(searchOption(cursos, res?.data?.row[0].ID_CURSO ))
+                    dispatch(openModalForm())
+                }
+
+            })
+
+        }
 
         return(
             <div className={"list-option-button"}>
@@ -118,13 +145,7 @@ const PanelProgramacion = (props) => {
                         tooltipOptions={{position: 'top'}}
                         onClick={()=>{
                             console.log(rowData)
-                            Services.getProgramacion({ID_PROGRAMACION : rowData.ID_PROGRAMACION}).then(res=>{
-                                console.log(res)
-                                setArrayList(res?.data?.row[0])
-                                setSelectedEmpleado(searchOption(empleados, res?.data?.row[0].ID_EMPLEADO))
-                                setSelectedCurso(searchOption(cursos, res?.data?.row[0].ID_CURSO ))
-                                dispatch(openModalForm())
-                            })
+                            getProgramacion(rowData)
                         }}
                 />
                 <Button icon="pi pi-trash" severity="help" outlined className="button-plus" tooltip="Eliminar"

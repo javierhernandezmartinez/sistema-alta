@@ -54,6 +54,9 @@ Services.updateEmpleado = (data) => {
 Services.deleteEmpleado = (data) => {
     return Services.axios('post',"/delete/empleado", data)
 }
+Services.getEmpleado = (data) => {
+    return Services.axios('post',"/search/empleado", data)
+}
 
 Services.getUsuarios = () => {
     return Services.axios('get',"/get/usuarios")
@@ -122,7 +125,20 @@ Services.getMisCursos = (data) => {
     return Services.axios('post',"/perfil/mis_cursos", data)
 }
 
-
+Services.updateFotoPerfil = (data) => {
+    return Services.axios('post',"/perfil/update/foto/perfil", data)
+}
+Services.getFotoPerfil = (data) => {
+    console.log(data)
+    return Services.axios('post',"/perfil/get/foto/perfil", data)
+}
+Services.updatePassPerfil = (data) => {
+    console.log(data)
+    return Services.axios('post',"/perfil/update/pass", data)
+}
+Services.getSalaEspera = () => {
+    return Services.axios('get',"/get/sala_espera")
+}
 
 
 Services.axios =(type, extension, data = null)=>{

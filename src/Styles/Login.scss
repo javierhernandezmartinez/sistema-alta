@@ -1,20 +1,12 @@
 #login-modul{
 
-  .title-login{
-    color: whitesmoke;
-    font-size: 20pt;
-    font-weight: bold;
-    text-align: start;
-  }
-
   .panel-login{
-    //width: 60%;
     height: auto;
-    background: rgba(255, 255, 255, .1);
     margin: auto;
     display: grid;
     align-self: center;
     padding: 2%;
+    padding-bottom: 0;
     border-radius: 8px;
 
     .panel-img{
@@ -37,7 +29,6 @@
     }
 
     .p-inputgroup{
-      height: 40px;
       margin-top: 10px;
       margin-bottom: 10px;
 
@@ -64,6 +55,7 @@
     .text-1{
       color: whitesmoke;
       margin-top: 5%;
+      margin-bottom: 0;
       span{
         color: #0ae98a;
         font-weight: 500;
@@ -77,6 +69,7 @@
     .text-2{
       color: white;
       text-align: center;
+      margin-bottom: 0;
     }
     .text-2:hover{
       cursor: pointer;

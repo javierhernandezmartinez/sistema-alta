@@ -2,19 +2,17 @@
   --family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
-.nom-perfil{
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Noto Sans, Liberation Sans, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
-}
-
 .title-perfil{
   text-align: center;
-  margin-bottom: 10%;
+  margin-bottom: 1rem;
   margin-top: 5%;
 
 }
 .title-seccion{
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 14pt;
   text-align: start;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .img-perfil{
@@ -22,6 +20,52 @@
   height: 100px;
   border-radius: 50%;
   border: 3px solid whitesmoke;
+  margin: 0.5rem auto 0.5rem;
+
+  img{
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    object-fit: cover;
+  }
+  .span-img{
+    width: 100px;
+    height: 100px;
+    top: -97px;
+    border-radius: 50%;
+    span{
+      width: 100px;
+      height: 100px;
+      svg{
+        font-size: 25pt;
+        display: none;
+      }
+    }
+  }
+
+}
+.img-perfil:hover{
+  .span-img{
+    top: -97px;
+    position: relative;
+    display: flex;
+    left: -3px;
+    cursor: pointer;
+    transition-duration: 200ms;
+    background: rgba(0, 0, 0, 0.7);
+
+    span{
+      display: flex;
+      position: relative;
+      justify-content: center;
+      border: 1px solid white;
+      align-items: center;
+      border-radius: inherit;
+      svg{
+        display: block;
+      }
+    }
+  }
 }
 .img-preview{
   width: 265px;
@@ -31,26 +75,25 @@
 }
 
 .input-file{
-  width: 265px;
+  width: fit-content;
 
   label{
-    width: 100%;
+    width: 35px;
     text-align: start;
     cursor: pointer;
     display: flex;
     align-items: center;
-    border: 1px solid whitesmoke;
     border-radius: 5px;
 
   }
   svg{
-    width: 30px;
-    height: 30px;
+    width: 35px;
+    height: 35px;
     font-size: 20px;
     background: goldenrod;
     border-radius: 5px;
-    margin-right: 5px;
     padding: 2px;
+    margin: auto;
   }
   input[type="file"]{
     width: 0;
@@ -59,41 +102,50 @@
   }
 
 }
-.div-buttons{
-  width: 265px;
-  display: flex;
-  place-content: space-between;
-  margin-top: 1rem;
-  .p-button{
-    width: 90px;
-    height: 35px;
-    justify-content: center;
-  }
-}
+
 .row-left{
-  background: #007279;
+  background: #00727945;
 }
+
+//DESCRIPCION DATA PERFIL
+.detalle-n{
+  text-align: center;
+  width: 100%;
+  font-size: 12pt;
+  font-weight: 600;
+  font-family: system-ui;
+}
+.detalle-p{
+  text-align: center;
+  width: 100%;
+  font-size: 12pt;
+  font-weight: 400;
+  font-family: system-ui;
+}
+
 //PANEL MENU
 .perfil-panel-menu {
   display: flex;
   width: 100%;
   height: 60px;
-  text-align: start;
   align-items: center;
-  padding: 2rem;
+  justify-content: center;
+  padding: 0.5rem;
   cursor: pointer;
-  background: #007A7F;
+  background: #007a7f38;
   margin-bottom: 5px;
   border-radius: 5px;
   .menu-icon {
-    width: 10%;
     font-size: 1rem;
     font-weight: 500;
-    margin-right: 0.5rem;
-    text-align: end;
+    /* margin-right: 0.5rem; */
+    display: flex;
+    justify-content: center;
+    .pi{
+      font-size: 1.2rem;
+    }
   }
   .menu-title {
-    width: 90%;
     font-size: 10pt;
     font-weight: 500;
     font-family: var(--family);
@@ -104,35 +156,31 @@
   color: #0ae98a !important;
 }
 
-
-@media (max-width: 764px){
-  .title-perfil{
-    text-align: start;
-    margin-bottom: 0;
-    margin-top: 5%;
-  }
-  .img-perfil{
-    margin-top: 1rem;
-    width: 100px ;
-    height: 100px;
-    border-radius: 50%;
-    border: 3px solid whitesmoke;
-  }
-  .perfil-panel-menu{
-    padding: 0;
+.description-p{
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  display: flex;
+  align-items: center;
+  font-size: 12pt;
+  margin-bottom: 1rem;
+  .l-icon{
+    width: 40px;
+    height: 40px;
+    background: #007279;
+    display: flex;
+    align-items: center;
     justify-content: center;
-    .menu-title{
-      display: none;
-    }
-    .menu-icon{
-      width: auto;
-      font-size: 20pt;
-      margin: auto;
+    border-radius: 50%;
+    margin-right: .5rem;
+
+    .pi{
+      font-size: 12pt;
     }
   }
-  .title-seccion{
-    font-size: 15pt;
-    font-weight: 500;
-    font-family: Apple, serif;
+  .l-desc{
+    font-weight: bold;
+    text-align: start;
+    span{
+      font-weight: 400;
+    }
   }
 }

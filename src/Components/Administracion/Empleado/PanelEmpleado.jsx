@@ -26,14 +26,18 @@ let defaultArray = {
     STATUS: 1
 }
 const getEmpleados = (dispatch)=>{
+    dispatch(listDataTable([]))
     Services.getEmpleados().then(res=> {
         console.log(res)
-        dispatch(listDataTable(res?.data?.row))
+        if(res.status === 200 && res?.data?.row?.length > 0){
+            dispatch(listDataTable(res?.data?.row))
+        }
     })
 }
 
 const deleteRegistro = (array, toast, dispatch) => {
     Services.deleteEmpleado(array).then(res => {
+        if(res.status === 200) {
             toast.current.show(
                 {
                     severity: res.data.message ? 'success' : "error",
@@ -43,17 +47,44 @@ const deleteRegistro = (array, toast, dispatch) => {
             );
             getEmpleados(dispatch)
         }
+
+        }
     )
 }
-
+const formatDropDown = (list, name, code) => {
+    list = list.map(item=>{
+        return {
+            name: item[name],
+            code: item[code]
+        }
+    })
+    return list
+}
 const PanelEmpleado = (props) => {
     let dispatch = useDispatch()
     let toast= useRef(null);
 
     const [arrayList, setArrayList] = useState(defaultArray)
+    const [areas, setAreas] = useState([])
+    const [grupos, setGrupos] = useState([])
+    const [departamentos, setDepartamentos] = useState([])
 
     useEffect(()=>{
-       // initNegociosList(dispatch, api)
+        Services.getAreas().then(res=>{
+            if(res.status === 200 && res?.data?.row?.length > 0){
+                setAreas(formatDropDown(res?.data?.row,'NOMBRE','ID_AREA'))
+            }
+        })
+        Services.getGrupos().then(res=>{
+            if(res.status === 200 && res?.data?.row?.length > 0){
+                setGrupos(formatDropDown(res?.data?.row,'NOMBRE','ID_GRUPO'))
+            }
+        })
+        Services.getDepas().then(res=>{
+            if(res.status === 200 && res?.data?.row?.length > 0){
+                setDepartamentos(formatDropDown(res?.data?.row,'NOMBRE','ID_DEPARTAMENTO'))
+            }
+        })
         getEmpleados(dispatch)
     },[])
 
@@ -125,15 +156,20 @@ const PanelEmpleado = (props) => {
             }
         ]
 
-
-
   return(
       <div  className={"row"}>
           <div className={"col-md-12"}>
               <Table header ={header} columns ={columns} data ={listData}/>
           </div>
           <Modal
-              element = {<FormEmpleado toast={toast} arrayList={arrayList}/>}
+              element = {
+              <FormEmpleado toast={toast}
+                            arrayList={arrayList}
+                            areas={areas}
+                            grupos={grupos}
+                            departamentos={departamentos}
+              />
+          }
           />
           <Toast ref={toast} />
           <ConfirmPopup />

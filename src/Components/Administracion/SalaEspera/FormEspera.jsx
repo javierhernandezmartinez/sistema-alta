@@ -13,12 +13,15 @@ import Services from "../../../Services/Services";
 const getUsuarios = (dispatch)=> {
     Services.getUsuarios().then(res => {
         console.log(res)
-        dispatch(listDataTable(res?.data?.row))
+        if(res.status === 200 && res?.data?.row?.length > 0){
+            dispatch(listDataTable(res?.data?.row))
+        }
     })
 }
 const addUsuario = (dispatch, array, props) => {
     Services.addUsuario(array).then(res => {
             console.log(res)
+        if(res.status === 200) {
             props.toast.current.show(
                 {
                     severity: res.data.message ? 'success' : "error",
@@ -27,11 +30,14 @@ const addUsuario = (dispatch, array, props) => {
             );
             getUsuarios(dispatch)
         }
+
+        }
     )
 }
 const updateUsuario = (dispatch, array, props) => {
     Services.updateUsuario(array).then(res => {
             console.log(res)
+        if(res.status === 200) {
             props.toast.current.show(
                 {
                     severity: res.data.message ? 'success' : "error",
@@ -39,6 +45,8 @@ const updateUsuario = (dispatch, array, props) => {
                     detail: res.data.message ? res.data.message : res.data.errorMessage }
             );
             getUsuarios(dispatch)
+        }
+
         }
     )
 }

@@ -20,10 +20,13 @@ let defaultArray = {
     TIPO: 'Normal',
     STATUS: 1
 }
-const getUsuarios = (dispatch)=>{
+const getInscripciones = (dispatch)=>{
+    dispatch(listDataTable([]))
     Services.getIncripciones().then(res=> {
         console.log("incripciones: ",res)
-        dispatch(listDataTable(res?.data?.row))
+        if(res.status === 200 && res?.data?.row?.length > 0) {
+            dispatch(listDataTable(res?.data?.row))
+        }
     })
 }
 
@@ -31,6 +34,7 @@ const getUsuarios = (dispatch)=>{
 const deleteUsuario = (array, toast, dispatch) => {
     Services.deleteUsuario(array).then(res => {
             console.log(res)
+        if(res.status === 200) {
             toast.current.show(
                 {
                     severity: res.data.message ? 'success' : "error",
@@ -38,7 +42,9 @@ const deleteUsuario = (array, toast, dispatch) => {
                     detail: res.data.message ? res.data.message : res.data.errorMessage
                 }
             );
-            getUsuarios(dispatch)
+            getInscripciones(dispatch)
+        }
+
         }
     )
 }
@@ -51,9 +57,11 @@ const PanelInscripciones = (props) => {
     const [arrayList, setArrayList] = useState(defaultArray)
 
     useEffect(()=>{
-        getUsuarios(dispatch)
+        getInscripciones(dispatch)
         Services.getEmpleados().then(res=> {
-            setEmpleados(formatDropDown(res?.data?.row,'NOMBRE','ID_EMPLEADO'))
+            if(res.status === 200 && res?.data?.row?.length > 0) {
+                setEmpleados(formatDropDown(res?.data?.row,'NOMBRE','ID_EMPLEADO'))
+            }
         })
     },[])
 

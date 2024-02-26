@@ -1,14 +1,17 @@
 const Session = {}
 
 Session.setUser=(data)=>{
-   localStorage.setItem('user', JSON.stringify(data))
+   sessionStorage.setItem('user', JSON.stringify(data))
     window.open("#/perfil","_self")
 }
 Session.getUser=()=>{
-    return JSON.parse(localStorage.getItem('user'))
+    return JSON.parse(sessionStorage.getItem('user'))
+}
+Session.updateUser=(data)=>{
+    sessionStorage.setItem('user', JSON.stringify(data))
 }
 Session.removeUser=()=>{
-    localStorage.removeItem('user')
+    sessionStorage.removeItem('user')
     window.open("#/home", "_self");
 
 }

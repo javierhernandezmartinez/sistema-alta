@@ -16,16 +16,20 @@ let defaultArray = {
     NOMBRE: null,
     STATUS: 1
 }
-const getListRegistros = (dispatch)=>{
+const getDepartamentos = (dispatch)=>{
+    dispatch(listDataTable([]))
     Services.getDepas().then(res=> {
         console.log(res)
-        dispatch(listDataTable(res?.data?.row))
+        if(res.status === 200 && res?.data?.row?.length > 0){
+            dispatch(listDataTable(res?.data?.row))
+        }
     })
 
 }
 const deleteRegistro = (array, toast, dispatch) => {
     Services.deleteDepa(array).then(res => {
             console.log(res)
+        if(res.status === 200) {
             toast.current.show(
                 {
                     severity: res.data.message ? 'success' : "error",
@@ -33,7 +37,9 @@ const deleteRegistro = (array, toast, dispatch) => {
                     detail: res.data.message ? res.data.message : res.data.errorMessage
                 }
             );
-            getListRegistros(dispatch)
+            getDepartamentos(dispatch)
+        }
+
         }
     )
 }
@@ -45,7 +51,7 @@ const PanelDepartamento = (props) => {
 
     useEffect(()=>{
         // initNegociosList(dispatch, api)
-        getListRegistros(dispatch)
+        getDepartamentos(dispatch)
     },[])
 
     const listData = useSelector(state => state.rootAdmin.listDataTableReducer)

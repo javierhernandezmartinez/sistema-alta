@@ -1,16 +1,7 @@
 #register-modul{
-  .title-login{
-    color: whitesmoke;
-    font-size: 20pt;
-    font-weight: bold;
-    text-align: start;
-  }
 
   .panel-login{
-    width: 60%;
     height: auto;
-    min-width: 600px;
-    background: rgba(255, 255, 255, .1);
     margin: auto;
     display: grid;
     align-self: center;
@@ -31,21 +22,17 @@
       }
     }
     .panel-form{
-      background: #e8f0fe1c;
       border-radius: 0 8px 8px 0;
       padding: 0.5rem;
-
     }
 
     .p-inputgroup{
-      height: 40px;
       margin-top: 10px;
       margin-bottom: 10px;
 
       span{
         background: #00031e;
         color: #0ae98a;
-
       }
     }
 
@@ -104,6 +91,14 @@
       font-size: 40pt !important;
       object-fit: cover;
       margin: auto;
+    }
+  }
+  @media (max-width: 576px){
+    .panel-img{
+      display: none !important;
+    }
+    .panel-login{
+      background: transparent !important;
     }
   }
 }

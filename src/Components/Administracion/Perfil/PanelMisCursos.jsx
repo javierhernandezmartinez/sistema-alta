@@ -7,10 +7,6 @@ import cursos from "../../../Assets/json/cursos.json"
 import Services from "../../../Services/Services";
 import Session from "../../../Services/Session";
 
-
-
-
-
 const FormMisDatos = (props) => {
     const user = Session.getUser()
     console.log("INFO: User ", !!user)
