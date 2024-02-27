@@ -5,59 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ba113a02-797b-42a3-8e26-81d7a6209197" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Components/CardPanel.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/InputColorPicker.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/InputTypeDate.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/InputTypeNumber.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/InputTypePassword.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/InputTypeSelect.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/InputTypeSwitch.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/InputTypeText.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Global/GlobalFunctions.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_1.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sistema-alta.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sistema-alta.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/static/css/main.288fbbf8.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/docs/static/css/main.288fbbf8.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/static/css/main.a2dc364a.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/docs/static/css/main.a2dc364a.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/Administracion/Areas/FormArea.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Administracion/Areas/FormArea.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/Administracion/Areas/PanelArea.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Administracion/Areas/PanelArea.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/Administracion/Cursos/FormCurso.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Administracion/Cursos/FormCurso.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/Administracion/Cursos/PanelCurso.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Administracion/Cursos/PanelCurso.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/Administracion/Departamentos/FormDepartamento.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Administracion/Departamentos/FormDepartamento.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/Administracion/Departamentos/PanelDepartamento.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Administracion/Departamentos/PanelDepartamento.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/Administracion/Empleado/FormEmpleado.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Administracion/Empleado/FormEmpleado.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/Administracion/Empleado/PanelEmpleado.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Administracion/Empleado/PanelEmpleado.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/Administracion/Grupos/FormGrupo.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Administracion/Grupos/FormGrupo.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/Administracion/Grupos/PanelGrupo.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Administracion/Grupos/PanelGrupo.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/Administracion/Inscripciones/PanelInscripciones.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Administracion/Inscripciones/PanelInscripciones.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/Administracion/Perfil/PanelMisCursos.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Administracion/Perfil/PanelMisCursos.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/Administracion/Perfil/PanelMisDatos.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Administracion/Perfil/PanelMisDatos.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/Administracion/Programacion/FormProgramacion.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Administracion/Programacion/FormProgramacion.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/Administracion/Programacion/PanelProgramacion.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Administracion/Programacion/PanelProgramacion.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/Administracion/SalaEspera/FormEspera.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Administracion/SalaEspera/FormEspera.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/Administracion/SalaEspera/PanelEspera.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Administracion/SalaEspera/PanelEspera.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/Administracion/Usuarios/FormUsuarios.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Administracion/Usuarios/FormUsuarios.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/Administracion/Usuarios/PanelUsuario.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Administracion/Usuarios/PanelUsuario.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/BarMenu.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/BarMenu.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/Button.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/InputTypeButton.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/InputPassword.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/InputText.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Modules/Administation/Administration.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modules/Administation/Administration.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Modules/Home/Home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modules/Home/Home.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Modules/Login/Login.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modules/Login/Login.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Modules/Perfil/Perfil.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modules/Perfil/Perfil.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Modules/Register/Register.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modules/Register/Register.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Services/Services.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/Services.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Services/Session.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/Session.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Styles/Administration.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/Styles/Administration.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Styles/Components.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/Styles/Components.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Styles/Home.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/Styles/Home.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Styles/Login.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/Styles/Login.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Styles/Perfil.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/Styles/Perfil.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Styles/Register.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/Styles/Register.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,12 +23,26 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "javierhernandezmartinez"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="cf8038b2-ad4a-4d24-9eaa-cc04ab03217d" />
+        <option name="url" value="https://github.com/javierhernandezmartinez/sistema-alta.git" />
+      </UrlAndAccount>
+    </option>
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 7
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
   <component name="ProjectId" id="2XQbPxkyJXUxvNjKtFrCKwsAet4" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -90,6 +53,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
     "last_opened_file_path": "E:/Users/10039732/Documents/PROYECTOS/SRV-BOFF-SFE-MICROSERVICE-PORTALINTEGRALFE",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
