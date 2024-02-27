@@ -2,10 +2,9 @@ import {Button} from 'primereact/button';
 import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import CarouselCursos from "../../../Modules/Home/CarouselCursos";
-import img_perfil from "../../../Assets/Images/perfil.jpg"
-import cursos from "../../../Assets/json/cursos.json"
 import Services from "../../../Services/Services";
 import Session from "../../../Services/Session";
+import logoBM from "../../../Assets/logoBM.png";
 
 const FormMisDatos = (props) => {
     const user = Session.getUser()
@@ -24,12 +23,24 @@ const FormMisDatos = (props) => {
                 }
         })
     }
+    const getCursosDisponibles=()=>{
+        Services.getCursosDisponibles({ID_USUARIO:user.ID_USUARIO})
+            .then(res=>{
+                console.log("cursos disponibles::", res)
+                if(res?.status === 200){
+                    if(res?.data?.row?.length > 0){
+                        setMisCursos(res?.data?.row)
+                    }
+                }
+            })
+    }
     const addInscripcion = (data) => {
         Services.addInscripcion(data)
             .then(res=>{
                 console.log(res)
                 if(res?.status === 200){
                     getMisCursos()
+                    getCursosDisponibles()
                 }
             })
     }
@@ -39,7 +50,7 @@ const FormMisDatos = (props) => {
             <div className={"col-md-4"}>
                 <div className={"row div-card"}>
                     <div className={"col-md-5"}>
-                        <img src={item?.image}/>
+                        <img src={item?.BANNER || logoBM}/>
                     </div>
                     <div className={"col-md-7"}>
                         <div className={"row"}>
@@ -63,6 +74,7 @@ const FormMisDatos = (props) => {
 
     useEffect(()=>{
         getMisCursos()
+        getCursosDisponibles()
     },[])
 
     const productTemplate = (product) => {

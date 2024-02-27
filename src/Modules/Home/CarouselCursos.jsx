@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from 'primereact/button';
 //import { Carousel } from 'primereact/carousel';
-import listCursos from '../../Assets/json/cursos.json';
 import "../../Styles/Home.scss"
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import Services from "../../Services/Services";
+import logoBM from "../../Assets/logoBM.png";
 
 const  CarouselCursos =(props)=> {
     const [products, setProducts] = useState([]);
@@ -48,7 +48,7 @@ const  CarouselCursos =(props)=> {
             <div className="border-1 surface-border border-round m-2 text-center py-5 px-3 ">
                 <p style={{color: "white"}}>{product?.ID_PROGRAMACION}</p>
                 <div className="mb-3 img-carousel">
-                    <img src={product?.image}/>
+                    <img src={product?.BANNER || logoBM} style={{width: "100%"}}/>
                 </div>
                 <div>
                     <h4 className="mb-1 title-carusel">{product?.NOMBRE}</h4>
@@ -79,7 +79,7 @@ const  CarouselCursos =(props)=> {
 
         >
             {
-                products.map(product=>(
+                props?.cursos?.map(product=>(
                     productTemplate(product)
                 ))
             }
