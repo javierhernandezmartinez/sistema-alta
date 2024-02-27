@@ -11,6 +11,7 @@ import logoBM from "../../../Assets/logoBM.png";
 import {BsFillCloudArrowUpFill} from "react-icons/bs";
 import GlobalFunctions from "../../../Global/GlobalFunctions";
 import {PiTrash} from "react-icons/pi";
+import {Tooltip} from "primereact/tooltip";
 
 const getCursos = (dispatch)=>{
     Services.getCursos().then(res=> {
@@ -150,7 +151,6 @@ const FormCurso = (props) => {
             </div>
             <div className={"col-12 col-sm-12 col-md-12"}>
                 <label className={"input-title"}>Banner</label>
-
                 <div className={"img-banner"}>
                     <img src={arrayList?.BANNER || logoBM} alt={""}/>
 
@@ -158,12 +158,26 @@ const FormCurso = (props) => {
                                         <span>
                                             <div className={"input-file"}>
                                                 <div className={"div-icons"}>
-                                                     <label htmlFor={"file-imgPerfil"}>
+                                                    <Tooltip target=".upload" mouseTrack mouseTrackLeft={10} />
+                                                     <label htmlFor={"file-imgPerfil"}
+                                                            className={"upload"}
+                                                            data-pr-tooltip="Seleccionar imagen"
+                                                     >
                                                         <BsFillCloudArrowUpFill/>
                                                     </label>
-                                                    <label onClick={()=>{onChange(null, "BANNER")}}>
-                                                        <PiTrash />
-                                                    </label>
+                                                    {
+                                                        arrayList?.BANNER?
+                                                            <>
+                                                                <Tooltip target=".clean" mouseTrack mouseTrackLeft={10} />
+                                                                <label  className={"clean"}
+                                                                        data-pr-tooltip="Quitar imagen"
+                                                                        onClick={()=>{onChange(null, "BANNER")}}
+                                                                >
+                                                                    <PiTrash />
+                                                                </label>
+                                                            </>: null
+                                                    }
+
                                                 </div>
                                                     <input type={"file"}
                                                            id={"file-imgPerfil"}

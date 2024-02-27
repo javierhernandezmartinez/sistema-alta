@@ -124,6 +124,9 @@ Services.addInscripcion = (data) => {
 Services.getMisCursos = (data) => {
     return Services.axios('post',"/perfil/mis_cursos", data)
 }
+Services.getCursosDisponibles = (data) => {
+    return Services.axios('post',"/perfil/cursos/disponibles", data)
+}
 
 Services.updateFotoPerfil = (data) => {
     return Services.axios('post',"/perfil/update/foto/perfil", data)
