@@ -5,12 +5,13 @@ import CarouselCursos from "../../../Modules/Home/CarouselCursos";
 import Services from "../../../Services/Services";
 import Session from "../../../Services/Session";
 import logoBM from "../../../Assets/logoBM.png";
+import {listDataTable} from "../../../App/Features/AdministrationSlice";
 
 const FormMisDatos = (props) => {
     const user = Session.getUser()
     console.log("INFO: User ", !!user)
-    const dispatch = useDispatch()
     const [misCursos, setMisCursos] = useState([])
+    const [cursos, setCursos] = useState([])
 
     const getMisCursos=()=>{
         Services.getMisCursos({ID_USUARIO:user.ID_USUARIO})
@@ -23,16 +24,13 @@ const FormMisDatos = (props) => {
                 }
         })
     }
-    const getCursosDisponibles=()=>{
-        Services.getCursosDisponibles({ID_USUARIO:user.ID_USUARIO})
-            .then(res=>{
-                console.log("cursos disponibles::", res)
-                if(res?.status === 200){
-                    if(res?.data?.row?.length > 0){
-                        setMisCursos(res?.data?.row)
-                    }
-                }
-            })
+    const getCursosDisponibles = (dispatch)=>{
+        Services.getCursos().then(res=> {
+            console.log(res)
+            if(res.status === 200 && res?.data?.row?.length > 0){
+                setCursos(res?.data?.row)
+            }
+        })
     }
     const addInscripcion = (data) => {
         Services.addInscripcion(data)
@@ -97,14 +95,23 @@ const FormMisDatos = (props) => {
                 <p className={"title-seccion"}>{props?.title}</p>
             </div>
             <diV className={"col-md-12"}>
-                <CarouselCursos cursos={misCursos}/>
+                {
+                    misCursos.length === 0 ?
+                        <div className={"not-cursos"}>
+                            <p>
+                                No te has inscrito a ningún curso, decidete y comienza el reto.👇
+                            </p>
+                        </div>
+                        : <CarouselCursos cursos={misCursos}/>
+                }
+
             </diV>
             <div className={"col-md-12"}>
                 <p className={"title-seccion"}>Cursos disponibles</p>
             </div>
             <diV className={"col-md-12"}>
                 <div className={"row"}>
-                    {misCursos.map(item=>(
+                    {cursos.map(item=>(
                         cardCurso(item)
                     ))}
                 </div>
