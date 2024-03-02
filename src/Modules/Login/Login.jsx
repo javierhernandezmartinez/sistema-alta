@@ -2,12 +2,9 @@ import BarMenu from "../../Components/BarMenu";
 import {Button} from "primereact/button";
 import imgL2 from "../../Assets/img_1.png";
 import logo from "../../Assets/img-logo.png"
-import {InputText} from "primereact/inputtext";
-import {Password} from "primereact/password";
 import Container from "../../Components/Container";
 import Services from "../../Services/Services";
 import {useEffect, useState} from "react";
-import {useDispatch} from "react-redux";
 import Session from "../../Services/Session";
 import CardPanel from "../../Components/CardPanel";
 import InputTypeText from "../../Components/InputTypeText";
@@ -16,7 +13,6 @@ import InputTypePassword from "../../Components/InputTypePassword";
 const Login = () => {
     const [user, setUserL] = useState(null)
     const [message, setMessage] = useState('')
-    const dispatch = new useDispatch()
     const onChange = (e,campo) => {
         user[campo] = e
         setUserL({...user})

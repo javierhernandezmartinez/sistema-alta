@@ -1,25 +1,12 @@
 import { Button } from 'primereact/button';
 import {useDispatch, useSelector} from "react-redux";
-import axios from "axios";
 import Table from "../../Table";
-import Modal from "../../Modal";
 import {listDataTable} from "../../../App/Features/AdministrationSlice";
 import {useEffect, useRef, useState} from "react";
-import {openModalForm} from "../../../App/Features/rootModalFormSlice";
 import {Toast} from "primereact/toast";
 import {ConfirmPopup,  confirmPopup} from "primereact/confirmpopup";
 import Services from "../../../Services/Services";
-import {IoArrowRedo} from "react-icons/io5";
 
-let defaultArray = {
-    ID_USUARIO: null,
-    ID_EMPLEADO: null,
-    FOTO: null,
-    USER: null,
-    PASS: null,
-    TIPO: 'Normal',
-    STATUS: 1
-}
 const getInscripciones = (dispatch)=>{
     dispatch(listDataTable([]))
     Services.getIncripciones().then(res=> {
@@ -31,8 +18,8 @@ const getInscripciones = (dispatch)=>{
 }
 
 
-const deleteUsuario = (array, toast, dispatch) => {
-    Services.deleteUsuario(array).then(res => {
+const deleteInscripcion = (array, toast, dispatch) => {
+    Services.deleteInscripcion({ID_INSCRIPCION: array.ID_INSCRIPCION}).then(res => {
             console.log(res)
         if(res.status === 200) {
             toast.current.show(
@@ -52,17 +39,9 @@ const deleteUsuario = (array, toast, dispatch) => {
 const PanelInscripciones = (props) => {
     let dispatch = useDispatch()
     let toast= useRef(null);
-    const [empleados, setEmpleados] = useState([])
-    const [selectedEmpleado, setSelectedEmpleado] = useState(null)
-    const [arrayList, setArrayList] = useState(defaultArray)
 
     useEffect(()=>{
         getInscripciones(dispatch)
-        Services.getEmpleados().then(res=> {
-            if(res.status === 200 && res?.data?.row?.length > 0) {
-                setEmpleados(formatDropDown(res?.data?.row,'NOMBRE','ID_EMPLEADO'))
-            }
-        })
     },[])
 
     const listData = useSelector(state => state.rootAdmin.listDataTableReducer)
@@ -70,22 +49,9 @@ const PanelInscripciones = (props) => {
     const header = <div className="table-header">
                                 <span className="table-title">{props.title}</span>
                             </div>
-    const formatDropDown = (list, name, code) => {
-        list = list.map(item=>{
-            return {
-                name: `${item[code]} - ${item[name]}`,
-                code: item[code]
-            }
-        })
-        return list
-    }
-    const searchOption = (array, valor) => {
-        let option = array.filter(item => item.code === valor)
-        return option[0]
-    }
     const bodyColum=(rowData) => {
         const accept = () => {
-            deleteUsuario(rowData, toast, dispatch)
+            deleteInscripcion(rowData, toast, dispatch)
         };
 
         const reject = () => {
@@ -123,8 +89,6 @@ const PanelInscripciones = (props) => {
             {field: "ID_PROGRAMACION", header: "CAPACITADOR"},
             {header: "Option", body: bodyColum}
         ]
-
-
 
   return(
       <div  className={"row"}>

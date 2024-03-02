@@ -93,7 +93,7 @@
     .div-icons{
       display: flex;
       width: 90px;
-      justify-content: space-between;
+      justify-content: space-evenly;
     }
     span{
       width: 100%;
@@ -113,7 +113,6 @@
     display: flex;
     left: 0px;
     cursor: pointer;
-    transition-duration: 200ms;
     background: rgba(0, 0, 0, 0.7);
 
     span{

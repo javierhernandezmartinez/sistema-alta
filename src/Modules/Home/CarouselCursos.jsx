@@ -45,17 +45,16 @@ const  CarouselCursos =(props)=> {
     const productTemplate = (product) => {
 
         return (
-            <div className="border-1 surface-border border-round m-2 text-center py-5 px-3 ">
-                <p style={{color: "white"}}>{product?.ID_PROGRAMACION}</p>
+            <div className="car-cursos border-1 surface-border border-round m-2 text-center py-5 px-3 ">
+                <p className={"title-carusel"} >{product?.NOMBRE}</p>
                 <div className="mb-3 img-carousel">
                     <img src={product?.BANNER || logoBM} style={{width: "100%"}}/>
                 </div>
                 <div>
-                    <h4 className="mb-1 title-carusel">{product?.NOMBRE}</h4>
                     <h6 className="mt-0 mb-3 desc-carousel">{product?.DESCRIPCION}</h6>
-                    <div className="mt-5 flex flex-wrap gap-2 justify-content-center">
+                    {/*<div className="mt-5 flex flex-wrap gap-2 justify-content-center">
                         <Button icon="pi pi-pencil" label="Inscribirse" className={"b-carousel"} onClick={()=>window.open("#/login", "_self")}/>
-                    </div>
+                    </div>*/}
                 </div>
             </div>
         );
