@@ -92,7 +92,7 @@ const FormMisDatos = (props) => {
                                     <p className={"title-card"}>{item.CURSO}</p>
                                 </div>
                                 <div className={"col-md-12"}>
-                                    <p className={"description-card"}>{item.DESCRIPCION}</p>
+                                    <p className={"description-card"}>{item.DESCRIPCION.substr(0,80)}{item.DESCRIPCION.length > 80 ? "..." : ""}</p>
                                 </div>
                             </div>
                         </div>
@@ -111,6 +111,10 @@ const FormMisDatos = (props) => {
                                     </p>
                                 </div>
                             </div>
+                        </div>
+
+                        <div className={"col-md-12"}>
+                            <p className={"capacitador-card"}>Por {item.CAPACITADOR}</p>
                         </div>
 
 
