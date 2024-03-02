@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from 'primereact/button';
-//import { Carousel } from 'primereact/carousel';
 import "../../Styles/Home.scss"
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
-import Services from "../../Services/Services";
 import logoBM from "../../Assets/logoBM.png";
+import Services from "../../Services/Services";
 
 const  CarouselCursos =(props)=> {
-    const [products, setProducts] = useState([]);
     const responsive = {
         superLargeDesktop: {
             // the naming can be any, depends on you.
@@ -28,33 +26,74 @@ const  CarouselCursos =(props)=> {
             items: 1
         }
     };
-    const getMisCursos=()=>{
-        Services.getMisCursos({ID_USUARIO:18})
-            .then(res=>{
-                console.log("mis cursos::", res)
-                if(res?.status === 200){
-                    if(res?.data?.row?.length > 0){
-                        setProducts(res?.data?.row)
-                    }
-                }
-            })
-    }
-    useEffect(() => {
-        getMisCursos()
-    }, []);
-    const productTemplate = (product) => {
-
+    const productTemplate = (item) => {
         return (
             <div className="car-cursos border-1 surface-border border-round m-2 text-center py-5 px-3 ">
-                <p className={"title-carusel"} >{product?.NOMBRE}</p>
-                <div className="mb-3 img-carousel">
-                    <img src={product?.BANNER || logoBM} style={{width: "100%"}}/>
+                <div className={"row row-target"}>
+                    <div className={"col-12 col-sm-12 col-md-12 col-lg-12"}>
+                    <div className={"div-card"}>
+                        <div className={"row"} style={{height: "100%", alignContent: "space-between"}}>
+
+                            <div className={"col-5 col-sm-5 col-md-5 col-lg-5"} style={{alignSelf: "center"}}>
+                                <img src={item?.BANNER || logoBM}/>
+                            </div>
+
+                            <div className={"col-7 col-sm-7 col-md-7 col-lg-7"}>
+                                <div className={"row"}>
+                                    <div className={"col-md-12"}>
+                                        <p className={"title-card"}>{item.NOMBRE}</p>
+                                    </div>
+                                    <div className={"col-md-12"}>
+                                        <p className={"description-card"}>{item.DESCRIPCION.substr(0,80)}{item.DESCRIPCION.length > 80 ? "..." : ""}</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className={"col-md-12"}>
+                                <div className={"row"}>
+                                    <div className={"col-auto col-sm-auto col-md-12 col-lg-auto"}>
+                                        <p className={"horario"}>
+                                            <label>Del</label> <span>{item.F_INICIO.split("T")[0]}</span> al <span>{item.F_FIN.split("T")[0]}</span>
+                                        </p>
+                                    </div>
+                                    <div className={"col-auto col-sm-auto col-md-12 col-lg-auto"}>
+
+                                        <p className={"horario"}>
+                                            <label>Horario: </label> <span>{item.H_INICIO.split(":")[0]}:{item.H_INICIO.split(":")[1]} hrs.</span> a <span>{item.H_FIN.split(":")[0]}:{item.H_FIN.split(":")[0]} hrs.</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className={"col-md-12"}>
+                                <p className={"capacitador-card"}>Por {item.CAPACITADOR}</p>
+                            </div>
+
+
+                            <div className={"col-md-12"}>
+                                <div className={"row card-options"} style={{justifyContent: "end"}}>
+                                    <div className={"col-6 col-sm-auto col-md-auto"}>
+                                        <label onClick={()=>{
+                                            console.log("detalle: ", item)
+                                            props.verMas(item)
+                                        }}>
+                                            Ver mas...
+                                        </label>
+                                    </div>
+                                    <div className={"col-6 col-sm-auto col-md-auto"}>
+                                        <label onClick={(event)=>{
+                                            console.log("darse de baja")
+                                            props.deleteInscripcion(event,item)
+                                        }}>
+                                            Quitar
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
-                <div>
-                    <h6 className="mt-0 mb-3 desc-carousel">{product?.DESCRIPCION}</h6>
-                    {/*<div className="mt-5 flex flex-wrap gap-2 justify-content-center">
-                        <Button icon="pi pi-pencil" label="Inscribirse" className={"b-carousel"} onClick={()=>window.open("#/login", "_self")}/>
-                    </div>*/}
                 </div>
             </div>
         );
@@ -74,15 +113,13 @@ const  CarouselCursos =(props)=> {
                   removeArrowOnDeviceType={["tablet", "mobile"]}
                   deviceType={props?.deviceType}
                   dotListClass="custom-dot-list-style"
-                  itemClass="carousel-item-padding-40-px"
-
+                  prodClass="carousel-item-padding-40-px"
         >
             {
-                props?.cursos?.map(product=>(
-                    productTemplate(product)
+                props?.cursos?.map(item=>(
+                    productTemplate(item)
                 ))
             }
-
         </Carousel>
     )
 }

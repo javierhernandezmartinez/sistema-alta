@@ -4,16 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ba113a02-797b-42a3-8e26-81d7a6209197" name="Changes" comment="cambios">
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+    <list default="true" id="ba113a02-797b-42a3-8e26-81d7a6209197" name="Changes" comment="cambios chidos">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/Administracion/Inscripciones/PanelInscripciones.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Administracion/Inscripciones/PanelInscripciones.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/Administracion/Perfil/PanelMiAgenda.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Administracion/Perfil/PanelMiAgenda.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/Administracion/Perfil/PanelMisCursos.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Administracion/Perfil/PanelMisCursos.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/Administracion/SalaEspera/FormEspera.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/Administracion/SalaEspera/PanelEspera.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Administracion/SalaEspera/PanelEspera.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/Modal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Modal.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Modules/Home/CarouselCursos.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modules/Home/CarouselCursos.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Services/Services.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/Services.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Styles/Calendar.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/Styles/Calendar.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Styles/PanelMisCursos.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/Styles/PanelMisCursos.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -88,7 +84,7 @@
       <workItem from="1707877014449" duration="101890000" />
       <workItem from="1709068433413" duration="1420000" />
       <workItem from="1709145571155" duration="17000" />
-      <workItem from="1709308802391" duration="22407000" />
+      <workItem from="1709308802391" duration="37132000" />
     </task>
     <task id="LOCAL-00001" summary="cambios">
       <option name="closed" value="true" />
@@ -98,7 +94,15 @@
       <option name="project" value="LOCAL" />
       <updated>1708408366173</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="cambios chidos">
+      <option name="closed" value="true" />
+      <created>1709351666220</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1709351666220</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -117,6 +121,19 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="cambios" />
-    <option name="LAST_COMMIT_MESSAGE" value="cambios" />
+    <MESSAGE value="cambios chidos" />
+    <option name="LAST_COMMIT_MESSAGE" value="cambios chidos" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/Components/Administracion/Perfil/PanelMiAgenda.jsx</url>
+          <line>82</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

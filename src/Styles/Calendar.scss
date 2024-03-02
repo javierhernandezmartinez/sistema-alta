@@ -84,13 +84,33 @@
   .rbc-off-range-bg {
     background: #00727985;
   }
+
+  .rbc-show-more{
+    background-color: transparent;
+  }
 }
 
 .containerEvent{
   width: 98%;
-  border-radius: 4px;
   margin: auto;
+  border-radius: 4px;
+  margin-bottom: 0.2rem;
+  text-align: center;
   em{
-    color: white;
+    color: initial;
   }
+}
+.containerEvent:hover{
+  cursor: pointer;
+  scale: 103%;
+}
+
+.rbc-overlay {
+  position: absolute;
+  z-index: 5;
+  border: 1px solid #e5e5e5;
+  background-color: #002136;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
+  padding: 10px;
+  color: whitesmoke;
 }
