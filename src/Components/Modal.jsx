@@ -7,7 +7,7 @@ const Modal = (props) => {
     const dispatch = useDispatch()
 
     return(
-      <Dialog header="Nuevo registro"
+      <Dialog header={props?.header || "Nuevo registro"}
               visible={modalOpen} style={{ width: '50vw' }}
               onHide={() => {dispatch(closeModalForm())}}
               className={"ad-modal"}

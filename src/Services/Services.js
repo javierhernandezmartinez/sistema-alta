@@ -117,17 +117,15 @@ Services.getIncripciones = () => {
     return Services.axios('get',"/get/inscripciones")
 }
 Services.addInscripcion = (data) => {
-    console.log(data)
     return Services.axios('post',"/add/inscripcion", data)
+}
+Services.deleteInscripcion = (data) => {
+    return Services.axios('post',"/delete/inscripcion", data)
 }
 
 Services.getMisCursos = (data) => {
     return Services.axios('post',"/perfil/mis_cursos", data)
 }
-Services.getCursosDisponibles = (data) => {
-    return Services.axios('post',"/perfil/cursos/disponibles", data)
-}
-
 Services.updateFotoPerfil = (data) => {
     return Services.axios('post',"/perfil/update/foto/perfil", data)
 }
@@ -139,8 +137,12 @@ Services.updatePassPerfil = (data) => {
     console.log(data)
     return Services.axios('post',"/perfil/update/pass", data)
 }
+
 Services.getSalaEspera = () => {
     return Services.axios('get',"/get/sala_espera")
+}
+Services.deleteSalaEspera = (data) => {
+    return Services.axios('post',"/delete/sala_espera", data)
 }
 
 
