@@ -2,7 +2,11 @@
 .car-cursos{
   width: 100%;
   height: 100%;
-  border: 1px solid whitesmoke;
+
+  .row-target{
+    width: 110%;
+    height: 100%;
+  }
 
   .img-carousel{
     width: 100%;
@@ -16,9 +20,13 @@
   }
   .title-carusel{
     color: #0ae98a;
+    font-size: 15pt;
+    font-weight: bold;
   }
   .desc-carousel{
+    width: 80%;
     color: whitesmoke;
+    margin: auto;
   }
   .p-carousel-item{
     background: #11164059;
@@ -37,16 +45,16 @@
 //CARD
 .div-card{
   width: 100%;
-  height: 95%;
-  border-radius: 8px;
-  padding: 0.5rem;
+  height: 90%;
+  //border-radius: 8px;
+  padding: 1rem;
   margin-bottom: 1rem;
   color: whitesmoke;
   background: #002137ab;
 
   img{
     width: 100%;
-    height: 100%;
+    height: 100px;
     object-fit: scale-down;
     border-radius: 5px;
   }
@@ -104,3 +112,16 @@
 .div-card:hover{
   scale: 101%;
 }
+
+.div-card-modal{
+  height: 100% !important;
+  .subtitle-modal{
+    font-size: 11pt;
+    font-weight: 600;
+    color: whitesmoke;
+  }
+}
+.div-card-modal:hover{
+  scale: 100%;
+}
+
