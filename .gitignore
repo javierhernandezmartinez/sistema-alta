@@ -29,3 +29,4 @@ certs/cert.crt
 # directorys
 .idea
 /.idea
+.idea/workspace.xml
