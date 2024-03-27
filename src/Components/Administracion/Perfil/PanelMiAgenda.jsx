@@ -9,7 +9,6 @@ import Modal from "../../Modal";
 import logoBM from "../../../Assets/logoBM.png";
 import {Divider} from "primereact/divider";
 import {closeModalForm, openModalForm} from "../../../App/Features/rootModalFormSlice";
-import events from '../../../Assets/json/events'
 
 //moment.tz.setDefault('America/Mexico_City')
 const mLocalizer = momentLocalizer(moment)
@@ -83,7 +82,6 @@ const eventForDay = (events) => {
 
     console.log('List Event full day', event)
     return event
-
 }
 export default function PanelMiAgenda ({
                           localizer = mLocalizer,
@@ -200,7 +198,7 @@ export default function PanelMiAgenda ({
                                     </div>
                                     <div className={"col-auto col-sm-6 col-md-6 col-lg-6"}>
                                         <p className={"horario"}>
-                                            <label>Horario: </label> <span>{item?.H_INICIO?.split(":")[0]}:{item?.H_INICIO?.split(":")[1]} hrs.</span> a <span>{item.H_FIN?.split(":")[0]}:{item.H_FIN?.split(":")[0]} hrs.</span>
+                                            <label>Horario: </label> <span>{item?.H_INICIO?.split(":")[0]}:{item?.H_INICIO?.split(":")[1]} hrs.</span> a <span>{item.H_FIN?.split(":")[0]}:{item.H_FIN?.split(":")[1]} hrs.</span>
                                         </p>
                                     </div>
                                 </div>
@@ -256,27 +254,6 @@ export default function PanelMiAgenda ({
         <div className={"row row-form"}>
             <div className={"col-md-12"}>
                 <p className={"title-seccion"}>{props?.title}</p>
-            </div>
-            <div className={"col-md-12"}>
-                <div className={"calendar"} style={{ height: 500 }}>
-                    <Calendar
-                        //components={components}
-                        culture={culture}
-                        events={events}
-                        //events={eventos}
-                        localizer={localizer}
-                        showMultiDayTimes
-                        views={views}
-                        defaultView={Views.MONTH}
-                        selectable
-                        timeslots={8}
-                        step={60}
-                        messages={messages}
-                        dayLayoutAlgorithm="no-overlap"
-                        rtl={rightToLeft}
-                        popup
-                    />
-                </div>
             </div>
             <div className={"col-md-12"}>
                 <div className={"calendar"} style={{ height: 500 }}>

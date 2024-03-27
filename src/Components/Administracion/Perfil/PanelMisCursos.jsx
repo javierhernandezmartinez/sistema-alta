@@ -110,7 +110,7 @@ const FormMisDatos = (props) => {
                                 <div className={"col-auto col-sm-auto col-md-12 col-lg-auto"}>
 
                                     <p className={"horario"}>
-                                        <label>Horario: </label> <span>{item.H_INICIO.split(":")[0]}:{item.H_INICIO.split(":")[1]} hrs.</span> a <span>{item.H_FIN.split(":")[0]}:{item.H_FIN.split(":")[0]} hrs.</span>
+                                        <label>Horario: </label> <span>{item.H_INICIO.split(":")[0]}:{item.H_INICIO.split(":")[1]} hrs.</span> a <span>{item.H_FIN.split(":")[0]}:{item.H_FIN.split(":")[1]} hrs.</span>
                                     </p>
                                 </div>
                             </div>
@@ -178,7 +178,7 @@ const FormMisDatos = (props) => {
                                   </div>
                                   <div className={"col-auto col-sm-6 col-md-6 col-lg-6"}>
                                       <p className={"horario"}>
-                                          <label>Horario: </label> <span>{item?.H_INICIO?.split(":")[0]}:{item?.H_INICIO?.split(":")[1]} hrs.</span> a <span>{item.H_FIN?.split(":")[0]}:{item.H_FIN?.split(":")[0]} hrs.</span>
+                                          <label>Horario: </label> <span>{item?.H_INICIO?.split(":")[0]}:{item?.H_INICIO?.split(":")[1]} hrs.</span> a <span>{item.H_FIN?.split(":")[0]}:{item.H_FIN?.split(":")[1]} hrs.</span>
                                       </p>
                                   </div>
                               </div>

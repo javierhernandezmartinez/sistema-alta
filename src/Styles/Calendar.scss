@@ -29,6 +29,12 @@
     font-family: var(--family);
     color: #22c9d3;
   }
+  .rbc-toolbar {
+    white-space: nowrap;
+    width: 100%;
+    overflow: auto;
+    justify-content: start;
+  }
   .rbc-month-view {
     position: relative;
     border: 1px solid #22c9d3 ;
@@ -47,7 +53,7 @@
     flex: 1 0;
     text-overflow: ellipsis;
     white-space: nowrap;
-    padding: 0 3px;
+    padding: 0 0 10px;
     text-align: center;
     vertical-align: middle;
     font-weight: bold;

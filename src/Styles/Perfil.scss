@@ -75,10 +75,12 @@
 }
 
 .input-file{
-  width: fit-content;
+  width: 100%;
+  height: 100%;
 
   label{
-    width: 35px;
+    width: 100%;
+    height: 100%;
     text-align: start;
     cursor: pointer;
     display: flex;
