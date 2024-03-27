@@ -9,6 +9,7 @@ import Modal from "../../Modal";
 import logoBM from "../../../Assets/logoBM.png";
 import {Divider} from "primereact/divider";
 import {closeModalForm, openModalForm} from "../../../App/Features/rootModalFormSlice";
+import events from '../../../Assets/json/events'
 
 //moment.tz.setDefault('America/Mexico_City')
 const mLocalizer = momentLocalizer(moment)
@@ -29,15 +30,60 @@ const lang = {
         showMore: (total) => `+${total} más`,
     }
 }
-const formatDate = (date, time) => {
-    let y = date.split('T')[0].split('-')[0]
-    let m = date.split('T')[0].split('-')[1]
-    let d = date.split('T')[0].split('-')[2]
-    let hh = time.split(':')[0]
-    let mm = time.split(':')[1]
-    let ss = time.split(':')[2]
-    console.log("aqui toy",new Date(y, m, d, hh, mm, ss))
-    return new Date(y, m, d, hh, mm, ss)
+
+const difFechas = (f_inicio, f_fin) => {
+    var fechaInicio = new Date(f_inicio).getTime();
+    var fechaFin    = new Date(f_fin).getTime();
+
+    var diff = fechaFin - fechaInicio;
+    let diferencia =diff/(1000*60*60*24)
+    console.log( diferencia);
+    return diferencia
+}
+const eventForDay = (events) => {
+  let event = []
+
+    events.map(item=>{
+        console.log('--F_INICIO: ', item.F_INICIO, 'F_FIN: ', item.F_FIN)
+        //F_INICIO:  2024-02-20T06:00:00.000Z F_FIN:  2024-02-22T06:00:00.000Z
+        let diff = new Date(item.F_FIN).getTime() - new Date(item.F_INICIO).getTime();
+        let diferencia =diff/(1000*60*60*24)
+        console.log(diferencia)
+        let fecha = new Date(item.F_INICIO)
+        console.log('Fecha inicio:', fecha)
+        event.push(
+            {
+                ...item,
+                title: item?.NOMBRE,
+                //start: `${item.F_INICIO.split("T")[0]}T${item.H_INICIO}.000Z`,
+                //end: `${item.F_FIN.split("T")[0]}T${item.H_FIN}.000Z`,
+                start:new Date(`${moment(fecha).format("YYYY-MM-DD")}T${item.H_INICIO}.000`),
+                end:new Date(`${moment(fecha).format("YYYY-MM-DD")}T${item.H_FIN}.000`),
+                allDay: false,
+            }
+        )
+
+        for (let i = 0; i < diferencia; i++){
+            fecha.setDate(fecha.getDate()+1)
+            console.log(moment(fecha).format("YYYY-MM-DD"))
+
+            event.push(
+                {
+                    ...item,
+                    title: item?.NOMBRE,
+                    //start: `${item.F_INICIO.split("T")[0]}T${item.H_INICIO}.000Z`,
+                    //end: `${item.F_FIN.split("T")[0]}T${item.H_FIN}.000Z`,
+                    start:new Date(`${moment(fecha).format("YYYY-MM-DD")}T${item.H_INICIO}.000`),
+                    end:new Date(`${moment(fecha).format("YYYY-MM-DD")}T${item.H_FIN}.000`),
+                    allDay: false,
+                }
+            )
+        }
+    })
+
+    console.log('List Event full day', event)
+    return event
+
 }
 export default function PanelMiAgenda ({
                           localizer = mLocalizer,
@@ -51,58 +97,67 @@ export default function PanelMiAgenda ({
     const [culture, setCulture] = useState('es')
     const [rightToLeft, setRightToLeft] = useState(false)
     const [cursoSelected, setCursoSelected] = useState({})
+    const [now, setNow] = useState(new Date())
     const getMisEventos=()=>{
         Services.getMisCursos({ID_USUARIO:user?.ID_USUARIO})
             .then(res=>{
                 console.log("mis eventos::", res)
                 let data = []
-                new Date(2023, 9, 30, 0, 0, 0)
                 if(res?.status === 200){
                     if(res?.data?.row?.length > 0){
-                        data = res?.data?.row?.map(item=>{
-                            return {
-                                ...item,
-                                /*start: formatDate(item.F_INICIO, item.H_INICIO),
-                                end: formatDate(item.F_FIN, item.H_FIN),*/
-                                start: `${item.F_INICIO.split("T")[0]}T${item.H_INICIO}.000Z`,
-                                end: `${item.F_FIN.split("T")[0]}T${item.H_FIN}.000Z`,
-                                allDay: false,
-                                //start: new Date(2023, 11, 14, 17, 30, 0),
-                                //end: new Date(2023, 11, 14, 20, 30, 0),
-                            }
-                        })
+                        console.log('->',res?.data?.row)
+                        //console.log('-*',events)
+                        data = eventForDay(res?.data?.row)
                     }
                 }
-                console.log(data)
+
                 setMisEventos(data)
             })
     }
-    let containerEvent=(event)=>{
-        console.log("-->",event)
+    let containerEvent=(eventWrapperProps)=>{
+        console.log("-->",eventWrapperProps)
+        let style = {
+            ...eventWrapperProps?.children?.props?.style,
+            background: `#${eventWrapperProps?.event?.COLOR}`,
+            color: 'initial'
+        }
         return(
-            <div className={'containerEvent'} style={{background: `#${event?.COLOR}`}}
-                 onClick={()=>{
-                     console.log(event)
-                     setCursoSelected(event)
-                     dispatch(openModalForm())
-                 }}
-            >
-                        <span>
-                              <em>{event.NOMBRE}</em>
-                              {/*<p>{event.DESCRIPCION}</p>*/}
-                            </span>
-            </div>
+            <>
+                {/*{eventWrapperProps.children}*/}
+                <div className={'rbc-event containerEvent'}
+                     style={style}
+                     title={eventWrapperProps?.event?.NOMBRE}
+                     onClick={()=>{
+                         console.log(eventWrapperProps?.event)
+                         setCursoSelected(eventWrapperProps?.event)
+                         dispatch(openModalForm())
+                     }}
+                >
+                    <div className={'rbc-event-label'}>
+                        {eventWrapperProps?.label}
+                    </div>
+                    <div className={'rbc-event-content'}>
+                        {eventWrapperProps?.event?.NOMBRE}
+                    </div>
+
+                </div>
+                                </>
+
         )
     }
+
     const { components, defaultDate, views } = useMemo(
         () => ({
             components: {
-                eventWrapper:({event})=>containerEvent(event),
+                //eventWrapper:({event})=>containerEvent(event),
+                eventWrapper:(eventWrapperProps)=>{
+                    return containerEvent(eventWrapperProps)
+                }
             },
             views: Object.keys(Views).map((k) => Views[k]),
-        }),
-        []
+        }),[]
     )
+
     const {  messages } = useMemo(
         () => ({
             messages: lang[culture],
@@ -205,8 +260,30 @@ export default function PanelMiAgenda ({
             <div className={"col-md-12"}>
                 <div className={"calendar"} style={{ height: 500 }}>
                     <Calendar
+                        //components={components}
+                        culture={culture}
+                        events={events}
+                        //events={eventos}
+                        localizer={localizer}
+                        showMultiDayTimes
+                        views={views}
+                        defaultView={Views.MONTH}
+                        selectable
+                        timeslots={8}
+                        step={60}
+                        messages={messages}
+                        dayLayoutAlgorithm="no-overlap"
+                        rtl={rightToLeft}
+                        popup
+                    />
+                </div>
+            </div>
+            <div className={"col-md-12"}>
+                <div className={"calendar"} style={{ height: 500 }}>
+                    <Calendar
                         components={components}
                         culture={culture}
+                        //events={events}
                         events={eventos}
                         localizer={localizer}
                         showMultiDayTimes
